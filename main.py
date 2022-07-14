@@ -22,7 +22,7 @@ def shrink_pool(current_name_counter, word_pool):
 def run(counter, wordpool):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
-    with st.form(key=str(boxkey), clear_on_submit=True, key=f'{datetime.now()}'):
+    with st.form(clear_on_submit=True, key=f'{datetime.now()}'):
         # choose a word and collect word
         word = st.selectbox(f'Make a Selection', new_pool)
     # adjust counter
