@@ -1,6 +1,7 @@
 import english_words as ew
 from collections import Counter as Co
 import streamlit as st
+from datetime import datetime
 
 WORDLIMIT = 4
 
@@ -18,12 +19,12 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
-def run(counter, wordpool, boxkey):
+def run(counter, wordpool):
     # shrink pool
-    new_pool = shrink_pool(counter, wordpool)
+    new_pool = shrink_pool(counter, wordpool, key=f'{datetime.now()}')
     with st.form(key=str(boxkey), clear_on_submit=True):
         # choose a word and collect word
-        word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
+        word = st.selectbox(f'Make a Selection', new_pool)
     # adjust counter
     new_counter = counter - Co(word)
     return word, counter, new_pool
@@ -35,9 +36,9 @@ def main():
     name = st.text_input("Enter name: ").lower()
     name = name.replace(' ','')
     counter = Co(name)
-    word, counter, pool = run(counter, pool, str(boxkey))
+    word, counter, pool = run(counter, pool)
     results.append(word)
-    if counter == {}:
+    if pool == []:
         st.subheader(' '.join(results))
         
 main()
