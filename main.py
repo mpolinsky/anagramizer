@@ -21,7 +21,7 @@ def shrink_pool(current_name_counter, word_pool):
 def run(counter, wordpool, boxkey):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
-    with st.form(key=str(boxkey), clear_on_submit=True)
+    with st.form(key=str(boxkey), clear_on_submit=True):
         # choose a word and collect word
         word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
     # adjust counter
@@ -35,11 +35,9 @@ def main():
     name = st.text_input("Enter name: ").lower()
     name = name.replace(' ','')
     counter = Co(name)
-    boxkey = -1
-
-        boxkey += 1
-        word, counter, pool = run(counter, pool, str(boxkey))
-        results.append(word)
-    st.subheader(' '.join(results))
+    word, counter, pool = run(counter, pool, str(boxkey))
+    results.append(word)
+    if counter == {}:
+        st.subheader(' '.join(results))
         
 main()
