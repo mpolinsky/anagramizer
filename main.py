@@ -22,7 +22,7 @@ def run(counter, wordpool, boxkey):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
     # choose a word and collect word
-    word = st.selectbox(f'Make a Selection', new_pool)
+    word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
     # adjust counter
     new_counter = counter - Co(word)
     return word, counter, wordpool
