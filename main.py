@@ -27,6 +27,7 @@ def run(counter, wordpool, boxkey):
     new_counter = counter - Co(word)
     return word, counter, new_pool
 
+@st.cache()
 def main():
     results = list()
     pool = [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
