@@ -44,3 +44,4 @@ def main():
         results.append(word)
     st.subheader(' '.join(results))
         
+main()
