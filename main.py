@@ -25,9 +25,12 @@ def run(counter, wordpool):
     with st.form(clear_on_submit=True, key=f'{datetime.now()}'):
         # choose a word and collect word
         word = st.selectbox(f'Make a Selection', new_pool)
+        submitted = st.form_submit_button('Submit')
+        if submitted:
+            
     # adjust counter
-    new_counter = counter - Co(word)
-    return word, counter, new_pool
+        new_counter = counter - Co(word)
+        return word, counter, new_pool
 
 
 def main():
