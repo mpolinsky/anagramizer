@@ -25,11 +25,11 @@ def run(counter, wordpool):
     new_pool = shrink_pool(counter, wordpool)
     # choose a word and collect word
     with st.form(key='columns_in_form'):
-        cols = st.columns(1)
-        word = col.selectbox(f'Make a Selection', new_pool)
-        submitted = st.form_submit_button('Select')
+        col1, col2 = st.columns(2)
+        word = col1.selectbox(f'Make a Selection', new_pool)
+        submitted = col1.form_submit_button('Select')
         if submitted:
-            st.write("SUBMITTED")
+            col1.write("SUBMITTED")
     
     # adjust counter
     new_counter = counter - Co(word)
