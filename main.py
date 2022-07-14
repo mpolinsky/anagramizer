@@ -27,7 +27,7 @@ def run(counter, wordpool):
     with st.form(key='columns_in_form'):
         cols = st.columns(1)
         word = col.selectbox(f'Make a Selection', new_pool)
-        submitted = st.form_submit_button('Select word')
+        submitted = st.form_submit_button('Select')
         if submitted:
             st.write("SUBMITTED")
     
