@@ -1,10 +1,9 @@
+# TaylorProblem.py provides methods and data for the anagramizer.  Named for Simpsons characters Allison Taylor and her father, Prof. Taylor.
+
 from re import A
 from tg_proj.TaylorNode import Node
 from collections import Counter as Co
 
-##
-#
-#
 class TaylorProblem:
     def __init__(self, name_counter, word_pool):
         self.startState = Node(name_counter, list(), self.shrink_pool(name_counter,word_pool), None)
@@ -34,7 +33,6 @@ class TaylorProblem:
 
     # A generator that yields child nodes 
     def generateChildren(self, state):
-        #print(f'In generateChildren:\ntype(anagram): {type(state.anagram)}\nanagram: {state.anagram}\ntype(state.pool){type(state.pool)}\nstate.pool: {state.pool}')
         results = list()
         i = 0
         while i < len(state.pool):
@@ -43,8 +41,6 @@ class TaylorProblem:
             new_counter = state.name - Co(''.join(new_anagram))
             new_pool = self.shrink_pool(new_counter, state.pool)
             i += 1
-            #print(i)
-            # test state before adding?
             # Create and add node with new name, new pool, and new word for anagram, plus parent ref
             yield Node(new_counter, new_anagram, new_pool, self)
    
