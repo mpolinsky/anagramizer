@@ -5,6 +5,7 @@ from tg_proj.TaylorNode import Node
 from tg_proj.TaylorProblem import TaylorProblem as TP
 import english_words as ew
 from collections import Counter as Co
+import streamlit as st
 
 def main():
     corpus = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
@@ -29,7 +30,10 @@ def main():
                 outf.write(i+'\n')
             outf.write('======================\n\n')
 
+st.header("Where we at.")
 
+            
+            
 if __name__ == '__main__':
     main()
     print(f'All done.')
