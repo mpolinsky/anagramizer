@@ -29,7 +29,7 @@ def run(counter, wordpool):
         if submitted:    
             # adjust counter
             new_counter = counter - Co(word)
-            return word, counter, new_pool
+        return word, counter, new_pool
 
 
 def main():
