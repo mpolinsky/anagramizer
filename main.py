@@ -18,8 +18,6 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
-corpus = [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
-
 def run(counter, wordpool):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
@@ -33,7 +31,16 @@ def run(counter, wordpool):
     
     # adjust counter
     new_counter = counter - Co(word)
-    return counter, wordpool
+    return word, counter, wordpool
 
-name = st.text_input("Enter name: ")
-run(Co(name), corpus)
+def main():
+    results = list()
+    corpus = [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
+    name = st.text_input("Enter name: ").lowercase().replace(' ','')
+    counter = Co(name)
+    pool = 1
+    while counter != {} and pool != []:
+        word, counter, pool = run(counter, pool)
+        results.append(word)
+    st.subheader(' '.join(results))
+        
