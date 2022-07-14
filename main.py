@@ -21,13 +21,14 @@ def shrink_pool(current_name_counter, word_pool):
 def run(counter, wordpool, boxkey):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
-    # choose a word and collect word
-    word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
+    with st.form(key=str(boxkey), clear_on_submit=True)
+        # choose a word and collect word
+        word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
     # adjust counter
     new_counter = counter - Co(word)
     return word, counter, new_pool
 
-@st.cache()
+
 def main():
     results = list()
     pool = [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
@@ -35,7 +36,7 @@ def main():
     name = name.replace(' ','')
     counter = Co(name)
     boxkey = -1
-    while counter != {} and pool != []:
+
         boxkey += 1
         word, counter, pool = run(counter, pool, str(boxkey))
         results.append(word)
