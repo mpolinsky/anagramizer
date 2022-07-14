@@ -23,8 +23,7 @@ def run(counter, wordpool):
     new_pool = shrink_pool(counter, wordpool)
     # choose a word and collect word
    
-    col1 = st.columns(1)
-    word = col1.selectbox(f'Make a Selection', new_pool)
+    word = st.selectbox(f'Make a Selection', new_pool)
    
     
     # adjust counter
