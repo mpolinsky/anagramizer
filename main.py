@@ -36,7 +36,9 @@ def run(counter, wordpool):
 def main():
     results = list()
     corpus = [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
-    name = st.text_input("Enter name: ").lowercase().replace(' ','')
+    name = st.text_input("Enter name: ")
+    name = name.lowercase()
+    name = name.replace(' ','')
     counter = Co(name)
     pool = 1
     while counter != {} and pool != []:
