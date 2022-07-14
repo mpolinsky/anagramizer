@@ -25,7 +25,7 @@ def run(counter, wordpool, boxkey):
     word = st.selectbox(f'Make a Selection', new_pool, key=boxkey)
     # adjust counter
     new_counter = counter - Co(word)
-    return word, counter, wordpool
+    return word, counter, new_pool
 
 def main():
     results = list()
