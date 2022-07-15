@@ -1,7 +1,7 @@
 import english_words as ew
 from collections import Counter as Co
 import streamlit as st
-from datetime import datetime
+from datetime import datetime as dt
 
 
 st.cache()
