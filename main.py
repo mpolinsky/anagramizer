@@ -6,7 +6,7 @@ from datetime import datetime
 
 st.cache()
 def get_name():
-    name = input("Enter name: ").lower().strip().replace(' ','')
+    name = st.text_input("Enter name: ").lower().strip().replace(' ','')
     return name, Co(name)
 
 # check for presence and number of letters to eliminate invalid words
@@ -33,9 +33,6 @@ word_pool = shrink_pool(
     )
 
 st.write(st.session_state.keys())
-word = st.text_input("Enter a word")
-
-st.subheader(f"Your word: {word}")
 
 
 
