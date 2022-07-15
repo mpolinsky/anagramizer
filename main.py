@@ -37,8 +37,6 @@ word_pool = shrink_pool(counter, [i for i in ew.english_words_lower_alpha_set if
 # now the user has selected and stored a word.  We need to repeat this process until the pool returns empty.
 results = []
 
-st.write(next_word)
-time.sleep(1)
 counter = counter - Co(next_word)
 word_pool = shrink_pool(counter, word_pool)
 next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
