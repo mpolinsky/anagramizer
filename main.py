@@ -41,5 +41,5 @@ if 'results' not in st.session_state:
 st.header(st.session_state.name)
 
 submit = st.button('Next word', on_click=reset_values)
-
-st.write('Results = ', st.session_state.results)
+if submit:
+    st.write('Results = ', st.session_state.results)
