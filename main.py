@@ -34,9 +34,10 @@ def form_callback():
 with st.form(key='my_form'):
     slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')
     checkbox_input = st.checkbox('Yes or No', key='my_checkbox')
+    words = st.selectbox(label="Pick a word", options=['hello', 'world'], key = dt.now())
+
     submit_button = st.form_submit_button(label='Submit', on_click=form_callback)
 
 
-words = st.selectbox(label="Pick a word", options=['hello', 'world'], key = dt.now())
 
 st.write(words)
