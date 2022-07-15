@@ -22,6 +22,12 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
+def reset_values():
+    st.session_state.choice = st.select_box(label="Select word", options=word_pool, key=dt.now())
+    # set new counter
+    st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
+    st.results.append(st.session_state.st.session_state.choice)
+    st.word_pool = shrink_pool(st.session_state.counter, st.session_state.word_pool)
 
 
 st.title('You can do it!')
@@ -34,6 +40,6 @@ if 'results' not in st.session_state:
 
 st.header(st.session_state.name)
 
-increment = st.button('Next word', on_click=turn_around)
+submit = st.button('Next word', on_click=reset_values)
 
 st.write('Results = ', st.session_state.results)
