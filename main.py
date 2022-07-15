@@ -26,7 +26,6 @@ def shrink_pool(current_name_counter, word_pool):
 def setup():
     name = st.text_input("Enter name: ").lower().strip().replace(' ','')
     pool = shrink_pool(Co(name), [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
-    st.session_state.results=[]
     return name, pool
 
 
@@ -40,6 +39,7 @@ def main(name_counter, word_pool):
                  
 # Generate initial values name, the first name counter, and the initially reduced corpus
 name, word_pool = setup()
+st.session_state.results=[]
 
 while word_pool != []:
     word_choice, new_Counter, word_pool = main(Co(name), pool)
