@@ -23,7 +23,7 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 def reset_values():
-    st.session_state.choice = st.select_box(label="Select word", options=word_pool, key=dt.now())
+    st.session_state.choice = st.selectbox(label="Select word", options=word_pool, key=dt.now())
     # set new counter
     st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
     st.results.append(st.session_state.st.session_state.choice)
