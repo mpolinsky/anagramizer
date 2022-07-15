@@ -4,7 +4,7 @@ import streamlit as st
 from datetime import datetime as dt
 import time
 
-st.cache(allow_output_mutation=True)
+st.cache()
 def get_name():
     name = st.text_input("Enter name: ").lower().strip().replace(' ','')
     return name, Co(name)
