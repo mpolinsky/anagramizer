@@ -24,8 +24,8 @@ def shrink_pool(current_name_counter, word_pool):
 
 @st.cache(suppress_st_warning=True)
 def setup():
-    name = st.text_input("Enter name: ").lower().strip().replace(' ','')
-    pool = shrink_pool(Co(name), [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
+    st.session_state.name = st.text_input("Enter name: ").lower().strip().replace(' ','')
+    st.session_state.pool = shrink_pool(Co(name), [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
     return name, pool
 
 
