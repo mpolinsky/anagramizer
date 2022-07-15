@@ -23,20 +23,16 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
-st.title('Counter Example using Callbacks with args')
+
+st.title('You can do it!')
 if 'results' not in st.session_state:
     st.session_state.results = []
-    st.session_state.name = ''
+    st.session_state.name = st.session_state.name = st.text_input("Enter name: ").lower().replace(' ','')
     st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
-    
-st.session_state.name = st.text_input("Enter name")
-word_pool = shrink_pool(Co(st.session_state.name), st.session_state.word_pool)
-word_choice = st.select_box('Select a word', options=st.session_state.word_pool, key=dt.now())
+    st.session_state.counter = Co(session_state.name)
+    st.session_state.choice = ''
 
-def turn_around(Co(st.session_state.name), word_choice, st.session_state.word_pool):
-    st.session_state.result += word_choice
-    st.session_state.word_pool = shrink_pool(Co(st.session_state.name)-Co(word_choice), st.session_state.word_pool)
-    
+st.header(st.session_state.name)
 
 increment = st.button('Next word', on_click=turn_around)
 
