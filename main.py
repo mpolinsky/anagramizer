@@ -5,8 +5,6 @@ from datetime import datetime as dt
 import time
 
 
-
-
 # check for presence and number of letters to eliminate invalid words
 def letter_check(current_name_counter, candidate_word):
     word_count = Co(candidate_word)
@@ -36,8 +34,13 @@ if 'results' not in st.session_state:
     st.session_state.counter = Co(st.session_state.name)
     st.session_state.word_pool = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
 
+
 st.header(st.session_state.name)
 st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
 submit = st.button('Next word', on_click=reset_values)
 #if submit:
- #   st.write('Results = ', st.session_state.results)
+ #   st.write(f'Results = {st.session_state.results}')
+    
+    
+    
+    
