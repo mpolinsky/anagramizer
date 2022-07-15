@@ -35,15 +35,17 @@ def reduce_round():
 
 st.header("Are we here?")
 
+def main():
+    name, counter, word_pool = reduce_round()
+    st.subheader("Session State")
+    st.write(list(st.session_state.keys()))
+    next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
+    st.write(next_word)
+    return name, counter, word_pool
 
-st.subheader("Session State")
-st.write(list(st.session_state.keys()))
+name, counter, word_pool = main()
 
-name, counter, word_pool = reduce_round()
-st.subheader("Session State")
-st.write(list(st.session_state.keys()))
-next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
-st.write(next_word)
+
 st.subheader("End")
 
 
