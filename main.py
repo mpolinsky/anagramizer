@@ -38,8 +38,11 @@ if 'results' not in st.session_state:
 st.header(st.session_state.name)
 st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
 submit = st.button('Next word', on_click=reset_values)
-#if submit:
- #   st.write(f'Results = {st.session_state.results}')
+st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
+st.session_state.results.append(st.session_state.choice)
+
+if submit:
+    st.write(f'Results = {st.session_state.results}')
     
     
     
