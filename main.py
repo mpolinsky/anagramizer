@@ -22,7 +22,7 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
-@st.cache(suppress_st_warning=True)
+
 def setup():
     st.session_state.name = st.text_input("Enter name: ").lower().strip().replace(' ','')
     st.session_state.word_pool = shrink_pool(Co(name), [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
