@@ -21,23 +21,14 @@ def shrink_pool(current_name_counter, word_pool):
     newpool = [i for i in word_pool if letter_check(current_name_counter, i)]
     newpool.sort(key=len, reverse=True)
     return newpool
+import streamlit as st
 
+st.title('Counter Example')
+if 'count' not in st.session_state:
+    st.session_state.count = 0
 
-word = st.text_input("Enter a word")
+increment = st.button('Increment')
+if increment:
+    st.session_state.count += 1
 
-st.write(word)
-
-def form_callback():
-    st.write(st.session_state.my_slider)
-    st.write(st.session_state.my_checkbox)
-
-with st.form(key='my_form'):
-    slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')
-    checkbox_input = st.checkbox('Yes or No', key='my_checkbox')
-    words = st.selectbox(label="Pick a word", options=['hello', 'world'], key = dt.now())
-
-    submit_button = st.form_submit_button(label='Submit', on_click=form_callback)
-
-
-
-st.write(words)
+st.write('Count = ', st.session_state.count)
