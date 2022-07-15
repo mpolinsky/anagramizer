@@ -31,8 +31,10 @@ word_pool = shrink_pool(
     [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
     )
 
-st.write(st.cache.keys())
+st.write(st.session_state.keys())
+word = st.text_input("Enter a word")
 
+st.subheader(f"Your word: {word}")
 
 
 
