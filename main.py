@@ -42,9 +42,7 @@ name, counter, word_pool = reduce_round()
 st.subheader("Session State")
 st.write(list(st.session_state.keys()))
 next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
-with st.submit_button("Submit"):
-    st.write(next_word)
-
+st.write(next_word)
 st.subheader("End")
 
 
