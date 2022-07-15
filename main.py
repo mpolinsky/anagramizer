@@ -4,10 +4,7 @@ import streamlit as st
 from datetime import datetime as dt
 import time
 
-st.cache()
-def get_name():
-    name = st.text_input("Enter name: ").lower().strip().replace(' ','')
-    return name, Co(name)
+
 
 
 # check for presence and number of letters to eliminate invalid words
@@ -25,30 +22,31 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
+@st.cache()
+def setup():
+    name = st.text_input("Enter name: ").lower().strip().replace(' ','')
+    pool = shrink_pool(Co(name), [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
+    st.session_state = list()
+    return name, pool
+
 
 st.subheader("Session State")
 st.write(list(st.session_state.keys()))
 
+def main(name_counter, word_pool):
+    word_pool = shrink_pool(name_counter, word_pool)
+    word_choice = st.selectbox(label="Choose", options=word_pool, key=str(dt.now()))
+    return word_choice, name_counter - Co(word_choice), word_pool
+                 
 # Generate initial values name, the first name counter, and the initially reduced corpus
-name, counter = get_name()
-word_pool = shrink_pool(counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
-    
+name, word_pool = setup()
 
-# now the user has selected and stored a word.  We need to repeat this process until the pool returns empty.
-results = []
-with st.form("form"):
-    next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
-    counter = counter - Co(next_word)
-    word_pool = shrink_pool(counter, word_pool)
-    
-    submit_button = st.form_submit_button(label='Submit')
-    if submit_button:
-        results.append(next_word)
+while word_pool != []:
+    word_choice, new_Counter, word_pool = main(Co(name), pool)
+    st.session_state['results'].append(word_choice)
 
-st.write(results)
-st.subheader("Session State")
-st.write(list(st.session_state.keys()))
 
+st.header(list(st.session_state['results'].items()))
 st.subheader("End")
 
 
