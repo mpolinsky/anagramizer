@@ -23,8 +23,7 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
-st.header("Are we here?")
-def reduce_round()
+def reduce_round():
     # declare streamlit state variables 
     WORDLIMIT = 4
     name, counter = get_name()
@@ -33,6 +32,9 @@ def reduce_round()
         [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
         )
     return name, counter, word_pool
+
+st.header("Are we here?")
+
 
 st.subheader("Session State")
 st.write(list(st.session_state.keys()))
