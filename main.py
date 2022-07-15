@@ -3,7 +3,11 @@ from collections import Counter as Co
 import streamlit as st
 from datetime import datetime
 
-WORDLIMIT = 4
+
+st.cache()
+def get_name():
+    name = input("Enter name: ").lower().strip().replace(' ','')
+    return name, Co(name)
 
 # check for presence and number of letters to eliminate invalid words
 def letter_check(current_name_counter, candidate_word):
@@ -19,6 +23,22 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
+# declare streamlit state variables 
+WORDLIMIT = 4
+name, counter = get_name()
+word_pool = shrink_pool(
+    counter,
+    [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
+    )
+
+
+
+
+
+
+
+
+"""
 def run(counter, wordpool):
     # shrink pool
     new_pool = shrink_pool(counter, wordpool)
@@ -44,3 +64,4 @@ def main():
         st.subheader(' '.join(results))
         
 main()
+"""

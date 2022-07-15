@@ -90,6 +90,35 @@ class Search:
                 # add this new generator to the front of the openlist
                 openList.insert(0,children)
 
+    def BFS(self):
+        results = []
+        closedList = list()
+        # add start state to openlist
+        openList = self._DFS_setup()
+        skip = 1
+        while True:
+            # get current state
+            current_state = self._get_current_state(openList, closedList, results)
+            if isinstance(current_state, list):
+                return current_state
+            
+            # We have current state and need to check termination 
+            # if ppol is empty check that counter is also empty.  
+            # If not its bad if so its good.
+            if self.problem.goalTest(current_state):
+                # if good collect the path and add it to the list of paths
+                if current_state.name == {}:
+                    results.append(' '.join(current_state.get_anagram()))
+                closedList.append(current_state)
+            else:
+                # if not generate this node's children generator 
+                children = self.problem.generateChildren(current_state)
+               
+                # add this state to the closed list
+                closedList.append(current_state)
+                # add this new generator to the front of the openlist
+                openList.append(children)
+
         
 
 
@@ -184,7 +213,7 @@ class Search:
 
 
     # Breadth-first search
-    def BFS(self):
+    def OldBFS(self):
         # openList is a python deque
         openList = dq()
         # initialize openList
