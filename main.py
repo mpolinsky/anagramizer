@@ -29,7 +29,7 @@ if 'results' not in st.session_state:
     st.session_state.results = []
     st.session_state.name = st.session_state.name = st.text_input("Enter name: ").lower().replace(' ','')
     st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
-    st.session_state.counter = Co(session_state.name)
+    st.session_state.counter = Co(st.session_state.name)
     st.session_state.choice = ''
 
 st.header(st.session_state.name)
