@@ -43,10 +43,11 @@ name, word_pool = setup()
 
 while word_pool != []:
     word_choice, new_Counter, word_pool = main(Co(name), pool)
+    st.write(f'word_choice: {word_choice}\n')
     st.session_state['results'].append(word_choice)
 
 
-st.header(list(st.session_state['results']))
+st.header(st.session_state['results'])
 st.subheader("End")
 
 
