@@ -35,11 +35,9 @@ if 'results' not in st.session_state:
     st.session_state.name = st.text_input("Enter name: ").lower().replace(' ','')
     st.session_state.counter = Co(st.session_state.name)
     st.session_state.word_pool = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
-    st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
-
 
 st.header(st.session_state.name)
-
+st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
 submit = st.button('Next word', on_click=reset_values)
-if submit:
-    st.write('Results = ', st.session_state.results)
+#if submit:
+ #   st.write('Results = ', st.session_state.results)
