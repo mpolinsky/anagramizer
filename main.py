@@ -28,6 +28,6 @@ word = st.text_input("Enter a word")
 st.write(word)
 
 
-words = st.selectbox(label="Pick a word", options=['hello', 'world', key =dt.now()])
+words = st.selectbox(label="Pick a word", options=['hello', 'world'], key = dt.now())
 
 st.write(words)
