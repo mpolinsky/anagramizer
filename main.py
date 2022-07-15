@@ -24,15 +24,20 @@ def shrink_pool(current_name_counter, word_pool):
 
 
 st.title('Counter Example using Callbacks with args')
-if 'count' not in st.session_state:
-    st.session_state.count = 0
+if 'results' not in st.session_state:
+    st.session_state.results = []
+    st.session_state.name = ''
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
+    
+st.session_state.name = st.text_input("Enter name")
+word_pool = shrink_pool(Co(st.session_state.name), st.session_state.word_pool)
+word_choice = st.select_box('Select a word', options=st.session_state.word_pool, key=dt.now())
 
-increment_value = st.number_input('Enter a value', value=0, step=1)
+def turn_around(Co(st.session_state.name), word_choice, st.session_state.word_pool):
+    st.session_state.result += word_choice
+    st.session_state.word_pool = shrink_pool(Co(st.session_state.name)-Co(word_choice), st.session_state.word_pool)
+    
 
-def increment_counter(increment_value):
-    st.session_state.count += increment_value
+increment = st.button('Next word', on_click=turn_around)
 
-increment = st.button('Increment', on_click=increment_counter,
-    args=(increment_value, ))
-
-st.write('Count = ', st.session_state.count)
+st.write('Results = ', st.session_state.results)
