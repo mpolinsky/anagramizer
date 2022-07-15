@@ -21,14 +21,17 @@ def shrink_pool(current_name_counter, word_pool):
     newpool = [i for i in word_pool if letter_check(current_name_counter, i)]
     newpool.sort(key=len, reverse=True)
     return newpool
+
+
 import streamlit as st
 
-st.title('Counter Example')
+st.title('Counter Example using Callbacks')
 if 'count' not in st.session_state:
     st.session_state.count = 0
 
-increment = st.button('Increment')
-if increment:
+def increment_counter():
     st.session_state.count += 1
+
+st.button('Increment', on_click=increment_counter)
 
 st.write('Count = ', st.session_state.count)
