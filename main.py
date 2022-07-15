@@ -40,8 +40,9 @@ def main(name_counter, word_pool):
 # Generate initial values name, the first name counter, and the initially reduced corpus
 st.session_state.name, st.session_state.word_pool = setup()
 st.session_state.results=[]
-
-while word_pool != []:
+st.session_state.count = 0
+while st.session_state.word_pool != []:
+    st.write(f'Run number: {st.session_state.count}')
     st.session_state.word_choice, st.session_state.new_Counter,st.session_state.word_pool = main(Co(name), pool)
     st.write(f'word_choice: {st.session_state.word_choice}\n')
     st.session_state.results.append(st.session_state.word_choice)
