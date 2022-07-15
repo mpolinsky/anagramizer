@@ -31,6 +31,8 @@ word_pool = shrink_pool(
     [i for i in ew.english_words_lower_alpha_set if len(i) > WORDLIMIT]
     )
 
+st.write(st.cache.keys())
+
 
 
 
