@@ -23,3 +23,11 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
+word = st.text_input("Enter a word")
+
+st.write(word)
+
+
+words = st.selectbox(label="Pick a word", options=['hello', 'world', key =dt.now()])
+
+st.write(words)
