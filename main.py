@@ -46,7 +46,7 @@ while word_pool != []:
     st.session_state['results'].append(word_choice)
 
 
-st.header(list(st.session_state['results'].items()))
+st.header(list(st.session_state['results']))
 st.subheader("End")
 
 
