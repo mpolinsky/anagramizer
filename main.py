@@ -33,18 +33,16 @@ st.write(list(st.session_state.keys()))
 name, counter = get_name()
 word_pool = shrink_pool(counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
     
-first_run = True
+
 # now the user has selected and stored a word.  We need to repeat this process until the pool returns empty.
-results = []
-if not first_run:
-    #while word_pool != []:
-    results.append(next_word)
-    st.write(next_word)
-    time.sleep(1)
-    counter = counter - Co(next_word)
-word_pool = shrink_pool(counter, word_pool)
-next_word = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
-first_run = False
+st.cache['results'] = []
+st.cache['results'] .append(next_word)
+st.write(next_word)
+time.sleep(1)
+counter = counter - Co(next_word)
+st.cache['word_pool'] = shrink_pool(counter, word_pool)
+st.cache['next_word'] = st.selectbox(label="Choose next word", options=word_pool, key=str(dt.now()))
+
 
 st.write(results)
 st.subheader("Session State")
