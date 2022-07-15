@@ -32,6 +32,7 @@ word_pool = shrink_pool(
     [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
     )
 
+st.subheader("Session State")
 st.write(st.session_state.keys())
 
 
