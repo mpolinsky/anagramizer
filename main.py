@@ -24,18 +24,26 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 st.header("Are we here?")
-# declare streamlit state variables 
-WORDLIMIT = 4
-name, counter = get_name()
-word_pool = shrink_pool(
-    counter,
-    [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
-    )
+def reduce_round()
+    # declare streamlit state variables 
+    WORDLIMIT = 4
+    name, counter = get_name()
+    word_pool = shrink_pool(
+        counter,
+        [i for i in ew.english_words_lower_alpha_set if len(i) > 4]
+        )
+    return name, counter, word_pool
 
 st.subheader("Session State")
 st.write(list(st.session_state.keys()))
+name, counter, word_pool = reduce_round()
+st.subheader("Session State")
+st.write(list(st.session_state.keys()))
+next_word = st.selectbox(key=str(dt.now()))
+with st.submit_button("Submit"):
+    st.write(next_word)
 
-
+st.subheader("End")
 
 
 
