@@ -26,7 +26,7 @@ def shrink_pool(current_name_counter, word_pool):
 st.title('You can do it!')
 
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
+    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 
 if 'count' not in st.session_state:
     st.session_state.count = 0
@@ -45,7 +45,6 @@ st.write('You selected:', option)
 
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
-st.session_state.word_pool.append('title')
 
     
     
