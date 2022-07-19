@@ -75,10 +75,8 @@ with st.form(key=str(dt.now())):
     st.write(f"You chose {option}")
     submit = st.form_submit_button("Submit", on_click=turnabout(option))
 
-
-
-
-
+if submit:
+        st.session_state.choice = option
 
 st.subheader(st.session_state.counter1)
 	
