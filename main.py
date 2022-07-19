@@ -70,9 +70,11 @@ with st.form(key=str(dt.now())):
     submit = st.form_submit_button("Submit")
     if submit:
         st.session_state.choice = option	
-        st.session_state.res.append(st.session_state.choice)
-        st.subheader(st.session_state.counter1)
-        st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+st.header(option)
+if st.session_state.choice == option:
+    st.session_state.res.append(st.session_state.choice)
+    st.subheader(st.session_state.counter1)
+    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 
 st.subheader(st.session_state.counter1)
 	
