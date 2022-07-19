@@ -48,6 +48,8 @@ with st.form("wordform"):
     if submitted:
         st.write('You selected:', option)
         st.session_state.result.append(option)
+  
+st.subheader(st.session_state.result)
 
     
     
