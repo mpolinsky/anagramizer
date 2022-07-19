@@ -37,5 +37,11 @@ st.write('Count = ', st.session_state.count)
 for i in list(st.session_state.items()):
     st.write(i)
     
+    option = st.selectbox(
+     'How would you like to be contacted?',
+     ('Email', 'Home phone', 'Mobile phone'))
+
+st.write('You selected:', option)
+    
     
     
