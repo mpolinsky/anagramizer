@@ -30,6 +30,9 @@ if 'word_pool' not in st.session_state:
 
 if 'count' not in st.session_state:
     st.session_state.count = 0
+    
+if 'result' not in st.session_state:
+    st.session_state.result = list()
 
 increment = st.button('Increment')
 if increment:
@@ -37,15 +40,14 @@ if increment:
 
 st.write('Count = ', st.session_state.count)
     
-option = st.selectbox(
- 'Select a word',
- st.session_state.word_pool)
-
-st.write('You selected:', option)
-
-title = st.text_input('Movie title', 'Life of Brian')
-st.write('The current movie title is', title)
-st.session_state.word_pool.append(title)
+with st.form(dt.now()):
+    option = st.selectbox(
+    'Select a word',
+    st.session_state.word_pool)
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        st.write('You selected:', option)
+        st.session_state.result.append(option)
 
     
     
