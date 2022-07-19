@@ -35,7 +35,7 @@ if 'result' not in st.session_state:
     st.session_state.result = list()
     
 if 'name' not in st.session_state:
-    st.session_state.name = input('Enter name: ').lower().replace(' ','')
+    st.session_state.name = st.text_input('Enter name: ').lower().replace(' ','')
     st.write(name)
     
     
