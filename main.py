@@ -52,6 +52,7 @@ st.session_state.results.append(st.session_state.choice)
 #if submit:
 st.write(f'Results = {st.session_state.results}')
     
+st.write(st.session_state.items())
     
     
     
