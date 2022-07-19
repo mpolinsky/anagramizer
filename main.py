@@ -27,7 +27,7 @@ st.title('You can do it!')
 
 if 'results' not in st.session_state:
     st.write("Doing setup...")
-    st.session_state['results'] = []
+    st.session_state['results'] = ['hello there']
     name = st.text_input("Enter name: ").lower().replace(' ','')
     st.header(f"Name: {name}")
     st.session_state['name'] = name
@@ -43,12 +43,12 @@ if 'results' not in st.session_state:
     #st.header(f"Session anagram is: {' '.join(st.session_state['results'])}")
 #else:
     #st.header(f"No anagram yet.")
-st.subheader(f"Word pool length is {len(st.session_state['word_pool'])}")
+#st.subheader(f"Word pool length is {len(st.session_state['word_pool'])}")
 c = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
 st.session_state.choice = c
 st.write(f"Choice is: {c}")
 st.write(f"Choice is {st.session_state.choice}")
-st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
+#st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
 
 st.session_state.results.append(st.session_state.choice)
 #submit = st.button('Next word', key=dt.now())
