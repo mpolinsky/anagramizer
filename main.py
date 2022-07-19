@@ -45,6 +45,7 @@ st.write('You selected:', option)
 
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
+st.session_state.word_pool.append('title')
 
     
     
