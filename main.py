@@ -29,14 +29,12 @@ if 'results' not in st.session_state:
     st.session_state['counter'] = Co(st.session_state.name)
     st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
 
-st.subheader(st.session_state.results) 
-st.subheader(st.session_state.name)
-st.subheader(st.session_state.counter) 
-st.subheader(st.session_state.word_pool) 
+st.subheader(st.session_state['counter']) 
+st.subheader(st.session_state['word_pool']) 
 
 st.header(f"Session name is: {st.session_state.name}")
 if st.session_state.results != []:
-    st.header(f"Session name is: {' '.join(st.session_state.results)}")
+    st.header(f"Session anagram is: {' '.join(st.session_state.results)}")
 else:
     st.header(f"No anagram yet.")
 st.subheader(f"Word pool length is {len(st.session_state.word_pool)}")
