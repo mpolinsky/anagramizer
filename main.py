@@ -37,10 +37,10 @@ if 'result' not in st.session_state:
 if 'name' not in st.session_state:
     with st.form("preform"):
         name = st.text_input('Enter name: ').lower().replace(' ','')
-    submit = st.form_submit_button("Submit")
-    if submit:
-        st.write(type(name))
-        st.session_state.name = name
+        submit = st.form_submit_button("Submit")
+        if submit:
+            st.write(type(name))
+            st.session_state.name = name
    
 
 st.write(st.session_state.name)    
