@@ -60,7 +60,7 @@ if st.session_state.count > 3:
     st.session_state.res = st.session_state.res[:-1]
 
 st.write('Count = ', st.session_state.count)
-
+st.subheader(st.session_state.counter1)
 with st.form(key=str(dt.now())):
 	option = st.selectbox(
 	'Select:',
