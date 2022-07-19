@@ -71,7 +71,7 @@ with st.form(key=str(dt.now())):
     if submit:
         st.session_state.choice = option	
 st.header(option)
-st.header(f"st.session_state.choice is: {st.session_state.choice }")
+st.header(f"st.session_state.choice is: {type(st.session_state.choice)}")
 if st.session_state.choice == option:
     st.header(f"st.session_state.choice == option is true")
     st.header(f"st.session_state.choice is: {st.session_state.choice }")
