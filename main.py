@@ -33,6 +33,7 @@ if 'results' not in st.session_state:
     st.session_state['name'] = name
     st.session_state['counter'] = Co(name)
     st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
+    st.session_state.count = 0
     
 st.subheader(st.session_state['counter']) 
 st.subheader(st.session_state['word_pool']) 
@@ -55,8 +56,7 @@ st.session_state.results.append(st.session_state.choice)
 st.write(f'Results = {st.session_state.results}')
 
 st.title('Counter Example')
-if 'count' not in st.session_state:
-    st.session_state.count = 0
+    
 
 increment = st.button('Increment')
 if increment:
