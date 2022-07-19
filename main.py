@@ -16,6 +16,8 @@ def letter_check(current_name_counter, candidate_word):
 
 # Keep words that pass the letter_check
 def shrink_pool(current_name_counter, word_pool):
+    st.write(f"current counter: {current_name_counter}")
+    st.write(f"wordpool len: {len(word_pool)}")
     newpool = [i for i in word_pool if letter_check(current_name_counter, i)]
     newpool.sort(key=len, reverse=True)
     st.write(f"in shrink pool: returned pool size is {len(newpool)}")
