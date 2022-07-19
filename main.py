@@ -60,20 +60,18 @@ reset_counter(st.session_state.name)
 #    st.session_state.res = st.session_state.res[:-1]
 
 st.write('Count = ', st.session_state.count)
-st.subheader(st.session_state.counter1)
+
 with st.form(key=str(dt.now())):
-	option = st.selectbox(
-	'Select:',
-	shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-	)
-	st.write(f"You chose {option}")
-
-	submit = st.form_submit_button("Submit")
-
-	if submit:
-	    st.session_state.choice = option	
-	    st.session_state.res.append(st.session_state.choice)
-	    st.subheader(st.session_state.counter1)
+    option = st.selectbox(
+    'Select:',
+    shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+    )
+    st.write(f"You chose {option}")
+    submit = st.form_submit_button("Submit")
+    if submit:
+        st.session_state.choice = option	
+        st.session_state.res.append(st.session_state.choice)
+        st.subheader(st.session_state.counter1)
 
 if len(st.session_state.res) > 0:
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
