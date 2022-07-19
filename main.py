@@ -36,13 +36,10 @@ if increment:
     st.session_state.count += 1
 
 st.write('Count = ', st.session_state.count)
-
-for i in list(st.session_state.items()):
-    st.write(i)
     
-    option = st.selectbox(
-     'Select a word',
-     st.session_state.word_pool)
+option = st.selectbox(
+ 'Select a word',
+ st.session_state.word_pool)
 
 st.write('You selected:', option)
 
