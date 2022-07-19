@@ -85,7 +85,7 @@ st.subheader(st.session_state.counter1)
 	
 st.session_state.count += 1
 
-if st.session_state.counter1 == {}:
+if st.session_state.counter1 == {} and st.session_state.res is not None:
     st.subheader(' '.join(st.session_state.res))
 
 st.button("Next")
