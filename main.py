@@ -45,7 +45,7 @@ if 'choice' not in st.session_state:
 # If no, then initialize count to 0
 # If count is already initialized, don't do anything
 if 'count' not in st.session_state:
-    st.session_state.count = -1
+    st.session_state.count = 0
 	
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.name = st.text_input("Enter name")
@@ -73,7 +73,7 @@ with st.form(key=str(dt.now())):
         st.session_state.res.append(st.session_state.choice)
         st.subheader(st.session_state.counter1)
 
-if len(st.session_state.res) >= 0:
+if len(st.session_state.res) > 0:
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	
 st.subheader(st.session_state.counter1)
