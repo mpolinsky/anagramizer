@@ -18,14 +18,8 @@ def letter_check(current_name_counter, candidate_word):
 def shrink_pool(current_name_counter, word_pool):
     newpool = [i for i in word_pool if letter_check(current_name_counter, i)]
     newpool.sort(key=len, reverse=True)
+    st.write(f"in shrink pool: returned pool size is {len(newpool)}")
     return newpool
-
-def reset_values():
-    # set new counter
-    st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
-    st.session_state.results.append(st.session_state.choice)
-    st.session_state.word_pool = shrink_pool(st.session_state.counter, st.session_state.word_pool)
-
 
 st.title('You can do it!')
 
@@ -33,7 +27,7 @@ if 'results' not in st.session_state:
     st.session_state['results'] = []
     st.session_state['name'] = st.text_input("Enter name: ").lower().replace(' ','')
     st.session_state['counter'] = Co(st.session_state.name)
-    st.session_state]'word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
+    st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
 
 st.subheader(st.session_state.results) 
 st.subheader(st.session_state.name)
