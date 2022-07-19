@@ -35,7 +35,7 @@ if 'word_pool' not in st.session_state:
 #    st.session_state.result = list()
     
 if 'name' not in st.session_state:
-    with st.form("preform"):
+    with st.form(key="preform"+str(dt.now())):
         name = st.text_input('Enter name: ')
         st.write(type(name))
         name = name.lower().replace(' ','')
@@ -46,7 +46,7 @@ if 'name' not in st.session_state:
 else:   
     st.write(st.session_state.name)    
   
-with st.form("main"):
+with st.form(key="main"+str(dt.now()):
     option = st.selectbox("Choose a word to add!", options=st.session_state.word_pool)
     st.write(f"{st.session_state.name} chose {option}")
     submitted = st.form_submit_button("Submit...")
