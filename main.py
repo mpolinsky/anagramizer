@@ -56,8 +56,8 @@ if 'counter1' not in st.session_state:
 reset_counter(st.session_state.name)
 
 
-#if st.session_state.count > 3:
-#    st.session_state.res = st.session_state.res[:-1]
+if st.session_state.count > 3:
+    st.session_state.res = st.session_state.res[:-1]
 
 st.write('Count = ', st.session_state.count)
 
@@ -73,16 +73,14 @@ with st.form(key=str(dt.now())):
 	    st.session_state.res.append(st.session_state.choice)
 	    st.subheader(st.session_state.counter1)
 
-if st.session_state.count > 0:
-	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
+if st.session_state.count > 1:
+	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	
 st.subheader(st.session_state.counter1)
-	
-
-
+st.session_state.count += 1
 if st.session_state.counter1 == {}:
     st.subheader(' '.join(st.session_state.res))
-st.session_state.count += 1
+
 st.button("Next")
 
 st.write(st.session_state)
