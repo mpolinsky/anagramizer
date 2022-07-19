@@ -40,7 +40,17 @@ if 'name' not in st.session_state:
         submit = st.form_submit_button("Submit")
         if submit:
             st.session_state.name = name
-st.write(st.session_state.name) 
+
+try:
+    st.write(st.session_state.name) 
+except AttributeError:
+    st.write("Enter name please")
+else:
+    st.header(st.session_state.name)
+    
+ 
+
+
 
 #if 'word_pool' not in st.session_state:
 #    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
