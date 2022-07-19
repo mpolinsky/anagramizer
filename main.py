@@ -26,9 +26,12 @@ def shrink_pool(current_name_counter, word_pool):
 st.title('You can do it!')
 
 if 'results' not in st.session_state:
+    st.write("Doing setup...")
     st.session_state['results'] = []
-    st.session_state['name'] = st.text_input("Enter name: ").lower().replace(' ','')
-    st.session_state['counter'] = Co(st.session_state.name)
+    name = st.text_input("Enter name: ").lower().replace(' ','')
+    st.header(f"Nmae: {name}")
+    st.session_state['name'] = name
+    st.session_state['counter'] = Co(name)
     st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
 
 st.subheader(st.session_state['counter']) 
