@@ -25,27 +25,10 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
-#if 'count' not in st.session_state:
-#    st.session_state.count = 0
-    
 #if 'result' not in st.session_state:
 #    st.session_state.result = list()
-st.write(st.session_state)
-if 'name' not in st.session_state:    
-    name = st.text_input('Enter name: ')
-    st.write(type(name))
-    name = name.lower().replace(' ','')
-    st.write(name)
-    
 
-try:
-    st.write(st.session_state.name) 
-except AttributeError:
-    st.write("Enter name please")
-else:
-    st.header(st.session_state.name)
-    
- 
+
 
 
 
