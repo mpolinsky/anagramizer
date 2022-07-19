@@ -40,7 +40,7 @@ if 'res' not in st.session_state:
     st.session_state.res = list()
 
 if 'choice' not in st.session_state:
-    st.session_state.choice = ''
+    st.session_state.choice = 'init'
 
 # If no, then initialize count to 0
 # If count is already initialized, don't do anything
@@ -71,7 +71,7 @@ with st.form(key=str(dt.now())):
     if submit:
         st.session_state.choice = option	
 st.header(option)
-st.header(f"st.session_state.choice is: {type(st.session_state.choice)}")
+st.header(f"st.session_state.choice is: {st.session_state.choice)")
 if st.session_state.choice == option:
     st.header(f"st.session_state.choice == option is true")
     st.header(f"st.session_state.choice is: {st.session_state.choice }")
