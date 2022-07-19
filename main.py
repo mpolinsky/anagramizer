@@ -31,15 +31,12 @@ st.title('You can do it!')
 #if 'result' not in st.session_state:
 #    st.session_state.result = list()
 st.write(st.session_state)
-if 'name' not in st.session_state:
-    with st.form(key="preform"+str(dt.now())):
-        name = st.text_input('Enter name: ')
-        st.write(type(name))
-        name = name.lower().replace(' ','')
-        st.write(name)
-        submit = st.form_submit_button("Submit")
-        if submit:
-            st.session_state.name = name
+if 'name' not in st.session_state:    
+    name = st.text_input('Enter name: ')
+    st.write(type(name))
+    name = name.lower().replace(' ','')
+    st.write(name)
+    
 
 try:
     st.write(st.session_state.name) 
