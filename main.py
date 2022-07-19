@@ -32,7 +32,7 @@ if 'results' not in st.session_state:
     st.header(f"Name: {name}")
     st.session_state['name'] = name
     #st.session_state['counter'] = Co(name)
-    #st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
+    st.session_state['word_pool'] = shrink_pool(st.session_state.counter, ['hello','this','is','working'])#[i for i in ew.english_words_lower_alpha_set if len(i) > 4])
     st.session_state.count = 0
     
 #st.subheader(st.session_state['counter']) 
