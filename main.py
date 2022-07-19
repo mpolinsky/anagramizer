@@ -38,10 +38,10 @@ st.subheader(st.session_state['counter'])
 st.subheader(st.session_state['word_pool']) 
 
 st.header(f"Session name is: {st.session_state['name']}")
-if st.session_state.results != []:
-    st.header(f"Session anagram is: {' '.join(st.session_state['results'])}")
-else:
-    st.header(f"No anagram yet.")
+#if st.session_state.results != []:
+    #st.header(f"Session anagram is: {' '.join(st.session_state['results'])}")
+#else:
+    #st.header(f"No anagram yet.")
 st.subheader(f"Word pool length is {len(st.session_state['word_pool'])}")
 st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
 #submit = st.button('Next word', on_click=reset_values)
