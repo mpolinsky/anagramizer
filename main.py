@@ -45,7 +45,7 @@ if 'choice' not in st.session_state:
 # If no, then initialize count to 0
 # If count is already initialized, don't do anything
 if 'count' not in st.session_state:
-    st.session_state.count = 0
+    st.session_state.count = -1
 	
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.name = st.text_input("Enter name")
