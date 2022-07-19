@@ -58,5 +58,6 @@ with st.form("wordform"):
 st.subheader(st.session_state.result)
 
     
+st.write(st.session_state)
     
     
