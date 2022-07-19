@@ -25,8 +25,7 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
-word_pool = ['hello','this','is','a','wordpool']
-
+corpus = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 if 'count' not in st.session_state:
     st.session_state.count = 0
 
@@ -41,7 +40,7 @@ for i in list(st.session_state.items()):
     
     option = st.selectbox(
      'Select a word',
-     word_pool)
+     corpus)
 
 st.write('You selected:', option)
     
