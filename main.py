@@ -68,21 +68,23 @@ with st.form(key=str(dt.now())):
 	)
 	st.write(f"You chose {option}")
 
-
 	submit = st.form_submit_button("Submit")
+
 	if submit:
 	    st.session_state.choice = option	
 	    st.session_state.res.append(st.session_state.choice)
 	    st.subheader(st.session_state.counter1)
 
-if st.session_state.count > 1:
+if len(st.session_state.res) > 0:
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	
 st.subheader(st.session_state.counter1)
 	
 st.session_state.count += 1
+
 if st.session_state.counter1 == {}:
     st.subheader(' '.join(st.session_state.res))
+
 st.button("Next")
 st.write(st.session_state)
 
