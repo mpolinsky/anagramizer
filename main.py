@@ -29,13 +29,15 @@ st.title('You can do it!')
 if 'res' not in st.session_state:
 	st.session_state.res = list()
 
+if 'word_pool' not in st.session_state:
+    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
+
 
 # If no, then initialize count to 0
 # If count is already initialized, don't do anything
 if 'count' not in st.session_state:
     st.session_state.count = 0
     st.write("ONE TIME")
-    
 	
 st.session_state.name = st.text_input('nameo: ')
 # Create a button which will increment the counter
@@ -59,6 +61,4 @@ st.write(st.session_state.res)
 
 
 
-#if 'word_pool' not in st.session_state:
-#    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 
