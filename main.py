@@ -40,8 +40,14 @@ if 'name' not in st.session_state:
         submit = st.form_submit_button("Submit")
         if submit:
             st.session_state.name = name
-else:
+
+try:
     st.write(st.session_state.name) 
+except ArttributeError:
+    st.write("Enter name please")
+else:
+    st.header(st.session_state.name)
+    
  
 
 
