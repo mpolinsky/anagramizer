@@ -73,7 +73,7 @@ with st.form(key=str(dt.now())):
 	    st.session_state.res.append(st.session_state.choice)
 	    st.subheader(st.session_state.counter1)
 
-if st.session_state.count > 1:
+if st.session_state.count > 0:
 	st.session_state.counter1 -= Co(st.session_state.res[:-1])
 	
 st.subheader(st.session_state.counter1)
