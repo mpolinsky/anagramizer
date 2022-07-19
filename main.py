@@ -39,7 +39,7 @@ if 'name' not in st.session_state:
         name = st.text_input('Enter name: ')
         st.write(type(name))
         name = name.lower().replace(' ','')
-        st.write(type())
+        st.write(name)
         submit = st.form_submit_button("Submit")
         if submit:
             st.session_state.name = name
