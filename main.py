@@ -73,6 +73,7 @@ with st.form(key=str(dt.now())):
 st.header(option)
 if st.session_state.choice == option:
     st.header(f"st.session_state.choice == option is true")
+    st.header(f"st.session_state.choice is: {st.session_state.choice }")
     st.session_state.res.append(st.session_state.choice)
     st.subheader(st.session_state.counter1)
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
