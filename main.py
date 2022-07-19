@@ -33,7 +33,12 @@ if 'count' not in st.session_state:
     
 if 'result' not in st.session_state:
     st.session_state.result = list()
-
+    
+if 'name' not in st.session_state:
+    st.session_state.name = input('Enter name: ').lower().replace(' ','')
+    st.write(name)
+    
+    
 increment = st.button('Increment')
 if increment:
     st.session_state.count += 1
