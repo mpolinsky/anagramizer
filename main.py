@@ -55,6 +55,23 @@ st.header(f"Count: {st.session_state.count}")
 #if submit:
 st.write(f'Results = {st.session_state.results}')
 
+
+if 'count' not in st.session_state:
+	st.session_state.count = 0
+
+# Create a button which will increment the counter
+increment = st.button('Increment')
+if increment:
+    st.session_state.count += 1
+
+# A button to decrement the counter
+decrement = st.button('Decrement')
+if decrement:
+    st.session_state.count -= 1
+
+st.write('Count = ', st.session_state.count)
+
+
 for i in list(st.session_state.items()):
     st.write(i)
     
