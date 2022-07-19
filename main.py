@@ -40,7 +40,8 @@ if 'name' not in st.session_state:
         submit = st.form_submit_button("Submit")
         if submit:
             st.session_state.name = name
- 
+else:
+    st.write(st.session_state.name) 
  
 
 
