@@ -25,9 +25,6 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
-if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
-
 #if 'count' not in st.session_state:
 #    st.session_state.count = 0
     
@@ -45,7 +42,13 @@ if 'name' not in st.session_state:
             st.session_state.name = name
 else:   
     st.write(st.session_state.name)    
-  
+ 
+
+
+if 'word_pool' not in st.session_state:
+    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
+
+    
 with st.form(key="main"+str(dt.now())):
     option = st.selectbox("Choose a word to add!", options=st.session_state.word_pool)
     st.write(f"{st.session_state.name} chose {option}")
