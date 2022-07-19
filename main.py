@@ -48,10 +48,10 @@ st.session_state.choice = st.selectbox(label="Select word", options=st.session_s
 st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
 
 st.session_state.results.append(st.session_state.choice)
-submit = st.button('Next word', key=dt.now())
-if submit:
-    st.session_state.count += 1
-st.header(f"Count: {st.session_state.count}")
+#submit = st.button('Next word', key=dt.now())
+#if submit:
+#    st.session_state.count += 1
+#st.header(f"Count: {st.session_state.count}")
 #if submit:
 st.write(f'Results = {st.session_state.results}')
 
