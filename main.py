@@ -33,7 +33,8 @@ if 'results' not in st.session_state:
     st.session_state['name'] = name
     st.session_state['counter'] = Co(name)
     st.session_state['word_pool'] = shrink_pool(st.session_state.counter, [i for i in ew.english_words_lower_alpha_set if len(i) > 4])
-
+    st.session_state.count = 0
+    
 st.subheader(st.session_state['counter']) 
 st.subheader(st.session_state['word_pool']) 
 
@@ -44,11 +45,13 @@ st.header(f"Session name is: {st.session_state['name']}")
     #st.header(f"No anagram yet.")
 st.subheader(f"Word pool length is {len(st.session_state['word_pool'])}")
 st.session_state.choice = st.selectbox(label="Select word", options=st.session_state.word_pool, key=dt.now())
-#submit = st.button('Next word', on_click=reset_values)
 st.session_state.counter = st.session_state.counter - Co(st.session_state.choice)
 
 st.session_state.results.append(st.session_state.choice)
-
+submit = st.button('Next word')
+if submit:
+    st.session_state.count += 1
+st.header(f"Count: {st.session_state.count}")
 #if submit:
 st.write(f'Results = {st.session_state.results}')
 
