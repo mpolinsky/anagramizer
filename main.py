@@ -54,7 +54,15 @@ st.session_state.results.append(st.session_state.choice)
 #if submit:
 st.write(f'Results = {st.session_state.results}')
 
+st.title('Counter Example')
+if 'count' not in st.session_state:
+    st.session_state.count = 0
 
+increment = st.button('Increment')
+if increment:
+    st.session_state.count += 1
+
+st.write('Count = ', st.session_state.count)
 
 for i in list(st.session_state.items()):
     st.write(i)
