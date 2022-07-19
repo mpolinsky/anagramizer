@@ -40,8 +40,7 @@ if 'name' not in st.session_state:
         submit = st.form_submit_button("Submit")
         if submit:
             st.session_state.name = name
-else:   
-    st.write(st.session_state.name)    
+ 
  
 
 
@@ -52,7 +51,7 @@ if 'word_pool' not in st.session_state:
 with st.form(key="main"+str(dt.now())):
     option = st.selectbox("Choose a word to add!", options=st.session_state.word_pool)
     st.write(f"{st.session_state.name} chose {option}")
-    submitted = st.form_submit_button("Submit...")
+    submitted = st.form_submit_button("Submit")
     if submitted:
         st.session_state.option = option
         st.write(st.session_state.option)
