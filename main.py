@@ -34,9 +34,9 @@ def reset_counter(a_name):
 def turnabout(oparg):
     st.session_state.choice = oparg
     st.session_state.res.append(st.session_state.choice)
-    st.subheader(st.session_state.counter1)
-    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
     st.header(f"st.session_state.choice is: {st.session_state.choice}")
+    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+    st.subheader(st.session_state.counter1)
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
