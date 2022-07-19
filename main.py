@@ -30,7 +30,7 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def turnabout(oparg):
     st.session_state.choice = oparg
     st.session_state.res.append(st.session_state.choice)
