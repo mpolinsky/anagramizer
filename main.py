@@ -74,7 +74,7 @@ with st.form(key=str(dt.now())):
 	    st.subheader(st.session_state.counter1)
 
 if st.session_state.count > 1:
-	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-2])
+	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
 	
 st.subheader(st.session_state.counter1)
 	
