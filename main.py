@@ -30,7 +30,11 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-
+def turnabout(oparg):
+    st.session_state.res.append(st.session_state.choice)
+    st.subheader(st.session_state.counter1)
+    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+    st.header(f"st.session_state.choice is: {st.session_state.choice}")
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
@@ -67,18 +71,13 @@ with st.form(key=str(dt.now())):
     shrink_pool(st.session_state.counter1, st.session_state.word_pool)
     )
     st.write(f"You chose {option}")
-    submit = st.form_submit_button("Submit")
+    submit = st.form_submit_button("Submit", on_click=turnabout(option))
     if submit:
         st.session_state.choice = option
 
-st.header(option)
-st.header(f"st.session_state.choice is: {st.session_state.choice}")
-if st.session_state.choice == option:
-    st.header(f"st.session_state.choice == option is true")
-    st.header(f"st.session_state.choice is: {st.session_state.choice }")
-    st.session_state.res.append(st.session_state.choice)
-    st.subheader(st.session_state.counter1)
-    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+
+
+
 
 st.subheader(st.session_state.counter1)
 	
