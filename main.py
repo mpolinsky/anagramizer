@@ -30,7 +30,7 @@ st.title('You can do it!')
     
 #if 'result' not in st.session_state:
 #    st.session_state.result = list()
-    
+st.write(st.session_state)
 if 'name' not in st.session_state:
     with st.form(key="preform"+str(dt.now())):
         name = st.text_input('Enter name: ')
