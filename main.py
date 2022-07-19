@@ -40,7 +40,7 @@ if increment:
 
 st.write('Count = ', st.session_state.count)
     
-with st.form(dt.now()):
+with st.form("wordform"):
     option = st.selectbox(
     'Select a word',
     st.session_state.word_pool)
