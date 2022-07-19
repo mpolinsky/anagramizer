@@ -69,9 +69,10 @@ with st.form(key=str(dt.now())):
     st.write(f"You chose {option}")
     submit = st.form_submit_button("Submit")
     if submit:
-        st.session_state.choice = option	
+        st.session_state.choice = option
+
 st.header(option)
-st.header(f"st.session_state.choice is: {st.session_state.choice)")
+st.header(f"st.session_state.choice is: {st.session_state.choice}")
 if st.session_state.choice == option:
     st.header(f"st.session_state.choice == option is true")
     st.header(f"st.session_state.choice is: {st.session_state.choice }")
