@@ -25,10 +25,37 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
-#if 'result' not in st.session_state:
-#    st.session_state.result = list()
+
+if 'res' not in st.session_state:
+	st.session_state.res = list()
 
 
+# If no, then initialize count to 0
+# If count is already initialized, don't do anything
+if 'count' not in st.session_state:
+    st.session_state.count = 0
+    st.write("ONE TIME")
+    
+	
+st.session_state.name = st.text_input('nameo: ')
+# Create a button which will increment the counter
+increment = st.button('Increment')
+if increment:
+    st.session_state.count += 1
+
+# A button to decrement the counter
+decrement = st.button('Decrement')
+if decrement:
+    st.session_state.count -= 1
+
+
+st.write('Count = ', st.session_state.count)
+st.write(st.session_state)
+
+if st.session_state.count > 5:
+    st.session_state.res.append('red')
+
+st.write(st.session_state.res)
 
 
 
