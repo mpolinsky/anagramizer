@@ -25,6 +25,8 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
+word_pool = ['hello','this','is','a','wordpool']
+
 if 'count' not in st.session_state:
     st.session_state.count = 0
 
@@ -38,8 +40,8 @@ for i in list(st.session_state.items()):
     st.write(i)
     
     option = st.selectbox(
-     'How would you like to be contacted?',
-     ('Email', 'Home phone', 'Mobile phone'))
+     'Select a word',
+     word_pool)
 
 st.write('You selected:', option)
     
