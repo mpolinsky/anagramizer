@@ -31,15 +31,24 @@ class TaylorProblem:
         newpool.sort(key=len, reverse=True)
         return newpool
 
+        
+
+
     # A generator that yields child nodes 
     def generateChildren(self, state):
         results = list()
         i = 0
         while i < len(state.pool):
             new_anagram = state.anagram.copy()
+            print(f'Building new node for anagram: {new_anagram}')
             new_anagram.append(state.pool[i])
+            print(f'New word to add: {state.pool[i]}')
+
+            print(f'New anagram: {new_anagram}')
             new_counter = state.name - Co(''.join(new_anagram))
+
             new_pool = self.shrink_pool(new_counter, state.pool)
+            print(f'new pool size: {len(new_pool)}')
             i += 1
             # Create and add node with new name, new pool, and new word for anagram, plus parent ref
             yield Node(new_counter, new_anagram, new_pool, self)

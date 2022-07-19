@@ -1,5 +1,6 @@
 # Searches.py contains the Searches class, 
 # which contains the DFS and BFS methods.
+from asyncio import SubprocessTransport
 from collections import deque as dq
 from re import L
 import time
@@ -62,7 +63,7 @@ class Search:
     # 
     # 
     def DFS(self):
-        results = []
+        results = list()
         closedList = list()
         # add start state to openlist
         openList = self._DFS_setup()
@@ -70,16 +71,23 @@ class Search:
         while True:
             # get current state
             current_state = self._get_current_state(openList, closedList, results)
+           # print(f'\n=========\nWe are in the main search now...')
             if isinstance(current_state, list):
+                print(f'The search has endeddddddddddd!')
                 return current_state
-            
+           # print(f'and the current node has anagram: \n\t{current_state.get_anagram()}')
+           # print(f'and the current pool has size: {len(current_state.pool)}')
             # We have current state and need to check termination 
             # if ppol is empty check that counter is also empty.  
             # If not its bad if so its good.
             if self.problem.goalTest(current_state):
+               # print(f'Empty pool!')
                 # if good collect the path and add it to the list of paths
                 if current_state.name == {}:
-                    results.append(' '.join(current_state.get_anagram()))
+                    t = set(current_state.get_anagram()) 
+                    if t not in [set(i.split(' ')) for i in results]:
+                   # print(f"Appending new anagram to output:{' '.join(current_state.get_anagram())}")
+                        results.append(' '.join(current_state.get_anagram()))
                 closedList.append(current_state)
             else:
                 # if not generate this node's children generator 
@@ -89,6 +97,12 @@ class Search:
                 closedList.append(current_state)
                 # add this new generator to the front of the openlist
                 openList.insert(0,children)
+
+
+
+
+
+
 
     def BFS(self):
         results = []
