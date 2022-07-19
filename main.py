@@ -25,44 +25,26 @@ def shrink_pool(current_name_counter, word_pool):
 
 st.title('You can do it!')
 
-if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
+#if 'word_pool' not in st.session_state:
+#    st.session_state.word_pool = ['happy', 'delighted', 'glad']#[i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 
-if 'count' not in st.session_state:
-    st.session_state.count = 0
+#if 'count' not in st.session_state:
+#    st.session_state.count = 0
     
-if 'result' not in st.session_state:
-    st.session_state.result = list()
+#if 'result' not in st.session_state:
+#    st.session_state.result = list()
     
 if 'name' not in st.session_state:
     with st.form("preform"):
-        name = st.text_input('Enter name: ').lower().replace(' ','')
+        name = st.text_input('Enter name: ')
+        st.write(type(name))
+        name = name.lower().replace(' ','')
+        st.write(type())
         submit = st.form_submit_button("Submit")
         if submit:
-            st.write(type(name))
             st.session_state.name = name
    
 
 st.write(st.session_state.name)    
-    
-increment = st.button('Increment')
-if increment:
-    st.session_state.count += 1
-
-st.write('Count = ', st.session_state.count)
-    
-with st.form("wordform"):
-    option = st.selectbox(
-    'Select a word',
-    st.session_state.word_pool)
-    submitted = st.form_submit_button("Submit")
-    if submitted:
-        st.write('You selected:', option)
-        st.session_state.result.append(option)
   
-st.subheader(st.session_state.result)
-
-    
-st.write(st.session_state)
-    
     
