@@ -36,8 +36,9 @@ if 'result' not in st.session_state:
     
 if 'name' not in st.session_state:
     st.session_state.name = st.text_input('Enter name: ').lower().replace(' ','')
-    st.write(st.session_state.name)
-    
+   
+
+st.write(st.session_state.name)    
     
 increment = st.button('Increment')
 if increment:
