@@ -50,6 +50,6 @@ with st.form("main"):
     option = st.selectbox("Choose a word to add!", options=st.session_state.word_pool)
     st.write(f"{st.session_state.name} chose {option}")
     submitted = st.form_submit_button("Submit...")
-        if submitted:
-            st.session_state.option = option
-            st.write(st.session_state.option)
+    if submitted:
+        st.session_state.option = option
+        st.write(st.session_state.option)
