@@ -30,8 +30,8 @@ if 'results' not in st.session_state:
     st.session_state['results'] = ['hello there']
     name = st.text_input("Enter name: ").lower().replace(' ','')
     st.header(f"Name: {name}")
-    st.session_state['name'] = name
-    #st.session_state['counter'] = Co(name)
+    st.session_state['name'] = 'alecguinness'
+    st.session_state['counter'] = Co(name)
     st.session_state['word_pool'] = shrink_pool(st.session_state.counter, ['hello','this','is','working'])#[i for i in ew.english_words_lower_alpha_set if len(i) > 4])
     st.session_state.count = 0
     
