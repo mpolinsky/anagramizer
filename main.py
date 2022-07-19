@@ -50,6 +50,8 @@ decrement = st.button('Decrement')
 if decrement:
     st.session_state.count -= 1
 
+option = st.selectbox("Select a word", options=st.session_state.word_pool, key=str(dt.now()))
+
 
 st.write('Count = ', st.session_state.count)
 st.write(st.session_state)
