@@ -56,8 +56,8 @@ if 'counter1' not in st.session_state:
 reset_counter(st.session_state.name)
 
 
-#if st.session_state.count > 3:
-#    st.session_state.res = st.session_state.res[:-1]
+if st.session_state.count > 3:
+    st.session_state.res = st.session_state.res[:-1]
 
 st.write('Count = ', st.session_state.count)
 
@@ -67,22 +67,22 @@ with st.form(key=str(dt.now())):
 	shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	)
 	st.write(f"You chose {option}")
+
+
 	submit = st.form_submit_button("Submit")
 	if submit:
 	    st.session_state.choice = option	
 	    st.session_state.res.append(st.session_state.choice)
 	    st.subheader(st.session_state.counter1)
 
-st.session_state.counter1 -= Co(st.session_state.res[:-1])
+if st.session_state.count > 1:
+    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	
 st.subheader(st.session_state.counter1)
-
-if st.session_state.counter1 == {}:
-    st.subheader(' '.join(st.session_state.res))
-
+	
 st.session_state.count += 1
-
+if st.session_state.counter1 == {}:
+    st.subheader(' '.join(st.session_state.res[2:]))
 st.button("Next")
-
 st.write(st.session_state)
 
