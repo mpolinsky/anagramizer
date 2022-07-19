@@ -46,7 +46,7 @@ if 'name' not in st.session_state:
 else:   
     st.write(st.session_state.name)    
   
-with st.form(key="main"+str(dt.now()):
+with st.form(key="main"+str(dt.now())):
     option = st.selectbox("Choose a word to add!", options=st.session_state.word_pool)
     st.write(f"{st.session_state.name} chose {option}")
     submitted = st.form_submit_button("Submit...")
