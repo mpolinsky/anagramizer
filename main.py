@@ -43,24 +43,28 @@ st.title("implement selectbox control")
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
+	with st.form(key=="init_form"):
+		st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 
-if 'res' not in st.session_state:
-    st.session_state.res = list()
+		if 'res' not in st.session_state:
+		    st.session_state.res = list()
 
-if 'choice' not in st.session_state:
-    st.session_state.choice = 'init'
+		if 'choice' not in st.session_state:
+		    st.session_state.choice = 'init'
 
-# If no, then initialize count to 0
-# If count is already initialized, don't do anything
-if 'count' not in st.session_state:
-    st.session_state.count = 0
-	
-if 'name' not in st.session_state or st.session_state.name == "":
-    st.session_state.name = st.text_input("Enter name")
+		# If no, then initialize count to 0
+		# If count is already initialized, don't do anything
+		if 'count' not in st.session_state:
+		    st.session_state.count = 0
 
-if 'counter1' not in st.session_state:
-    st.session_state.counter1 = Co(st.session_state.name)
+		if 'name' not in st.session_state or st.session_state.name == "":
+		    st.session_state.name = st.text_input("Enter name")
+
+		submit_b = st.form_submit_button()
+	if submit_b:
+		if 'counter1' not in st.session_state:
+		    st.session_state.counter1 = Co(st.session_state.name)
+		
 
 reset_counter(st.session_state.name)
 
