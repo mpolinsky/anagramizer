@@ -63,7 +63,7 @@ if 'word_pool' not in st.session_state:
 		if 'name' not in st.session_state or st.session_state.name == "":
 		    st.session_state.name = st.text_input("Enter name")
 
-		submit_b = st.form_submit_button("Submit init", on_click=set_counter())
+		submit_b = st.form_submit_button("Submit init", on_click=set_counter)
 		
 
 reset_counter(st.session_state.name)
@@ -91,6 +91,8 @@ if st.session_state.name != "":
 	    st.subheader(' '.join(st.session_state.res))
 	st.session_state.count += 1
 	st.button("Next")
+else:
+    del st.session_state.word_pool
 
 st.write(st.session_state)
 
