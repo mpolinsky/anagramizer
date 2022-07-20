@@ -66,7 +66,7 @@ if 'word_pool' not in st.session_state:
 		submit_b = st.form_submit_button("Submit init", on_click=set_counter())
 		
 
-reset_counter(st.session_state.name)
+#reset_counter(st.session_state.name)
 
 
 #if st.session_state.count > 3:
