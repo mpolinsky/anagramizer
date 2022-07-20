@@ -32,6 +32,7 @@ def reset_counter(a_name):
 
 #@st.cache(allow_output_mutation=True)
 def turnabout(oparg):
+    st.header("CLICK")
     st.session_state.choice = oparg
     st.session_state.res.append(st.session_state.choice)
     st.header(f"st.session_state.choice is: {st.session_state.choice}")
