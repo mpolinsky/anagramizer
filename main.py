@@ -43,7 +43,7 @@ st.title("implement selectbox control")
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-	with st.form(key=="init_form"):
+	with st.form(key="init_form"):
 		st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
 
 		if 'res' not in st.session_state:
