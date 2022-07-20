@@ -67,26 +67,26 @@ reset_counter(st.session_state.name)
 
 #if st.session_state.count > 3:
 #    st.session_state.res = st.session_state.res[:-1]
+if st.session_state.name != "":
+	st.write('Count = ', st.session_state.count)
 
-st.write('Count = ', st.session_state.count)
+	with st.form(key=str(dt.now())):
+	    option = st.selectbox(
+	    'Select:',
+	    shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+	    )
+	    st.write(f"You chose {option}")
+	    submit = st.form_submit_button("Submit", on_click=turnabout(option))
 
-with st.form(key=str(dt.now())):
-    option = st.selectbox(
-    'Select:',
-    shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-    )
-    st.write(f"You chose {option}")
-    submit = st.form_submit_button("Submit", on_click=turnabout(option))
+	if submit:
+	    st.session_state.choice = option
 
-if submit:
-    st.session_state.choice = option
+	st.subheader(st.session_state.counter1)
 
-st.subheader(st.session_state.counter1)
-	
-if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
-    st.subheader(' '.join(st.session_state.res))
-st.session_state.count += 1
-st.button("Next")
+	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
+	    st.subheader(' '.join(st.session_state.res))
+	st.session_state.count += 1
+	st.button("Next")
 
 st.write(st.session_state)
 
