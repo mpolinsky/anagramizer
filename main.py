@@ -55,8 +55,6 @@ if 'word_pool' not in st.session_state:
 		if 'choice' not in st.session_state:
 		    st.session_state.choice = 'init'
 
-		# If no, then initialize count to 0
-		# If count is already initialized, don't do anything
 		if 'count' not in st.session_state:
 		    st.session_state.count = 0
 
@@ -77,7 +75,7 @@ if st.session_state.name != "":
 	with st.form(key=str(dt.now())):
 	    option = st.selectbox(
 	    'Select:',
-	    shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+	    options=shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	    )
 	    st.write(f"You chose {option}")
 	    submit = st.form_submit_button("Submit", on_click=turnabout(option))
