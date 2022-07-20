@@ -38,6 +38,9 @@ def turnabout(oparg):
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
     st.subheader(st.session_state.counter1)
 
+def set_counter():
+	st.session_state.counter1 = Co(st.session_state.name)
+
 st.title("implement selectbox control")
 
 
@@ -60,10 +63,7 @@ if 'word_pool' not in st.session_state:
 		if 'name' not in st.session_state or st.session_state.name == "":
 		    st.session_state.name = st.text_input("Enter name")
 
-		submit_b = st.form_submit_button()
-	if submit_b:
-		if 'counter1' not in st.session_state:
-		    st.session_state.counter1 = Co(st.session_state.name)
+		submit_b = st.form_submit_button("Submit init", on_click=set_counter())
 		
 
 reset_counter(st.session_state.name)
