@@ -33,10 +33,11 @@ def reset_counter(a_name):
 #@st.cache(allow_output_mutation=True)
 def turnabout(oparg):
     st.header("CLICK")
+    st.write(f"session_state.choice {st.session_state.choice}")
+    st.write(f"Choice passed to callback: {oparg}")
     st.session_state.choice = oparg
     st.session_state.res.append(st.session_state.choice)
-    st.header(f"st.session_state.choice is: {st.session_state.choice}")
-    st.session_state.res.append(st.session_state.choice)
+    st.header(f"st.session_state.choice is now: {st.session_state.choice}")
     st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-2])
     st.subheader(st.session_state.counter1)
 
@@ -72,7 +73,6 @@ if st.session_state.name != "":
 		selection = st.selectbox(
 		'Select:',
 		options=st.session_state.word_pool)
-		st.write(f"You chose {st.session_state.choice}")
 		submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
 	if submit:
 		#st.session_state.choice = selection
