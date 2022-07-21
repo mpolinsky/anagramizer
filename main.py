@@ -74,7 +74,7 @@ if st.session_state.name != "":
 	'Select:',
 	options = st.session_state.word_pool,
 	)
-	if st.session_state.count > 1:
+	if st.session_state.count % 2 == 0 and st.session_state.count > 1:
 		st.session_state.choice = selection
 		st.session_state.res.append(st.session_state.choice)
 		st.header(f"st.session_state.choice is now: {st.session_state.choice}")
