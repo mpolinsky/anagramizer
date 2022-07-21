@@ -85,7 +85,7 @@ if st.session_state.name != "":
 		#st.session_state.choice = selection
 		st.subheader(st.session_state.counter1)
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
-		st.subheader(' '.join(st.session_state.res))
+		st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
 	st.session_state.count += 1
 	st.button("Next")
 else:
