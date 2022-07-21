@@ -74,7 +74,7 @@ if st.session_state.name != "":
 	'Select:',
 	options = st.session_state.word_pool,
 	)
-	if count > 0:
+	if st.session_state.count > 0:
 		st.session_state.choice = selection
 		#submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
 	#if submit:
