@@ -67,18 +67,15 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-	with st.form(key=str(dt.now())):
-		selection = st.selectbox(
-		'Select:',
-		options=st.session_state.word_pool)
-		st.write(f"You chose {option}")
-		submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
-
-		#if submit:
-		#	st.session_state.choice = selection
-
-		st.subheader(st.session_state.counter1)
-
+	#with st.form(key=str(dt.now())):
+	selection = st.selectbox(
+	'Select:',
+	st.session_state.choice=st.session_state.word_pool)
+	st.write(f"You chose {st.session_state.choice}")
+	#submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
+	#if submit:
+		#st.session_state.choice = selection
+		#st.subheader(st.session_state.counter1)
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
 		st.subheader(' '.join(st.session_state.res))
 	st.session_state.count += 1
