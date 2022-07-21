@@ -68,6 +68,7 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+	st.session_state.word_pool.insert(0, None)
 	#with st.form(key="wordform"):
 	selection = st.selectbox(
 	'Select:',
