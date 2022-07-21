@@ -75,7 +75,7 @@ if st.session_state.name != "":
 		st.write(f"You chose {st.session_state.choice}")
 		submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
 	if submit:
-		st.session_state.choice = selection
+		#st.session_state.choice = selection
 		st.subheader(st.session_state.counter1)
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
 		st.subheader(' '.join(st.session_state.res))
