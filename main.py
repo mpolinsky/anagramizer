@@ -72,8 +72,9 @@ if st.session_state.name != "":
 	with st.form(key="wordform"):
 		selection = st.selectbox(
 		'Select:',
-		options = st.session_state.word_pool)
-		submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
+		options = st.session_state.word_pool,
+		on_changeturnabout, args=(selection,))
+		submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
 	if submit:
 		#st.session_state.choice = selection
 		st.subheader(st.session_state.counter1)
