@@ -77,7 +77,7 @@ if st.session_state.name != "":
 		#if submit:
 		#	st.session_state.choice = selection
 
-			st.subheader(st.session_state.counter1)
+		st.subheader(st.session_state.counter1)
 
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
 		st.subheader(' '.join(st.session_state.res))
