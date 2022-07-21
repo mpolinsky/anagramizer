@@ -55,7 +55,7 @@ if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	st.session_state.word_pool.insert(0, None)
-
+	st.subheader("Select a word and click the select button to move on to the next word!")
 	selection = st.selectbox(
 	'Select:',
 	options = st.session_state.word_pool,
@@ -64,12 +64,14 @@ if st.session_state.name != "":
 	st.session_state.res.append(st.session_state.choice)
 	st.header(f"st.session_state.choice is now: {st.session_state.choice}")
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+	
+	
 	st.subheader(st.session_state.counter1)
-  
-	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
-		st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
+  	
+	#if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
+	st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
 	st.session_state.count += 1
-	st.button("Next")
+	st.button("Select")
 else:
     del st.session_state.word_pool
 
