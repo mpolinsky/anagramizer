@@ -69,15 +69,15 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-	with st.form(key="wordform"):
-		selection = st.selectbox(
-		'Select:',
-		options = st.session_state.word_pool,
-		on_change=turnabout,
-		args=(selection,)
-		)
-		submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
-	if submit:
+	#with st.form(key="wordform"):
+	selection = st.selectbox(
+	'Select:',
+	options = st.session_state.word_pool,
+	)
+	if count > 0:
+		st.session_state.choice = selection
+		#submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
+	#if submit:
 		#st.session_state.choice = selection
 		st.subheader(st.session_state.counter1)
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
