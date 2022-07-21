@@ -68,9 +68,9 @@ if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	#with st.form(key=str(dt.now())):
-	selection = st.selectbox(
+	st.session_state.choice = st.selectbox(
 	'Select:',
-	st.session_state.choice=st.session_state.word_pool)
+	options=st.session_state.word_pool)
 	st.write(f"You chose {st.session_state.choice}")
 	#submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
 	#if submit:
