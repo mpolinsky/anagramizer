@@ -73,7 +73,7 @@ if st.session_state.name != "":
 		'Select:',
 		options=st.session_state.word_pool)
 		st.write(f"You chose {st.session_state.choice}")
-	submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
+		submit = st.form_submit_button("Submit", on_click=turnabout, args=(selection,))
 	if submit:
 		st.session_state.choice = selection
 		st.subheader(st.session_state.counter1)
