@@ -81,7 +81,7 @@ if st.session_state.name != "":
 		#submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
 	#if submit:
 		#st.session_state.choice = selection
-		st.subheader(st.session_state.counter1)
+	st.subheader(st.session_state.counter1)
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
 		st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
 	st.session_state.count += 1
