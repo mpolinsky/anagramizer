@@ -76,7 +76,7 @@ if st.session_state.name != "":
 	st.session_state.choice = selection
 	st.session_state.res.append(st.session_state.choice)
 	st.header(f"st.session_state.choice is now: {st.session_state.choice}")
-	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-2])
+	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	st.subheader(st.session_state.counter1)
 		#submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
 	#if submit:
