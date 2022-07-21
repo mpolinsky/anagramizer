@@ -30,18 +30,9 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-#@st.cache(allow_output_mutation=True)
-def turnabout(oparg):
-    st.header("CLICK")
-    st.write(f"session_state.choice {st.session_state.choice}")
-    st.write(f"Choice passed to callback: {oparg}")
-    st.session_state.choice = oparg
-    st.session_state.res.append(st.session_state.choice)
-    st.header(f"st.session_state.choice is now: {st.session_state.choice}")
-    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
-    st.subheader(st.session_state.counter1)
 
-st.title("implement selectbox control")
+st.title("main")
+
 
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
@@ -63,13 +54,11 @@ if 'name' not in st.session_state or st.session_state.name == "":
 reset_counter(st.session_state.name)
 
 
-#if st.session_state.count > 3:
-#    st.session_state.res = st.session_state.res[:-1]
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	st.session_state.word_pool.insert(0, None)
-	#with st.form(key="wordform"):
+
 	selection = st.selectbox(
 	'Select:',
 	options = st.session_state.word_pool,
@@ -79,10 +68,7 @@ if st.session_state.name != "":
 	st.header(f"st.session_state.choice is now: {st.session_state.choice}")
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	st.subheader(st.session_state.counter1)
-		#submit = st.form_submit_button("Submit", )#on_click=turnabout, args=(selection,))
-	#if submit:
-		#st.session_state.choice = selection
-	st.subheader(st.session_state.counter1)
+  
 	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
 		st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
 	st.session_state.count += 1
