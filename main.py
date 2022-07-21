@@ -83,7 +83,7 @@ if st.session_state.name != "":
 	    if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
                 st.subheader(' '.join(st.session_state.res))
         st.session_state.count += 1
-	st.button("Next")
+        st.button("Next")
 else:
     del st.session_state.word_pool
 
