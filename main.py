@@ -68,22 +68,22 @@ if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 
 	with st.form(key=str(dt.now())):
-	    option = st.selectbox(
-	    'Select:',
-            options=shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-	    )
-	    st.write(f"You chose {option}")
-	    submit = st.button("Submit", on_click=turnabout, args=(option,))
+		option = st.selectbox(
+		'Select:',
+		options=shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+		)
+		st.write(f"You chose {option}")
+		submit = st.button("Submit", on_click=turnabout, args=(option,))
 
-	    if submit:
-	        st.session_state.choice = option
+		if submit:
+			st.session_state.choice = option
 
-	    st.subheader(st.session_state.counter1)
+			st.subheader(st.session_state.counter1)
 
-	    if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
-                st.subheader(' '.join(st.session_state.res))
-        st.session_state.count += 1
-        st.button("Next")
+	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
+		st.subheader(' '.join(st.session_state.res))
+	st.session_state.count += 1
+	st.button("Next")
 else:
     del st.session_state.word_pool
 
