@@ -71,7 +71,6 @@ if st.session_state.name != "":
 		option = st.selectbox(
 		'Select:',
 		options=st.session_state.word_pool)
-		)
 		st.write(f"You chose {option}")
 		submit = st.form_submit_button("Submit", on_click=turnabout, args=(option,))
 
