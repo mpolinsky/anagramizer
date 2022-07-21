@@ -30,10 +30,7 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-
-st.title("main")
-
-
+st.title("end-interaction")
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
