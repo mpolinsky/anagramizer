@@ -36,7 +36,7 @@ def turnabout(oparg):
     st.session_state.choice = oparg
     st.session_state.res.append(st.session_state.choice)
     st.header(f"st.session_state.choice is: {st.session_state.choice}")
-    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
+    st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-2])
     st.subheader(st.session_state.counter1)
 
 st.title("implement selectbox control")
