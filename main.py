@@ -83,6 +83,3 @@ if st.session_state.name != "":
 			st.write("That's all!")
 else:
 	del st.session_state.word_pool
-
-
-st.write(st.session_state)
