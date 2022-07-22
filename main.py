@@ -22,7 +22,7 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
-#@st.cache(allow_output_mutation=True, max_entries=1, persist=False)
+st.experimental_memo#st.cache(allow_output_mutation=True, max_entries=1, persist=False)
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
@@ -78,6 +78,7 @@ if st.session_state.name != "":
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
+			reset_counter.clear()
 		else:
 			st.write("That's all!")
 else:
