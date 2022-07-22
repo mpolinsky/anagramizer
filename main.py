@@ -61,7 +61,6 @@ if st.session_state.name != "":
 	st.session_state.choice = selection
 	st.session_state.res.append(st.session_state.choice)
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
-	st.subheader(st.session_state.counter1)
 	
 	if [i for i in st.session_state.word_pool if i is not None] == []:
 		if st.session_state.counter1 == {}:
