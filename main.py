@@ -45,9 +45,7 @@ if 'name' not in st.session_state or st.session_state.name == "":
 
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
-	
-if 'random' not in st.session_state:
-	st.session_state.random = rand(1,100000)
+
 		
 reset_counter(st.session_state.name)
 
