@@ -84,10 +84,10 @@ if st.session_state.name != "":
 	if not st.session_state.reset:
 		st.session_state.count += 1
 		st.button("Select")
-		st.write(st.session_state)
 	else:
 		st.button("Reset")
 else:
 	del st.session_state.word_pool
 
 
+st.write(st.session_state)
