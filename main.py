@@ -30,10 +30,7 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-
-st.title("main")
-
-
+st.title("end-interaction")
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
@@ -50,6 +47,9 @@ if 'count' not in st.session_state:
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.name = st.text_input("Enter name")
+
+if 'reset' not in st.session_state:
+	st.session_state.reset = False
 		
 reset_counter(st.session_state.name)
 
@@ -58,7 +58,7 @@ if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	st.session_state.word_pool.insert(0, None)
-
+	st.subheader("Select a word and click the select button to move on to the next word!")
 	selection = st.selectbox(
 	'Select:',
 	options = st.session_state.word_pool,
@@ -67,14 +67,30 @@ if st.session_state.name != "":
 	st.session_state.res.append(st.session_state.choice)
 	st.header(f"st.session_state.choice is now: {st.session_state.choice}")
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+	
+	
 	st.subheader(st.session_state.counter1)
-  
-	if st.session_state.counter1 == {} and st.session_state.res[0] is not None:
-		st.subheader(' '.join([ i for i in st.session_state.res if i is not None ]))
-	st.session_state.count += 1
-	st.button("Next")
+	if [i for i in st.session_state.word_pool if i is not None] == []:
+		if st.session_state.counter1 == {}:
+			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
+			st.header(' '.join([i for i in st.session_state.res if i is not None]))
+		else:
+			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")
+			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
+			st.subheader(f"And your leftover letters are: {list(st.session_state.counter1.values())}")
+		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
+		st.session_state.reset = True
+	if not st.session_state.reset:
+		st.session_state.count += 1
+		st.button("Select")
+	else:
+		st.subheader("Click reset twice to start again!")
+		if st.button("Reset"):
+			st.session_state.clear()
+		else:
+			st.write("That's all!")
 else:
-    del st.session_state.word_pool
+	del st.session_state.word_pool
+
 
 st.write(st.session_state)
-
