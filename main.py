@@ -85,8 +85,7 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")
 	else:
-		reset = st.button("Reset")
-		if reset:
+		if st.button("Reset"):
 			st.session_state.clear()
 		else:
 			st.write("Please select reset.")
