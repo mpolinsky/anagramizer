@@ -42,7 +42,6 @@ if 'count' not in st.session_state:
     st.session_state.count = 0
 
 if 'name' not in st.session_state or st.session_state.name == "":
-    reset_counter(st.session_state.name)
     st.session_state.name = st.text_input("Enter name").lower().replace(' ','')
 
 if 'reset' not in st.session_state:
