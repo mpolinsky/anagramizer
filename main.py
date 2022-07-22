@@ -2,7 +2,7 @@ import streamlit as st
 import english_words as ew
 from datetime import datetime as dt
 from collections import Counter as Co
-
+from random import randint as rand
 
 
 
@@ -48,7 +48,6 @@ if 'reset' not in st.session_state:
 	st.session_state.reset = False
 		
 reset_counter(st.session_state.name)
-
 
 if st.session_state.name != "":
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
