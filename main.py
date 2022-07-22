@@ -17,11 +17,8 @@ def letter_check(current_name_counter, candidate_word):
 
 # Keep words that pass the letter_check
 def shrink_pool(current_name_counter, word_pool):
-    st.write(f"wordpool len: {len(word_pool)}")
     newpool = [i for i in word_pool if letter_check(current_name_counter, i) and i is not None]
     newpool.sort(key=len, reverse=True)
-    st.write(f"in shrink pool: returned pool size is {len(newpool)}")
-    #st.session_state.word_pool = newpool
     return newpool
 
 
@@ -54,9 +51,7 @@ reset_counter(st.session_state.name)
 
 
 if st.session_state.name != "":
-	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-	st.write(f"Letters left: {list(st.session_state.counter1.values())}")
 	st.session_state.word_pool.insert(0, None)
 	st.subheader("Select a word and click the select button to move on to the next word!")
 	selection = st.selectbox(
@@ -65,11 +60,9 @@ if st.session_state.name != "":
 	)
 	st.session_state.choice = selection
 	st.session_state.res.append(st.session_state.choice)
-	st.header(f"st.session_state.choice is now: {st.session_state.choice}")
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
-	
-	
 	st.subheader(st.session_state.counter1)
+	
 	if [i for i in st.session_state.word_pool if i is not None] == []:
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
