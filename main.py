@@ -84,10 +84,11 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")
 	else:
+		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
 		else:
-			st.write("Please select reset.")
+			st.write("That's all!")
 else:
 	del st.session_state.word_pool
 
