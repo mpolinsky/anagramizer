@@ -2,7 +2,7 @@ import streamlit as st
 import english_words as ew
 from datetime import datetime as dt
 from collections import Counter as Co
-
+from random import randint as rand
 
 
 
@@ -46,8 +46,11 @@ if 'name' not in st.session_state or st.session_state.name == "":
 
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
+	
+if 'random' not in st.session_state:
+	st.session_state.random = rand(1,100000)
 		
-reset_counter(st.session_state.name)
+reset_counter(st.session_state.name, st.session_state.random)
 
 
 if st.session_state.name != "":
@@ -79,6 +82,7 @@ if st.session_state.name != "":
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
+			
 		else:
 			st.write("That's all!")
 else:
