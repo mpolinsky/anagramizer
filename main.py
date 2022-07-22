@@ -5,7 +5,6 @@ from collections import Counter as Co
 from random import randint as rand
 
 
-
 # check for presence and number of letters to eliminate invalid words
 def letter_check(current_name_counter, candidate_word):
     word_count = Co(candidate_word)
@@ -46,6 +45,7 @@ if 'name' not in st.session_state or st.session_state.name == "":
 
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
+
 		
 reset_counter(st.session_state.name)
 
@@ -79,6 +79,7 @@ if st.session_state.name != "":
 		if st.button("Reset"):
 			st.session_state.clear()
 			reset_counter.clear()
+
 		else:
 			st.write("That's all!")
 else:
