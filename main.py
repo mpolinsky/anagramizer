@@ -22,7 +22,7 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
-@st.cache(allow_output_mutation=True, max_entries=1)
+@st.cache(allow_output_mutation=True, max_entries=0)
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
