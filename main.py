@@ -73,7 +73,6 @@ if st.session_state.name != "":
 	if [i for i in st.session_state.word_pool if i is not None] == []:
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
-			st.session_state.res = ' '.join([i for i in st.session_state.res if i is not None])
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")
