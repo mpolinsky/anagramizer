@@ -56,7 +56,7 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-    	st.write(f"Letters left: {list(st.session_state.counter1.values())}")
+	st.write(f"Letters left: {list(st.session_state.counter1.values())}")
 	st.session_state.word_pool.insert(0, None)
 	st.subheader("Select a word and click the select button to move on to the next word!")
 	selection = st.selectbox(
