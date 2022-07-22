@@ -79,7 +79,7 @@ if st.session_state.name != "":
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
-			st.cache.clear()
+			st.session_state.name = "temp"
 		else:
 			st.write("That's all!")
 else:
