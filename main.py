@@ -47,7 +47,7 @@ if 'name' not in st.session_state or st.session_state.name == "":
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 		
-reset_counter(st.session_state.name, st.session_state.reset)
+reset_counter(st.session_state.name)
 
 
 if st.session_state.name != "":
