@@ -27,6 +27,10 @@ def reset_counter(a_name):
 
 st.title("main")
 
+if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.session_state.name == "":
+	st.session_state.clear()
+	reset_counter.clear()
+
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
     st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 3]
