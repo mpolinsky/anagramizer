@@ -2,7 +2,7 @@ import streamlit as st
 import english_words as ew
 from datetime import datetime as dt
 from collections import Counter as Co
-
+from random import randint as rand
 
 
 # check for presence and number of letters to eliminate invalid words
@@ -21,7 +21,7 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
-@st.cache(allow_output_mutation=True)
+@st.experimental_memo
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
@@ -48,7 +48,6 @@ if 'reset' not in st.session_state:
 
 		
 reset_counter(st.session_state.name)
-
 
 if st.session_state.name != "":
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -79,7 +78,8 @@ if st.session_state.name != "":
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
-			
+			reset_counter.clear()
+
 		else:
 			st.write("That's all!")
 else:
