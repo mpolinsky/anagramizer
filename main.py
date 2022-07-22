@@ -47,6 +47,9 @@ if 'count' not in st.session_state:
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.name = st.text_input("Enter name")
+
+if 'reset' not in st.session_state:
+	st.session_state.reset = False
 		
 reset_counter(st.session_state.name)
 
@@ -77,10 +80,14 @@ if st.session_state.name != "":
 			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: {list(st.session_state.counter1.values())}")
 		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
-	st.session_state.count += 1
-	st.button("Select")
+		st.session_state.reset = True
+	if not st.session_state.reset:
+		st.session_state.count += 1
+		st.button("Select")
+		st.write(st.session_state)
+	else:
+		st.button("Reset")
 else:
-    del st.session_state.word_pool
+	del st.session_state.word_pool
 
-st.write(st.session_state)
 
