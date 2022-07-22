@@ -17,7 +17,6 @@ def letter_check(current_name_counter, candidate_word):
 
 # Keep words that pass the letter_check
 def shrink_pool(current_name_counter, word_pool):
-    st.write(f"current counter: {current_name_counter}")
     st.write(f"wordpool len: {len(word_pool)}")
     newpool = [i for i in word_pool if letter_check(current_name_counter, i) and i is not None]
     newpool.sort(key=len, reverse=True)
@@ -57,6 +56,7 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":
 	st.write('Count = ', st.session_state.count)
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+    	st.write(f"Letters left: {list(st.session_state.counter1.values())}")
 	st.session_state.word_pool.insert(0, None)
 	st.subheader("Select a word and click the select button to move on to the next word!")
 	selection = st.selectbox(
