@@ -2,7 +2,6 @@ import streamlit as st
 import english_words as ew
 from datetime import datetime as dt
 from collections import Counter as Co
-from random import randint as rand
 
 
 
@@ -23,7 +22,7 @@ def shrink_pool(current_name_counter, word_pool):
 
 
 @st.cache(allow_output_mutation=True)
-def reset_counter(a_name, random_int):
+def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
 st.title("main")
@@ -50,7 +49,7 @@ if 'reset' not in st.session_state:
 if 'random' not in st.session_state:
 	st.session_state.random = rand(1,100000)
 		
-reset_counter(st.session_state.name, st.session_state.random)
+reset_counter(st.session_state.name)
 
 
 if st.session_state.name != "":
