@@ -23,7 +23,7 @@ def shrink_pool(current_name_counter, word_pool):
 
 
 @st.cache(allow_output_mutation=True)
-def reset_counter(a_name):
+def reset_counter(a_name, reset):
     st.session_state.counter1 = Co(st.session_state.name)
 
 st.title("fix-reset-cache-issue")
@@ -47,7 +47,7 @@ if 'name' not in st.session_state or st.session_state.name == "":
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 		
-reset_counter(st.session_state.name)
+reset_counter(st.session_state.name, st.session_state.reset)
 
 
 if st.session_state.name != "":
