@@ -68,7 +68,7 @@ if st.session_state.name != "":
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")
 			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
-			st.subheader(f"And your leftover letters are: {[ j for j in [str(i)*st.session_state.counter1[i].split() for i in st.session_state.counter1] ]}")
+			st.subheader(f"And your leftover letters are: {[ j for j in [(str(str(i)*st.session_state.counter1[i]).split() for i in st.session_state.counter1] ]}")
 		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.session_state.reset = True
 	if not st.session_state.reset:
