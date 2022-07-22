@@ -42,6 +42,7 @@ if 'count' not in st.session_state:
     st.session_state.count = 0
 
 if 'name' not in st.session_state or st.session_state.name == "":
+    reset_counter(st.session_state.name)
     st.session_state.name = st.text_input("Enter name").lower().replace(' ','')
 
 if 'reset' not in st.session_state:
@@ -79,7 +80,6 @@ if st.session_state.name != "":
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
-			st.session_state.name = ""
 		else:
 			st.write("That's all!")
 else:
