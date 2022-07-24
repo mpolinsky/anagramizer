@@ -49,6 +49,10 @@ if 'count' not in st.session_state:
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.name = st.text_input("Enter name").lower().replace(' ','')
 
+if 'user_anagram' not in st.session_state:
+	st.session_state.user_anagram = False
+	st.session_state.anagram = None
+
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -72,15 +76,25 @@ if st.session_state.name != "":
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
 		else:
-			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")
+			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
 			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: { ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
-		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
+			button_press = st.button("Wait, did we miss one??")
+			if button_press:
+				st.session_state.user_anagram = True
+			if st.session_state.user_anagram:
+				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
+				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
+					st.balloons()
+				elif st.session_state.anagram != 'None':
+					st.subheader("That actually is not a complete anagram, so sorry.")
+					
 		st.session_state.reset = True
 	if not st.session_state.reset:
 		st.session_state.count += 1
 		st.button("Select")
 	else:
+		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
