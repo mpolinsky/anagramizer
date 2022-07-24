@@ -79,14 +79,18 @@ if st.session_state.name != "":
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
-			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
-			st.subheader(f"And your leftover letters are: { ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
+			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
+			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			button_press = st.button("Wait, did we miss one??")
 			if button_press:
 				st.session_state.user_anagram = True
+			# If user enters an anagram
 			if st.session_state.user_anagram:
+				# Get user suggestion for anagram
 				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
+				# Celebrate and display success message
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
+					st.subheader(f"You were right!")
 					st.balloons()
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
