@@ -63,6 +63,7 @@ if st.session_state.name != "":
 	'Select:',
 	options = st.session_state.word_pool,
 	)
+	user_entry = st.text_input("If you see a word we've missed type it here instead!")
 	st.session_state.choice = selection
 	st.session_state.res.append(st.session_state.choice)
 	st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
