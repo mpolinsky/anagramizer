@@ -89,12 +89,12 @@ if st.session_state.name != "":
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
-		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.session_state.reset = True
 	if not st.session_state.reset:
 		st.session_state.count += 1
 		st.button("Select")
 	else:
+		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.subheader("Click reset twice to start again!")
 		if st.button("Reset"):
 			st.session_state.clear()
