@@ -83,7 +83,7 @@ if st.session_state.name != "":
 			if button_press:
 				st.session_state.user_anagram = True
 			if st.session_state.user_anagram:
-				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!")
+				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
 					st.balloons()
 				elif st.session_state.anagram != None:
