@@ -76,7 +76,8 @@ if st.session_state.name != "":
 			st.subheader(f"Here is your partial anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: { ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			user_entry = st.text_input("If you see an anagram we've missed type it here instead!")
-			st.subheader(f"{user_entry}")
+				if user_entry is not None:
+					st.subheader(f"{user_entry}")
 		
 		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.session_state.reset = True
