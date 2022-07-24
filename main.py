@@ -82,11 +82,11 @@ if st.session_state.name != "":
 			button_press = st.button("Wait, did we miss one??")
 			if button_press:
 				st.session_state.user_anagram = True
+			if st.session_state.user_anagram:
 				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!")
-			if st.session_state.user_anagram and st.session_state.anagram is not None:
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
 					st.balloons()
-				elif Co(st.session_state.anagram.lower().replace(' ','')) != Co(st.session_state.name):
+				elif st.session_state.anagram != None:
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
 		st.subheader("Thanks for playing!  Hit the button below to reset and try another one!!!")
