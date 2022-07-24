@@ -60,6 +60,8 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":
+	st.header(f"Current anagram: {' '.join(st.session_state.res)}")
+	st.header(f"Letters remaining: {''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	st.session_state.word_pool.insert(0, None)
 	st.subheader("Select a word and click the select button to move on to the next word!")
