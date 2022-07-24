@@ -25,7 +25,7 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-st.title("let-user-finish-anagram")
+st.title("main")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
