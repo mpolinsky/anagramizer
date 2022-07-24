@@ -25,7 +25,7 @@ def shrink_pool(current_name_counter, word_pool):
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
 
-st.title("main")
+st.title("show-progress")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
@@ -60,6 +60,8 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":
+	st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
+	st.header(f"Letters remaining: {''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 	st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 	st.session_state.word_pool.insert(0, None)
 	st.subheader("Select a word and click the select button to move on to the next word!")
