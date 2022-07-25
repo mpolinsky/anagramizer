@@ -112,7 +112,7 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
-		col1, col2, = st.columns(.5,1.5)
+		col1, col2 = st.columns([1,3])
 		with col1:
 			big_reset = st.button("Reset")
 		with col2:
