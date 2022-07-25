@@ -1,8 +1,11 @@
 import streamlit as st
 import english_words as ew
+import wikipedia as wk
 from datetime import datetime as dt
 from collections import Counter as Co
 from random import randint as rand
+import requests
+import json
 
 
 # check for presence and number of letters to eliminate invalid words
@@ -21,6 +24,25 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
+def get_definition(word):
+    api_key= st.secrets['dk']
+    URL = "https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key="+api_key
+    PARAMS = {'word': word,'key': api_key}
+    r = requests.get(url = URL, params = PARAMS)
+    return '; '.join(r.json()[0]['shortdef'])
+
+
+# Retrieves the beginning of article summaries from wikipedia
+def retrieve_data(items):
+	for index, item in enumerate(items):
+		st.subheader(f"{items[index]}")
+		try:
+			st.write(get_definition(item)+"[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+		except wk.DisambiguationError:
+			st.write(f" ")
+			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+
 @st.experimental_memo
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
@@ -36,7 +58,7 @@ if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.s
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2]
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on']
 
 if 'res' not in st.session_state:
     st.session_state.res = list()
@@ -58,6 +80,12 @@ if 'user_anagram' not in st.session_state:
 if 'part1' not in st.session_state:
 	st.session_state.part1 = False
 	st.session_state.part2 = False
+
+if 'success' not in st.session_state:
+	st.session_state.success = False
+	
+if 'summaries' not in st.session_state:
+	st.session_state.summaries = list()
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -98,10 +126,11 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
-			colM, colN, colO = st.columns([1,3,0])
+			colM, colN, colO = st.columns([1,3,.1])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
+			st.session_state.success = True
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
@@ -128,6 +157,7 @@ if st.session_state.name != "":
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
 					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
 					st.subheader(f"  ")
+					st.session_state.success = True
 					st.balloons()
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
@@ -137,12 +167,18 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
+		# Display dropdown
+		if st.session_state.success:
+			with st.expander("What do these words mean??"):
+				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+				st.subheader(f"  ")
+				
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
-			st.subheader("Double-click the reset button to try another!")
+			st.subheader("Click twice on the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
 		with col2:
 			big_reset = st.button("Reset")
