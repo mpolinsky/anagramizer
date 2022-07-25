@@ -26,7 +26,7 @@ def shrink_pool(current_name_counter, word_pool):
 def retrieve_data(items):
 	results = []
 	for index, item in enumerate(items):
-		st.subheader(f"{items[index]}")
+		st.subheader(f"[{items[index]}](http://wikipedia.org/wiki/{item})")
 		try:
 			results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
 			st.write(f" ")
