@@ -23,7 +23,7 @@ def shrink_pool(current_name_counter, word_pool):
 
 
 def get_definition(word):
-    # api_key= <api-key>
+    api_key= st.secrets['dk']
     URL = "https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key="+api_key
     PARAMS = {'word': word,'key': api_key}
     r = requests.get(url = URL, params = PARAMS)
