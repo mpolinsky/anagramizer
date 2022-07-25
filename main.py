@@ -24,6 +24,7 @@ def shrink_pool(current_name_counter, word_pool):
 def retrieve_summaries(items):
     results = []
     for index, item in enumerate(items):
+	st.subheader(f"item: {item}")
         try:
             results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
         except wk.DisambiguationError:
