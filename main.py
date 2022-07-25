@@ -85,8 +85,8 @@ if st.session_state.name != "":
 	else:
 		st.session_state.part2 = True
 	## Part 2
+	col1, col2, col3 = st.columns(3)
 	if st.session_state.part2:
-		col1, col2, col3 = st.columns(3)
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
@@ -110,10 +110,9 @@ if st.session_state.name != "":
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
 		st.session_state.reset = True
-	with col2:
-		if not st.session_state.reset:
-			st.session_state.count += 1
-			st.button("Select")
+	if not st.session_state.reset:
+		st.session_state.count += 1
+		st.button("Select")
 	else:
 		big_reset = st.button("Reset")
 		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
