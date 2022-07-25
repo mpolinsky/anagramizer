@@ -146,9 +146,9 @@ if st.session_state.name != "":
 				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[1], auto_suggest=False)}")
 				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[2], auto_suggest=False)}")
 			else:
-				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][0], auto_suggest=False)}")
-				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][1], auto_suggest=False)}")
-				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][2], auto_suggest=False)}")
+				st.write(f"{wk.summary(wk.search([i for i in st.session_state.res if i is not None][0]), auto_suggest=False)}")
+				st.write(f"{wk.summary(wk.search([i for i in st.session_state.res if i is not None][1]), auto_suggest=False)}")
+				st.write(f"{wk.summary(wk.search([i for i in st.session_state.res if i is not None][2]), auto_suggest=False)}")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
