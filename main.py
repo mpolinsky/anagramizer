@@ -131,7 +131,7 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
-		colD, colE, colF = st.columns([.75, 2.5, .75])
+		colD, colE, colF = st.columns([.85, 2.5, .65])
 		with colE:
 			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
