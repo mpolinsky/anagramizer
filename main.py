@@ -21,6 +21,14 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
+def retrieve_summaries(items):
+    results = []
+    for item in items:
+        try:
+            results.append(wk.summary(item, auto_suggest=False).split('\n')[0][:360]+'...') 
+        except wk.DisambiguationError:
+            results.append(wk.summary(wk.search(item), auto_suggest=False).split('\n')[0][:360]+'...')
+    return results
 
 @st.experimental_memo
 def reset_counter(a_name):
@@ -62,6 +70,9 @@ if 'part1' not in st.session_state:
 
 if 'success' not in st.session_state:
 	st.session_state.success = False
+	
+if 'summaries' not in st.session_state:
+	st.session_state.summaries = list()
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -145,8 +156,10 @@ if st.session_state.name != "":
 	else:	
 		# Display dropdown
 		if st.session_state.success:
+			st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) else retrieve_summaries(st.session_state.res) if st.session_state.user_anagram
 			with st.expander("What do these words mean??"):
 				st.subheader(f"From wikipedia: ")
+				st.subheader()
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
