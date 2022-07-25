@@ -30,7 +30,7 @@ def retrieve_summaries(items):
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...')
 		except wk.DisambiguationError:
 			results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...')
+			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
 	return results
 
 @st.experimental_memo
