@@ -22,14 +22,14 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 def retrieve_summaries(items):
-    results = []
-    for index, item in enumerate(items):
-	st.subheader(f"item: {items[item]}")
-        try:
-            results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
-        except wk.DisambiguationError:
-            results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
-    return results
+	results = []
+	for index, item in enumerate(items):
+		st.subheader(f"item: {items[item]}")
+		try:
+			results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
+ 		except wk.DisambiguationError:
+			results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
+	return results
 
 @st.experimental_memo
 def reset_counter(a_name):
