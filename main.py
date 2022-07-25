@@ -145,7 +145,6 @@ if st.session_state.name != "":
 				summaries = [ wk.summary(st.session_state.anagram.split(' ')[i], auto_suggest=False) for i,_ in enumerate(st.session_state.anagram.split(' '))]
 				st.write(f"{summaries}")
 			else:
-				summaries = [wk.summary(wk.search([i for i in st.session_state.res if i is not None][j]), auto_suggest=False) for j in st.session_state.res]
 				st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
