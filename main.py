@@ -4,6 +4,8 @@ import wikipedia as wk
 from datetime import datetime as dt
 from collections import Counter as Co
 from random import randint as rand
+import requests
+import json
 
 
 # check for presence and number of letters to eliminate invalid words
