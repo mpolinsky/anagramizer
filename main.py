@@ -149,7 +149,7 @@ if st.session_state.name != "":
 				st.subheader(f"From wikipedia: ")
 				if st.session_state.user_anagram:
 					st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
-					st.write(f"summaries: [{wk.search(st.session_state.anagram.split(' ')[0])}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
+					st.write(f"summaries: [{wk.summary(st.session_state.anagram.split(' ')[0], auto_suggest=False)}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
 				else:
 					st.write(f"summaries: [{st.session_state.res[0]}](http://www.wikipedia.org/wiki/{st.session_state.res[0]})")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
