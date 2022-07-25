@@ -23,11 +23,11 @@ def shrink_pool(current_name_counter, word_pool):
 
 def retrieve_summaries(items):
     results = []
-    for item in items:
+    for index, item in enumerate(items):
         try:
-            results.append(wk.summary(item, auto_suggest=False).split('\n')[0][:360]+'...') 
+            results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
         except wk.DisambiguationError:
-            results.append(wk.summary(wk.search(item), auto_suggest=False).split('\n')[0][:360]+'...')
+            results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
     return results
 
 @st.experimental_memo
