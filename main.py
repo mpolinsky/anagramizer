@@ -59,6 +59,9 @@ if 'user_anagram' not in st.session_state:
 if 'part1' not in st.session_state:
 	st.session_state.part1 = False
 	st.session_state.part2 = False
+
+if 'success' not in st.session_state:
+	st.session_state.success = False
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -103,6 +106,7 @@ if st.session_state.name != "":
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
+			st.session_state.success = True
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
@@ -129,6 +133,7 @@ if st.session_state.name != "":
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
 					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
 					st.subheader(f"  ")
+					st.session_state.success = True
 					st.balloons()
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
@@ -139,12 +144,13 @@ if st.session_state.name != "":
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
-		with st.expander("What do these words mean??"):
-			st.subheader(f"From wikipedia: ")
-			if st.session_state.user_anagram:
-				st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
-			else:
-				st.write(f"summaries: [{st.session_state.res[0]}](http://www.wikipedia.org/wiki/{st.session_state.res[0]})")
+		if st.session_state.success:
+			with st.expander("What do these words mean??"):
+				st.subheader(f"From wikipedia: ")
+				if st.session_state.user_anagram:
+					st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
+				else:
+					st.write(f"summaries: [{st.session_state.res[0]}](http://www.wikipedia.org/wiki/{st.session_state.res[0]})")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
