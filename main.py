@@ -93,9 +93,9 @@ if st.session_state.name != "":
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
-			col1, col2 = st.columns([1,3])
+			col1, col2 = st.columns([.5,3.5])
 			with col2:
-				st.subheader(f"If you see an anagram that we missed, click below!")
+				st.subheader(f"Click here if you think you see an anagram we missed!")
 			with col1:
 				button_press = st.button("Oops!")
 			if button_press:
