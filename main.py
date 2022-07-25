@@ -70,6 +70,7 @@ if st.session_state.name != "":
 	if st.session_state.part1:
 		st.header(f"  ")
 		st.header(f"  ")
+		st.header(f"  ")
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -126,10 +127,10 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
-		colD, colE, colF = st.columns([.75, 2.5, .75])
+		colD, colE, colF = st.columns([.80, 2.5, .70])
 		with colE:
 			st.subheader("Thanks for playing.")
-		colA, colB, colC = st.columns([.45, 3.5, .05])
+		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
 			st.subheader("Double-click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
