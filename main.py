@@ -142,9 +142,11 @@ if st.session_state.name != "":
 		with st.expander("What do these words mean??"):
 			st.subheader(f"From wikipedia: ")
 			if st.session_state.user_anagram:
-				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[0], auto_suggest=False)}")
+				summaries = [ wk.summary(st.session_state.anagram.split(' ')[i], auto_suggest=False) for i,_ in enumerate(st.session_state.anagram.split(' '))]
+				st.write(f"{summaries}")
 			else:
-				st.write(f"{wk.summary(wk.search([i for i in st.session_state.res if i is not None][0]), auto_suggest=False)}")
+				summaries = [wk.summary(wk.search([i for i in st.session_state.res if i is not None][j]), auto_suggest=False) for j in st.session_state.res]
+				st.write(f"{summaries}")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
