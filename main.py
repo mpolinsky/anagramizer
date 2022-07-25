@@ -101,7 +101,7 @@ if st.session_state.name != "":
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			st.subheader(f"  ")
 			st.subheader(f"Click here if you see an anagram we missed!")
-			col1, col2, col3 = st.columns()
+			col1, col2, col3 = st.columns(3)
 			with col2:
 				button_press = st.button("Oops!")
 			if button_press:
