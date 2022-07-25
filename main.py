@@ -45,7 +45,9 @@ def retrieve_data(items):
 		except wk.DisambiguationError:
 			st.write(f" ")
 			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
-		
+		except wk.exceptions.PageError:
+			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
+			
 @st.experimental_memo
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
