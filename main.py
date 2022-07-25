@@ -142,8 +142,7 @@ if st.session_state.name != "":
 		with st.expander("What do these words mean??"):
 			st.subheader(f"From wikipedia: ")
 			if st.session_state.user_anagram:
-				summaries = [ wk.summary(st.session_state.anagram.split(' ')[i], auto_suggest=False) for i,_ in enumerate(st.session_state.anagram.split(' '))]
-				st.write(f"{summaries}")
+				st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
 			else:
 				st.write(f"summaries: [{st.session_state.res[0]}](http://www.wikipedia.org/wiki/{st.session_state.res[0]})")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
