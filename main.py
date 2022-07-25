@@ -45,7 +45,7 @@ if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.s
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2]
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on']
 
 if 'res' not in st.session_state:
     st.session_state.res = list()
@@ -156,7 +156,7 @@ if st.session_state.name != "":
 	else:	
 		# Display dropdown
 		if st.session_state.success:
-			st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) else retrieve_summaries(st.session_state.res) if st.session_state.user_anagram
+			st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
 			with st.expander("What do these words mean??"):
 				st.subheader(f"From wikipedia: ")
 				st.subheader()
