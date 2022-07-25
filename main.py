@@ -112,7 +112,7 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")
 	else:
-		st.button("Reset")
+		big_reset = st.button("Reset")
 		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.subheader("Click reset twice to start again!")
 		if big_reset:
