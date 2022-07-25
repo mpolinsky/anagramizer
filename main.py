@@ -63,7 +63,7 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":	
-	if st.session_state.part1:
+	if ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') != '':
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -76,9 +76,9 @@ if st.session_state.name != "":
 		st.session_state.choice = selection
 		st.session_state.res.append(st.session_state.choice)
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+	
 
 	if [i for i in st.session_state.word_pool if i is not None] == []:
-		st.session_state.part1 = False
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
