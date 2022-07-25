@@ -101,7 +101,7 @@ if st.session_state.name != "":
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			st.subheader(f"  ")
-			colA, colB, colC = st.columns([.25,3.5,.25])
+			colA, colB, colC = st.columns([.25, 3.5, .25])
 			with colB:
 				st.subheader(f"Click here if you see an anagram we missed!")
 			col1, col2, col3 = st.columns(3)
@@ -129,7 +129,7 @@ if st.session_state.name != "":
 		colD, colE, colF = st.columns([.75, 2.5, .75])
 		with colE:
 			st.subheader("Thanks for playing.")
-		colA, colB, colC = st.columns([.25,3.5,.25])
+		colA, colB, colC = st.columns([.45, 3.5, .05])
 		with colB:
 			st.subheader("Double-click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
