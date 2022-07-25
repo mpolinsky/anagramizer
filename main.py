@@ -38,10 +38,10 @@ def retrieve_data(items):
 		st.subheader(f"[{items[index]}](http://wikipedia.org/wiki/{items[index]})")
 		try:
 			st.write(get_definition(item))
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/{item})')
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.DisambiguationError:
 			st.write(f" ")
-			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/{item})')
+			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 
 @st.experimental_memo
 def reset_counter(a_name):
