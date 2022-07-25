@@ -91,6 +91,9 @@ if 'success' not in st.session_state:
 	
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
+
+if 'balloons' not in st.session_state:
+	st.session_state.balloons = 0
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -163,7 +166,9 @@ if st.session_state.name != "":
 					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
 					st.subheader(f"  ")
 					st.session_state.success = True
-					st.balloons()
+					if st.session_state.balloons == 0:
+						st.balloons()
+						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
