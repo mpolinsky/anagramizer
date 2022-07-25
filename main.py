@@ -29,7 +29,7 @@ def get_definition(word):
     URL = "https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key="+api_key
     PARAMS = {'word': word,'key': api_key}
     r = requests.get(url = URL, params = PARAMS)
-    return '; ',join(r.json()[0]['shortdef'])
+    return '; '.join(r.json()[0]['shortdef'])
 
 
 # Retrieves the beginning of article summaries from wikipedia
