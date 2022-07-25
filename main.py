@@ -72,7 +72,7 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"Current anagram:  \n{' '.join([i for i in st.session_state.res if i is not None])}")
-		st.header(f"Letters remaining:  \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
+		st.header(f"Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		st.session_state.word_pool.insert(0, None)
 		st.subheader("Select a word and click the select button to move on to the next word!")
@@ -96,18 +96,18 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
-			colM, colN, colO = st.columns([.3, 3, .7])
+			colM, colN, colO = st.columns([1, 3, .5])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
-				st.write(f"Copy and past: \n  \t{' '.join([i for i in st.session_state.res if i is not None]).capitalize()}")
+				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None]).capitalize()}")
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
 			with colY:
 				st.subheader(f"...as far as we can tell")
 			st.header(f"  ")
-			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
-			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
+			st.subheader(f"Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
+			st.subheader(f"And your leftover letters are:  \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			st.subheader(f"  ")
 			colA, colB, colC = st.columns([.25, 3.5, .25])
 			with colB:
