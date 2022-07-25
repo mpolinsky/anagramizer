@@ -89,6 +89,9 @@ if st.session_state.name != "":
 	## Part 2
 	if st.session_state.part2:
 		st.header(f"  ")
+		st.header(f"  ")
+		st.header(f"  ")
+		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
@@ -101,6 +104,7 @@ if st.session_state.name != "":
 			with col2:
 				st.subheader(f"Click here if you see an anagram we missed!")
 			with col1:
+				st.write(f"  ")
 				button_press = st.button("Oops!")
 			if button_press:
 				st.session_state.user_anagram = True
