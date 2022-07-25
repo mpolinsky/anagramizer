@@ -79,7 +79,7 @@ if st.session_state.name != "":
 		st.session_state.res.append(st.session_state.choice)
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 	
-		if [i for i in st.session_state.word_pool if i is not None] == []:
+		if [i for i in st.session_state.word_pool if i != 'None'] == []:
 			st.session_state.part1 = False
 	else:
 		st.session_state.part2 = True
