@@ -84,6 +84,10 @@ if st.session_state.name != "":
 		st.session_state.choice = selection
 		st.session_state.res.append(st.session_state.choice)
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+		if [i for i in st.session_state.word_pool if i is not None] == []:
+			st.session_state.part1 = False
+			st.write("False")
+			st.experimental_rerun()
 	
 		
 	else:
