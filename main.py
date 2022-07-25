@@ -85,7 +85,6 @@ if st.session_state.name != "":
 	else:
 		st.session_state.part2 = True
 	## Part 2
-	col1, col2, col3 = st.columns(3)
 	if st.session_state.part2:
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
@@ -94,8 +93,7 @@ if st.session_state.name != "":
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
-			with col1:
-				button_press = st.button("Wait, did we miss one??")
+			button_press = st.button("Wait, did we miss one??")
 			if button_press:
 				st.session_state.user_anagram = True
 			# If user wants to enter an anagram:
@@ -114,10 +112,11 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
-		with col2:
+		col1, col2, = st.columns(.5,1.5)
+		with col1:
 			big_reset = st.button("Reset")
-		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
-		st.subheader("Click reset twice to start again!")
+		with col2:
+			st.subheader("Thanks for playing!  Double-click the reset button to try another one!!!")
 		if big_reset:
 			st.session_state.clear()
 			reset_counter.clear()
