@@ -22,16 +22,24 @@ def shrink_pool(current_name_counter, word_pool):
     return newpool
 
 
+def get_definition(word):
+    # api_key= <api-key>
+    URL = "https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key="+api_key
+    PARAMS = {'word': word,'key': api_key}
+    r = requests.get(url = URL, params = PARAMS)
+    return '; ',join(r.json()[0]['shortdef'])
+
+
 # Retrieves the beginning of article summaries from wikipedia
 def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"[{items[index]}](http://wikipedia.org/wiki/{items[index]})")
 		try:
-			st.write(f" ")
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...(Wikipedia)')
+			st.write(get_definition(item))
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/{item})')
 		except wk.DisambiguationError:
 			st.write(f" ")
-			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...(Wikipedia)')
+			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/{item})')
 
 @st.experimental_memo
 def reset_counter(a_name):
