@@ -27,8 +27,10 @@ def retrieve_summaries(items):
 		st.subheader(f"item: {items[index]}")
 		try:
 			results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...')
 		except wk.DisambiguationError:
 			results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...')
 	return results
 
 @st.experimental_memo
@@ -160,6 +162,7 @@ if st.session_state.name != "":
 			st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
 			with st.expander("What do these words mean??"):
 				st.subheader(f"From wikipedia: ")
+				
 				st.subheader(f"  ")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
