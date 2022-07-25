@@ -112,9 +112,10 @@ if st.session_state.name != "":
 		st.session_state.reset = True
 	if not st.session_state.reset:
 		st.session_state.count += 1
-		st.button("Select")
-	else:
-		big_reset = st.button("Reset")
+		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
+	else:	
+		with col1:
+			big_reset = st.button("Reset")
 		st.header("Thanks for playing!  Hit the button below to reset and try another one!!!")
 		st.subheader("Click reset twice to start again!")
 		if big_reset:
