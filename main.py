@@ -65,9 +65,8 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":	
-	st.write("In first loop")
+	## Part 1
 	if st.session_state.part1:
-		st.write("In part 1")
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -82,13 +81,10 @@ if st.session_state.name != "":
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 		if [i for i in st.session_state.word_pool if i is not None] == []:
 			st.session_state.part1 = False
-			st.write("False")
 			st.experimental_rerun()
-	
-		
 	else:
 		st.session_state.part2 = True
-		
+	## Part 2
 	if st.session_state.part2:
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
@@ -100,7 +96,7 @@ if st.session_state.name != "":
 			button_press = st.button("Wait, did we miss one??")
 			if button_press:
 				st.session_state.user_anagram = True
-			# If user enters an anagram
+			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
 				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
