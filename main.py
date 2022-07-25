@@ -27,7 +27,7 @@ def retrieve_summaries(items):
 		st.subheader(f"item: {items[item]}")
 		try:
 			results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
- 		except wk.DisambiguationError:
+		except wk.DisambiguationError:
 			results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
 	return results
 
