@@ -145,7 +145,7 @@ if st.session_state.name != "":
 	else:	
 		if not st.session_state.user_anagram:
 			# Get info from wikipedia
-			summaries = wk.summary(st.session_state.anagram.split(' ')[0], auto_suggest=False)
+			summaries = wk.summary(st.session_state.res[0], auto_suggest=False)
 			# If there are multiple results, return the list of results
 			if isinstance(summaries, list):
 				summaries = ', '.join(summaries)[:-1]
