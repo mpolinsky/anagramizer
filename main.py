@@ -65,7 +65,7 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":	
-	st.write("In first loop)
+	st.write("In first loop")
 	if [i for i in st.session_state.word_pool if i is not None] == []:
 		st.session_state.part1 = False
 		st.write("False")
