@@ -63,7 +63,7 @@ if 'reset' not in st.session_state:
 reset_counter(st.session_state.name)
 
 if st.session_state.name != "":	
-	if ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') != '':
+	if st.session_state.word_pool != []:
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
