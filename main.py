@@ -145,7 +145,7 @@ if st.session_state.name != "":
 				summaries = [ wk.summary(st.session_state.anagram.split(' ')[i], auto_suggest=False) for i,_ in enumerate(st.session_state.anagram.split(' '))]
 				st.write(f"{summaries}")
 			else:
-				st.write(f"summaries: [{st.session_state.anagram.split(' ')[0]}](http://www.wikipedia.org/wiki/{st.session_state.anagram.split(' ')[0]})")
+				st.write(f"summaries: [{st.session_state.res[0]}](http://www.wikipedia.org/wiki/{st.session_state.res[0]})")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
