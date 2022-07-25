@@ -96,10 +96,10 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
-			colM, colN, colO = st.columns(3)
+			colM, colN, colO = st.columns([1,3,0])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
-				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None]).capitalize()}")
+				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
@@ -107,7 +107,7 @@ if st.session_state.name != "":
 				st.subheader(f"...as far as we can tell")
 			st.header(f"  ")
 			st.subheader(f"Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
-			st.subheader(f"And your leftover letters are:  \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
+			st.subheader(f"And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			st.subheader(f"  ")
 			colA, colB, colC = st.columns([.25, 3.5, .25])
 			with colB:
