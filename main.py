@@ -21,16 +21,20 @@ def shrink_pool(current_name_counter, word_pool):
     newpool.sort(key=len, reverse=True)
     return newpool
 
-def retrieve_summaries(items):
+
+# Retrieves the beginning of article summaries from wikipedia
+def retrieve_data(items):
 	results = []
 	for index, item in enumerate(items):
 		st.subheader(f"item: {items[index]}")
 		try:
 			results.append(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...') 
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...')
+			st.write(f" ")
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...(Wikipedia)')
 		except wk.DisambiguationError:
 			results.append(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
-			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...')
+			st.write(f" ")
+			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...(Wikipedia)')
 	return results
 
 @st.experimental_memo
@@ -160,10 +164,9 @@ if st.session_state.name != "":
 		# Display dropdown
 		if st.session_state.success:
 			with st.expander("What do these words mean??"):
-				st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
+				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data(st.session_state.res)
 				st.subheader(f"  ")
-				st.write("Not implemented yet")
-				st.subheader(f"  ")
+				
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
