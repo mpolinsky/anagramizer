@@ -69,6 +69,7 @@ if st.session_state.name != "":
 	## Part 1
 	if st.session_state.part1:
 		st.header(f"  ")
+		st.header(f"  ")
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -100,9 +101,11 @@ if st.session_state.name != "":
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
 			st.subheader(f"  ")
+			colA, colB, colC = st.columns([.25,3.5,.25])
+			with colB:
+				st.subheader(f"Click here if you see an anagram we missed!")
 			col1, col2, col3 = st.columns(3)
 			with col2:
-				st.subheader(f"Click here if you see an anagram we missed!")
 				button_press = st.button("Oops!")
 			if button_press:
 				st.session_state.user_anagram = True
