@@ -100,7 +100,7 @@ if st.session_state.name != "":
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
-			with colX:
+			with colY:
 				st.subheader(f"...as far as we can tell")
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
@@ -132,7 +132,7 @@ if st.session_state.name != "":
 	else:	
 		colD, colE, colF = st.columns([.80, 2.5, .70])
 		with colE:
-			st.subheader("Thanks for playing")
+			st.subheader("  Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
 			st.subheader("Double-click the reset button to try another!")
