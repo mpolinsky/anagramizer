@@ -1,5 +1,6 @@
 import streamlit as st
 import english_words as ew
+import wikipedia as wk
 from datetime import datetime as dt
 from collections import Counter as Co
 from random import randint as rand
@@ -137,6 +138,17 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
+		# Display dropdown
+		with st.expander("What do these words mean??"):
+			st.subheader(f"From wikipedia: ")
+			if st.session_state.user_anagram:
+				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[0], auto_suggest=False)}")
+				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[1], auto_suggest=False)}")
+				st.write(f"{wk.summary(st.session_state.anagram.split(' ')[2], auto_suggest=False)}")
+			else:
+				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][0], auto_suggest=False)}")
+				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][1], auto_suggest=False)}")
+				st.write(f"{wk.summary([i for i in st.session_state.res if i is not None][2], auto_suggest=False)}")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
