@@ -146,6 +146,7 @@ if st.session_state.name != "":
 		if not st.session_state.user_anagram:
 			# Get info from wikipedia
 			summaries = wk.summary(st.session_state.res[0], auto_suggest=False)
+			st.subheader(f"summaries: {summaries}")
 			# If there are multiple results, return the list of results
 			if isinstance(summaries, list):
 				summaries = ', '.join(summaries)[:-1]
