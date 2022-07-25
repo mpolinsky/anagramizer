@@ -37,12 +37,17 @@ def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"{items[index]}")
 		try:
-			st.write(get_definition(item)+"[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
+			st.write(get_definition(item)+" [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
+		except TypeError:
+			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
+		try:
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.DisambiguationError:
 			st.write(f" ")
 			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
-
+		except wk.exceptions.PageError:
+			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
+			
 @st.experimental_memo
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
@@ -86,6 +91,9 @@ if 'success' not in st.session_state:
 	
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
+
+if 'balloons' not in st.session_state:
+	st.session_state.balloons = 0
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -158,7 +166,9 @@ if st.session_state.name != "":
 					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
 					st.subheader(f"  ")
 					st.session_state.success = True
-					st.balloons()
+					if st.session_state.balloons == 0:
+						st.balloons()
+						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
@@ -172,6 +182,7 @@ if st.session_state.name != "":
 			with st.expander("What do these words mean??"):
 				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 				st.subheader(f"  ")
+				st.write("Note: If a Wikipedia search returns many results, the Wikipedia summary dislpayed here could be any of them.  Use the link to see the list!")
 				
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
