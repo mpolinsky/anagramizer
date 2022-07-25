@@ -66,10 +66,6 @@ reset_counter(st.session_state.name)
 
 if st.session_state.name != "":	
 	st.write("In first loop")
-	if [i for i in st.session_state.word_pool if i is not None] == []:
-		st.session_state.part1 = False
-		st.write("False")
-		st.experimental_rerun()
 	if st.session_state.part1:
 		st.write("In part 1")
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
