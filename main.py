@@ -164,7 +164,7 @@ if st.session_state.name != "":
 					st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
 				st.subheader(f"  ")
 				if st.checkbox(f"From Oxford English Dictionary"):
-					st.write("Not implemented yet)
+					st.write("Not implemented yet")
 				st.subheader(f"  ")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
