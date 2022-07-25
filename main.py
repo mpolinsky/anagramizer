@@ -48,8 +48,9 @@ if 'count' not in st.session_state:
     st.session_state.count = 0
 
 if 'name' not in st.session_state or st.session_state.name == "":
-    st.session_state.name = st.text_input("Enter name").lower().replace(' ','')
-
+    st.session_state.og_name = st.text_input("Enter name").lower().replace(' ','')
+    st.session_state.name = st.session_state.og_name.lower().replace(' ','')
+	
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
 	st.session_state.anagram = None
@@ -89,7 +90,7 @@ if st.session_state.name != "":
 	if st.session_state.part2:
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
-			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
+			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
