@@ -48,7 +48,7 @@ if 'count' not in st.session_state:
     st.session_state.count = 0
 
 if 'name' not in st.session_state or st.session_state.name == "":
-    st.session_state.og_name = st.text_input("Enter name").lower().replace(' ','')
+    st.session_state.og_name = st.text_input("Enter name")
     st.session_state.name = st.session_state.og_name.lower().replace(' ','')
 	
 if 'user_anagram' not in st.session_state:
