@@ -99,7 +99,7 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
-			colM, colN, colO = st.columns([1,3,0])
+			colM, colN, colO = st.columns([1,3,.1])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 				st.write(f"Copy and past:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}")
