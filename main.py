@@ -71,8 +71,8 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"  ")
-		st.header(f"Current anagram: \n{' '.join([i for i in st.session_state.res if i is not None])}")
-		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
+		st.header(f"Current anagram:  \n{' '.join([i for i in st.session_state.res if i is not None])}")
+		st.header(f"Letters remaining:  \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		st.session_state.word_pool.insert(0, None)
 		st.subheader("Select a word and click the select button to move on to the next word!")
@@ -96,7 +96,7 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
-			colM, colN, colO = st.columns(3)
+			colM, colN, colO = st.columns([.7, 3, .3])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 				st.write(f"Copy and past: \n\t{' '.join([i for i in st.session_state.res if i is not None]).capitalize()}")
