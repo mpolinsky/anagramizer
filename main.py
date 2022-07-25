@@ -67,6 +67,7 @@ reset_counter(st.session_state.name)
 if st.session_state.name != "":	
 	## Part 1
 	if st.session_state.part1:
+		st.header(f"  ")
 		st.header(f"Current anagram: {' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining: \n\t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
@@ -86,6 +87,7 @@ if st.session_state.name != "":
 		st.session_state.part2 = True
 	## Part 2
 	if st.session_state.part2:
+		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.name}!")
 			st.header(' '.join([i for i in st.session_state.res if i is not None]))
@@ -93,13 +95,15 @@ if st.session_state.name != "":
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram (as far as we can tell).")			
 			st.subheader(f"Here is your partial anagram: \n\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.subheader(f"And your leftover letters are: \n\t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }")
+			st.subheader(f"  ")
 			col1, col2 = st.columns([.5,3.5])
 			with col2:
-				st.subheader(f"Click here if you think you see an anagram we missed!")
+				st.subheader(f"Click here if you see an anagram we missed!")
 			with col1:
 				button_press = st.button("Oops!")
 			if button_press:
 				st.session_state.user_anagram = True
+			st.subheader(f"  ")
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
