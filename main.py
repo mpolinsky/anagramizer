@@ -143,6 +143,14 @@ if st.session_state.name != "":
 		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
+		if not st.session_state.user_anagram:
+			# Get info from wikipedia
+			summaries = wk.summary(st.session_state.anagram.split(' ')[0], auto_suggest=False)
+			# If there are multiple results, return the list of results
+			if isinstance(summaries, list):
+				summaries = ', '.join(summaries)[:-1]
+		else:
+			st.header("Handle  this you need to get the wiki data......")
 		# Display dropdown
 		if st.session_state.success:
 			with st.expander("What do these words mean??"):
