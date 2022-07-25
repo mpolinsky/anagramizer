@@ -37,16 +37,15 @@ def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"{items[index]}")
 		try:
-			st.write(get_definition(item)+"[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+			st.write(get_definition(item)+" [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
 		except TypeError:
-			st.write("Type Error")
-			st.write(f"This may not be a word, becuase it's not found in Merriam Webster")
-
+			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
+		try:
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.DisambiguationError:
 			st.write(f" ")
 			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
-
+		
 @st.experimental_memo
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
