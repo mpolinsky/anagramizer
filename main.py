@@ -159,10 +159,11 @@ if st.session_state.name != "":
 	else:	
 		# Display dropdown
 		if st.session_state.success:
-			st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
 			with st.expander("What do these words mean??"):
 				st.subheader(f"From wikipedia: ")
-				
+				st.session_state.summaries = retrieve_summaries(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_summaries(st.session_state.res)
+				st.subheader(f"  ")
+				st.subheader(f"From Oxford English Dictionary")
 				st.subheader(f"  ")
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
