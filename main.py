@@ -108,7 +108,7 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"  ")
-		st.header(f"Current anagram:  \n{' '.join([i for i in st.session_state.res if i is not None])}")
+		st.header(f"Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}")
 		st.header(f"Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		st.session_state.word_pool.insert(0, None)
