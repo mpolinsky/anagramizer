@@ -110,9 +110,9 @@ if st.session_state.name != "":
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
 		st.session_state.reset = True
-	if not st.session_state.reset:
-		st.session_state.count += 1
-		with col2:
+	with col2:
+		if not st.session_state.reset:
+			st.session_state.count += 1
 			st.button("Select")
 	else:
 		big_reset = st.button("Reset")
