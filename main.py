@@ -169,6 +169,7 @@ if st.session_state.name != "":
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
 					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
 					st.subheader(f"  ")
+					st.code(f"{st.session_state.anagram}")
 					st.session_state.success = True
 					if st.session_state.balloons == 0:
 						st.balloons()
