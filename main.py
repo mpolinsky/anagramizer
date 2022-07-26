@@ -8,6 +8,9 @@ import requests
 import json
 
 
+st.set_page_config(page_title="Anagramizer", page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+
+
 # check for presence and number of letters to eliminate invalid words
 def letter_check(current_name_counter, candidate_word):
     word_count = Co(candidate_word)
