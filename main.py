@@ -137,7 +137,8 @@ if st.session_state.name != "":
 			colM, colN, colO = st.columns([1,3,.1])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
-			st.header(f"Copy and paste:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}")
+			st.text("Copy and paste:")
+			st.header(f"\t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.session_state.success = True
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
