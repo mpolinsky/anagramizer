@@ -103,6 +103,9 @@ if 'summaries' not in st.session_state:
 if 'balloons' not in st.session_state:
 	st.session_state.balloons = 0
 	
+if 'info_render' not in st.session_state:
+	st.session_state.info_render = 0
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
