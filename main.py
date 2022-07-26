@@ -187,7 +187,7 @@ if st.session_state.name != "":
 			with st.expander("What do these words mean??"):
 				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 				st.subheader(f"  ")
-				st.write("Note: If a Wikipedia search returns many results, the Wikipedia summary dislpayed here could be any of them.  Use the link to see the list!")
+				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")
 				
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
