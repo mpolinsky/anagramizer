@@ -135,9 +135,9 @@ if st.session_state.name != "":
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congrats you found a true anagram for {st.session_state.og_name}!")
 			#colM, colN, colO = st.columns([1,3,.1])
-			#with colN:
-				#st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
-			st.subheader(f"Copyable:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}")
+			with colN:
+				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
+			st.subheader(f"Copyable:   \t{' '.join([i for i in st.session_state.res if i is not None])}")
 			st.session_state.success = True
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
