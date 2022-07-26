@@ -193,17 +193,17 @@ if st.session_state.name != "":
 				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 				st.subheader(f"  ")
 				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-			colD, colE, colF = st.columns([.95, 2.5, .55])
-			with colE:
-				st.subheader("Thanks for playing")
-			colA, colB, colC = st.columns([.25, 3.5, .25])
-			with colB:
-				st.subheader("Click twice on the reset button to try another!")
-			col1, col2, col3 = st.columns(3)
-			with col2:
-				big_reset = st.button("Reset")
-			if big_reset:
-				st.session_state.clear()
-				reset_counter.clear()
+		colD, colE, colF = st.columns([.95, 2.5, .55])
+		with colE:
+			st.subheader("Thanks for playing")
+		colA, colB, colC = st.columns([.25, 3.5, .25])
+		with colB:
+			st.subheader("Click twice on the reset button to try another!")
+		col1, col2, col3 = st.columns(3)
+		with col2:
+			big_reset = st.button("Reset")
+		if big_reset:
+			st.session_state.clear()
+			reset_counter.clear()
 else:
 	del st.session_state.word_pool
