@@ -200,7 +200,7 @@ if st.session_state.name != "":
 				st.session_state.endcount += 1
 				if st.session_state.endcount > 2:
 					st.session_state.finished = True
-		elif st.session_state.finished = True:		
+		elif st.session_state.finished == True:		
 			colD, colE, colF = st.columns([.95, 2.5, .55])
 			with colE:
 				st.subheader("Thanks for playing")
