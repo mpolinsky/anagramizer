@@ -47,7 +47,12 @@ def retrieve_data(items):
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.DisambiguationError:
 			st.write(f" ")
-			st.write(wk.summary(wk.search(items[index]), auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+			
+			sum_text = wk.summary(wk.search(items[index]), auto_suggest=False)
+			sum_text = sum_text.split('\n')[0][:360] if isinstance(sum_text, str) else sum_text[0].split('\n')[0][:360]
+			st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+		
+			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
 			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
 			
