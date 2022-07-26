@@ -103,6 +103,10 @@ if 'summaries' not in st.session_state:
 if 'balloons' not in st.session_state:
 	st.session_state.balloons = 0
 	
+if 'finished' not in st.session_state:
+	st.session_state.finished = False
+	st.session_state.endcount = 0
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -188,23 +192,26 @@ if st.session_state.name != "":
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
-		if st.session_state.success:
+		if st.session_state.success and not st.session_state.finished:
 			with st.expander("What do these words mean??"):
 				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 				st.subheader(f"  ")
 				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")
-				
-		colD, colE, colF = st.columns([.95, 2.5, .55])
-		with colE:
-			st.subheader("Thanks for playing")
-		colA, colB, colC = st.columns([.25, 3.5, .25])
-		with colB:
-			st.subheader("Click twice on the reset button to try another!")
-		col1, col2, col3 = st.columns(3)
-		with col2:
-			big_reset = st.button("Reset")
-		if big_reset:
-			st.session_state.clear()
-			reset_counter.clear()
+				st.session_state.endcount += 1
+				if st.session_state.endcount > 2:
+					st.session_state.finished = True
+		elif st.session_state.finished = True:		
+			colD, colE, colF = st.columns([.95, 2.5, .55])
+			with colE:
+				st.subheader("Thanks for playing")
+			colA, colB, colC = st.columns([.25, 3.5, .25])
+			with colB:
+				st.subheader("Click twice on the reset button to try another!")
+			col1, col2, col3 = st.columns(3)
+			with col2:
+				big_reset = st.button("Reset")
+			if big_reset:
+				st.session_state.clear()
+				reset_counter.clear()
 else:
 	del st.session_state.word_pool
