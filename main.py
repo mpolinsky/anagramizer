@@ -144,6 +144,7 @@ if st.session_state.name != "":
 					st.session_state.res.append(st.session_state.choice)
 
 				st.subheader(st.session_state.res)
+				st.subheader(st.session_state.count)
 				st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
