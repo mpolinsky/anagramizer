@@ -6,6 +6,7 @@ from collections import Counter as Co
 from random import choice, randint as rand
 import requests
 import json
+import string
 
 
 st.set_page_config(page_title="Anagramizer", page_icon=':random:', layout="centered", initial_sidebar_state="auto", menu_items=None)
@@ -64,7 +65,7 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
-st.title("main")
+st.title("input-brittleness")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
@@ -87,8 +88,11 @@ if 'choice' not in st.session_state:
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
-    st.session_state.name = st.session_state.og_name.lower().replace(' ','')
-	
+    # If there are numbers or symbols don't save them in the og_name. Assume its a mistake.  Can change this if the corpus allows.
+    if [i for i in st.session_state.og_name if i in string.punctuation + string.digits ] != []:
+        st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.digits ])
+    st.session_state.name = ''.join([i for i in st.session_state.og_name.lower() if i not in string.whitespace])
+
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
 	st.session_state.anagram = None
