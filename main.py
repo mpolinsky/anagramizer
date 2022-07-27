@@ -132,7 +132,7 @@ if st.session_state.name != "":
 		options = st.session_state.word_pool,
 		)
 		st.session_state.choice = selection
-		if st.session_state.choice = "Select a word!"
+		if st.session_state.choice == "Select a word!":
 			st.session_state.res.append(None)
 		else:
 			st.session_state.res.append(st.session_state.choice)
