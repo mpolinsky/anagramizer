@@ -126,16 +126,22 @@ if st.session_state.name != "":
 		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		st.session_state.word_pool.insert(0, "Select a word!")
+		
 		st.subheader("Select a word and click the select button to move on to the next word!")
-		selection = st.selectbox(
-		'Select:',
-		options = st.session_state.word_pool,
-		)
+		with st.form("Selectform", key=str(dt.now()))
+			selection = st.selectbox(
+			'Select:',
+			options = st.session_state.word_pool,
+			)
+		
 		st.session_state.choice = selection
+		
 		if st.session_state.choice == "Select a word!":
 			st.session_state.res.append(None)
 		else:
 			st.session_state.res.append(st.session_state.choice)
+		
+		
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
@@ -221,3 +227,4 @@ if st.session_state.name != "":
 
 else:
 	del st.session_state.word_pool
+st.session_state
