@@ -8,7 +8,7 @@ import requests
 import json
 
 
-st.set_page_config(page_title="Anagramizer", page_icon=':smiley:', layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Anagramizer", page_icon=':happy:', layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
 # check for presence and number of letters to eliminate invalid words
