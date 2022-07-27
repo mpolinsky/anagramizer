@@ -64,7 +64,8 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
-st.title("anagraminator")
+st.title("What's in a Name??!")
+st.subheader("The Anagram Finding Game")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
