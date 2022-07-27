@@ -48,7 +48,7 @@ def retrieve_data(items):
 		except wk.DisambiguationError:
 			st.write(f" ")
 			
-			sum_text = wk.summary(wk.search(items[index]), auto_suggest=False)
+			sum_text = wk.summary(wk.search(items[index])[0], auto_suggest=False)
 			sum_text = sum_text.split('\n')[0][:360] if isinstance(sum_text, str) else sum_text[0].split('\n')[0][:360]
 			st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		
