@@ -104,6 +104,9 @@ if 'part1' not in st.session_state:
 if 'success' not in st.session_state:
 	st.session_state.success = False
 	
+if 'oops' not in st.session_state:
+	st.session_state.oops = False
+	
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
 
@@ -180,7 +183,7 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		else:
+		elif not st.session_state.oops:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 			colX, colY = st.columns([1.5,2.5])
 			with colY:
@@ -198,6 +201,7 @@ if st.session_state.name != "":
 			if button_press:
 				st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
 			st.subheader(f"  ")
+		elif st.session_state.oops:
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
@@ -213,7 +217,7 @@ if st.session_state.name != "":
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
-					
+
 		st.session_state.reset = True
 		
 	if not st.session_state.reset:
