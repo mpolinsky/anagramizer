@@ -203,7 +203,7 @@ if st.session_state.name != "":
 		
 	if not st.session_state.reset:
 		st.session_state.count += 1  # Used when counter resets.
-		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
+		#st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
 		if st.session_state.success and st.session_state.info_render < 1:
