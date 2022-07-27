@@ -6,6 +6,7 @@ from collections import Counter as Co
 from random import choice, randint as rand
 import requests
 import json
+import string
 
 
 st.set_page_config(page_title="Anagramizer", page_icon=':random:', layout="centered", initial_sidebar_state="auto", menu_items=None)
@@ -88,6 +89,7 @@ if 'choice' not in st.session_state:
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
     st.session_state.name = st.session_state.og_name.lower().replace(' ','')
+    st.session_state.name = ''.join([i for i in st.session_state.name if i not in string.punctuation + string.whitespace + string.digits ])
 	
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
