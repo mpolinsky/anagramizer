@@ -186,7 +186,20 @@ if st.session_state.name != "":
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					
 		st.session_state.reset = True
-		if st.session_state.info_render > 1:
+		
+	if not st.session_state.reset:
+		st.session_state.count += 1
+		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
+	else:	
+		# Display dropdown
+		if st.session_state.success and st.session_state.info_render < 1:
+			with st.expander("What do these words mean??"):
+				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+				st.subheader(f"  ")
+				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
+				st.session_state.info_render += 1
+		else:
+			if st.session_state.info_render > 1:
 			colD, colE, colF = st.columns([.95, 2.5, .55])
 			with colE:
 				st.subheader("Thanks for playing")
@@ -199,17 +212,6 @@ if st.session_state.name != "":
 			if big_reset:
 				st.session_state.clear()
 				reset_counter.clear()
-	if not st.session_state.reset:
-		st.session_state.count += 1
-		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
-	else:	
-		# Display dropdown
-		if st.session_state.success and st.session_state.info_render < 1:
-			with st.expander("What do these words mean??"):
-				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
-				st.subheader(f"  ")
-				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-				st.session_state.info_render += 1
 		
 else:
 	del st.session_state.word_pool
