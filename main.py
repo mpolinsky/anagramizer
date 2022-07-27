@@ -22,7 +22,7 @@ def letter_check(current_name_counter, candidate_word):
 
 # Keep words that pass the letter_check
 def shrink_pool(current_name_counter, word_pool):
-    newpool = [i for i in word_pool if letter_check(current_name_counter, i) and i != "Select a word!"]
+    newpool = [i for i in word_pool if letter_check(current_name_counter, i) and i is not None]
     newpool.sort(key=len, reverse=True)
     return newpool
 
@@ -122,7 +122,7 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"  ")
-		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
+		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		st.session_state.word_pool.insert(0, "Select a word!")
@@ -132,7 +132,10 @@ if st.session_state.name != "":
 		options = st.session_state.word_pool,
 		)
 		st.session_state.choice = selection
-		st.session_state.res.append(st.session_state.choice)
+		if st.session_state.choice = "Select a word!"
+			st.session_state.res.append(None)
+		else:
+			st.session_state.res.append(st.session_state.choice)
 		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
@@ -150,9 +153,9 @@ if st.session_state.name != "":
 			st.subheader(f"Congratulations you found a true anagram for {st.session_state.og_name}!")
 			colM, colN, colO = st.columns([1.5,3,.1])
 			with colN:
-				st.header(' '.join([i for i in st.session_state.res if i != "Select a word!"]).capitalize())
+				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
-			st.code(f"""{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
+			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
 		else:
 			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
@@ -160,7 +163,7 @@ if st.session_state.name != "":
 			with colY:
 				st.subheader(f"...as far as we can tell")
 			st.header(f"  ")
-			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
+			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
 			colA, colB, colC = st.columns([.25, 3.5, .25])
@@ -197,7 +200,7 @@ if st.session_state.name != "":
 		# Display dropdown
 		if st.session_state.success and st.session_state.info_render < 1:
 			with st.expander("What do these words mean??"):
-				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i != "Select a word!"])
+				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 				st.subheader(f"  ")
 				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 				st.session_state.info_render += 1
