@@ -157,6 +157,7 @@ if st.session_state.name != "":
 					st.session_state.next = True
 		if st.session_state.next:
 			st.button("Next word")
+			st.ession_state.next = False
 			
 	else:
 		st.session_state.part2 = True
