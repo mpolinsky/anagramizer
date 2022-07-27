@@ -109,6 +109,9 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
+if 'next' not in st.session_state:
+	st.session_state.next = False
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -128,28 +131,33 @@ if st.session_state.name != "":
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
-		with st.form(key="wordform", clear_on_submit=False):
-			selection = st.selectbox(
-			'Select:',
-			options = st.session_state.word_pool,
-			)
-			
-			form_submit = st.form_submit_button("Submit")
-			if form_submit:
-				st.subheader("submitted")
-				st.session_state.choice = selection
-				if st.session_state.choice == "Select a word!":
-					st.session_state.res.append(None)
-				else:
-					st.session_state.res.append(st.session_state.choice)
+		if not st.session_state.next:
+			with st.form(key="wordform", clear_on_submit=False):
+				selection = st.selectbox(
+				'Select:',
+				options = st.session_state.word_pool,
+				)
 
-				st.subheader(st.session_state.res)
-				st.subheader(st.session_state.count)
-				st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
-				
-				if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
-					st.session_state.part1 = False
-					st.experimental_rerun()
+				form_submit = st.form_submit_button("Submit")
+				if form_submit:
+					st.subheader("submitted")
+					st.session_state.choice = selection
+					if st.session_state.choice == "Select a word!":
+						st.session_state.res.append(None)
+					else:
+						st.session_state.res.append(st.session_state.choice)
+
+					st.subheader(st.session_state.res)
+					st.subheader(st.session_state.count)
+					st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
+
+					if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
+						st.session_state.part1 = False
+						st.experimental_rerun()
+					st.session_state.next = True
+		if st.session_state.next:
+			st.button("Next word")
+			
 	else:
 		st.session_state.part2 = True
 	## Part 2
