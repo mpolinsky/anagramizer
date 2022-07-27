@@ -198,20 +198,20 @@ if st.session_state.name != "":
 				st.subheader(f"  ")
 				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 				st.session_state.info_render += 1
-		else:
-			if st.session_state.info_render > 1:
-				colD, colE, colF = st.columns([.95, 2.5, .55])
-				with colE:
-					st.subheader("Thanks for playing")
-				colA, colB, colC = st.columns([.25, 3.5, .25])
-				with colB:
-					st.subheader("Click twice on the reset button to try another!")
-				col1, col2, col3 = st.columns(3)
-				with col2:
-					big_reset = st.button("Reset")
-				if big_reset:
-					st.session_state.clear()
-					reset_counter.clear()
 		
+		
+		colD, colE, colF = st.columns([.95, 2.5, .55])
+		with colE:
+			st.subheader("Thanks for playing")
+		colA, colB, colC = st.columns([.25, 3.5, .25])
+		with colB:
+			st.subheader("Click twice on the reset button to try another!")
+		col1, col2, col3 = st.columns(3)
+		with col2:
+			big_reset = st.button("Reset")
+		if big_reset:
+			st.session_state.clear()
+			reset_counter.clear()
+
 else:
 	del st.session_state.word_pool
