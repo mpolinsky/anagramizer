@@ -133,10 +133,10 @@ if st.session_state.name != "":
 			'Select:',
 			options = st.session_state.word_pool,
 			)
-			form_submit = st.form_submit_button()
 			st.session_state.choice = selection
-		if form_submit:
-			st.subheader("submitted")
+			form_submit = st.form_submit_button()
+			if form_submit:
+				st.subheader("submitted")
 
 		if st.session_state.choice == "Select a word!":
 			st.session_state.res.append(None)
