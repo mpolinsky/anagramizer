@@ -128,7 +128,7 @@ if st.session_state.name != "":
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
-		with st.form("Selectform", key=str(dt.now()))
+		with st.form("Selectform", key=str(dt.now())):
 			selection = st.selectbox(
 			'Select:',
 			options = st.session_state.word_pool,
