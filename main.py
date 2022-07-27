@@ -3,7 +3,7 @@ import english_words as ew
 import wikipedia as wk
 from datetime import datetime as dt
 from collections import Counter as Co
-from random import randint as rand
+from random import choice, randint as rand
 import requests
 import json
 
@@ -51,7 +51,7 @@ def retrieve_data(items):
 				sum_text = wk.summary(wk.search(items[index])[0], auto_suggest=False)
 				sum_text = sum_text.split('\n')[0][:360] if isinstance(sum_text, str) else sum_text[0].split('\n')[0][:360]
 			except wk.exceptions.DisambiguationError as de:
-				sum_text = de.options[0]
+				sum_text = choice(de.options)
 			finally:
 				st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 
