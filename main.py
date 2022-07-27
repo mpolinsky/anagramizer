@@ -79,9 +79,6 @@ if 'word_pool' not in st.session_state:
 if 'res' not in st.session_state:
     st.session_state.res = list()
 
-if 'count' not in st.session_state:
-	st.session_state.count = 0
-
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
 
@@ -194,7 +191,6 @@ if st.session_state.name != "":
 		st.session_state.reset = True
 		
 	if not st.session_state.reset:
-		st.session_state.count +=1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
