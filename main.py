@@ -133,7 +133,7 @@ if st.session_state.name != "":
 			'Select:',
 			options = st.session_state.word_pool,
 			)
-			form_submit = st.form_submit_button(key=str(dt.now()))
+			form_submit = st.form_submit_button()
 			if form_submit:
 				st.session_state.choice = selection
 		
