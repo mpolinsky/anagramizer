@@ -45,13 +45,16 @@ def retrieve_data(items):
 			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
 		try:
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
-		except wk.DisambiguationError:
+		except wk.exceptions.DisambiguationError:
 			st.write(f" ")
-			
-			sum_text = wk.summary(wk.search(items[index])[0], auto_suggest=False)
-			sum_text = sum_text.split('\n')[0][:360] if isinstance(sum_text, str) else sum_text[0].split('\n')[0][:360]
-			st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
-		
+			try:
+				sum_text = wk.summary(wk.search(items[index])[0], auto_suggest=False)
+				sum_text = sum_text.split('\n')[0][:360] if isinstance(sum_text, str) else sum_text[0].split('\n')[0][:360]
+			except wk.exceptions.DisambiguationError as de:
+				sum_text = de.options[0]
+			finally:
+				st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
 			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
