@@ -88,9 +88,11 @@ if 'choice' not in st.session_state:
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
-    st.session_state.name = st.session_state.og_name.lower().replace(' ','')
-    st.session_state.name = ''.join([i for i in st.session_state.name if i not in string.punctuation + string.whitespace + string.digits ])
-	
+    # If there are numbers or symbols don't save them in the og_name. Assume its a mistake.  Can change this if the corpus allows.
+    if [i for i in st.session_state.og_name if i in string.punctuation + string.digits ] != []:
+	st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.whitespace + string.digits ])
+    st.session_state.name = st.session_state.og_name.lower()
+
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
 	st.session_state.anagram = None
