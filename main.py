@@ -74,16 +74,16 @@ if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.s
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on']
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on', 'in', 'at', 'to', 'too', 'he', 'she']
 
 if 'res' not in st.session_state:
     st.session_state.res = list()
 
+if 'count' not in st.session_state:
+	st.session_state.count = 0
+
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
-
-if 'count' not in st.session_state:
-    st.session_state.count = 0
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
@@ -109,6 +109,9 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
+if 'next' not in st.session_state:
+	st.session_state.next = False
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -125,22 +128,38 @@ if st.session_state.name != "":
 		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
-		st.session_state.word_pool.insert(0, "Select a word!")
-		st.subheader("Select a word and click the select button to move on to the next word!")
-		selection = st.selectbox(
-		'Select:',
-		options = st.session_state.word_pool,
-		)
-		st.session_state.choice = selection
-		if st.session_state.choice == "Select a word!":
-			st.session_state.res.append(None)
-		else:
-			st.session_state.res.append(st.session_state.choice)
-		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
-
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
 			st.session_state.part1 = False
 			st.experimental_rerun()
+		st.session_state.word_pool.insert(0, "Select a word!")
+		
+		st.subheader("Select a word and click the select button to move on to the next word!")
+		if not st.session_state.next:
+			with st.form(key="wordform", clear_on_submit=False):
+				selection = st.selectbox(
+				'Select:',
+				options = st.session_state.word_pool,
+				)
+
+				form_submit = st.form_submit_button("Submit")
+				if form_submit:
+					st.subheader("submitted")
+					st.session_state.choice = selection
+					if st.session_state.choice == "Select a word!":
+						st.session_state.res.append(None)
+					else:
+						st.session_state.res.append(st.session_state.choice)
+
+					st.subheader(st.session_state.res)
+					st.subheader(st.session_state.count)
+					st.session_state.counter1 -= Co(st.session_state.res[-1])
+
+					
+					st.session_state.next = True
+		if st.session_state.next:
+			st.button("Next word")
+			st.session_state.next = False
+			
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -194,8 +213,8 @@ if st.session_state.name != "":
 		st.session_state.reset = True
 		
 	if not st.session_state.reset:
-		st.session_state.count += 1
-		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
+		st.session_state.count += 1  # Used when counter resets.
+		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
 		if st.session_state.success and st.session_state.info_render < 1:
