@@ -146,10 +146,10 @@ if st.session_state.name != "":
 				st.subheader(st.session_state.res)
 				st.subheader(st.session_state.count)
 				st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
-
-		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
-			st.session_state.part1 = False
-			st.experimental_rerun()
+				
+				if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
+					st.session_state.part1 = False
+					st.experimental_rerun()
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -204,7 +204,7 @@ if st.session_state.name != "":
 		
 	if not st.session_state.reset:
 		st.session_state.count += 1  # Used when counter resets.
-		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
+		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
 		if st.session_state.success and st.session_state.info_render < 1:
