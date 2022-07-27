@@ -82,9 +82,6 @@ if 'res' not in st.session_state:
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
 
-if 'count' not in st.session_state:
-    st.session_state.count = 0
-
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
     st.session_state.name = st.session_state.og_name.lower().replace(' ','')
@@ -194,7 +191,6 @@ if st.session_state.name != "":
 		st.session_state.reset = True
 		
 	if not st.session_state.reset:
-		st.session_state.count += 1
 		st.button("Select")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
