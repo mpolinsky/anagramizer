@@ -138,13 +138,13 @@ if st.session_state.name != "":
 			if form_submit:
 				st.subheader("submitted")
 
-		if st.session_state.choice == "Select a word!":
-			st.session_state.res.append(None)
-		else:
-			st.session_state.res.append(st.session_state.choice)
+				if st.session_state.choice == "Select a word!":
+					st.session_state.res.append(None)
+				else:
+					st.session_state.res.append(st.session_state.choice)
+
 		
-		
-		st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
+				st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count])
 
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
 			st.session_state.part1 = False
