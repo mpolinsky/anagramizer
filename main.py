@@ -128,6 +128,9 @@ if st.session_state.name != "":
 		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
+		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
+			st.session_state.part1 = False
+			st.experimental_rerun()
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
@@ -151,9 +154,7 @@ if st.session_state.name != "":
 					st.subheader(st.session_state.count)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
 
-					if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
-						st.session_state.part1 = False
-						st.experimental_rerun()
+					
 					st.session_state.next = True
 		if st.session_state.next:
 			st.button("Next word")
