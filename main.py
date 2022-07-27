@@ -149,7 +149,7 @@ if st.session_state.name != "":
 
 					st.subheader(st.session_state.res)
 					st.subheader(st.session_state.count)
-					st.session_state.counter1 -= Co(st.session_state.res[st.session_state.count-1])
+					st.session_state.counter1 -= Co(st.session_state.res[-1])
 
 					if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
 						st.session_state.part1 = False
