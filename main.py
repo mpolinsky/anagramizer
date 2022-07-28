@@ -109,7 +109,7 @@ if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
 
 if 'showfail' not in st.session_state:
-	st.session_state.showfail = False
+	st.session_state.showfail = True
 	
 if 'jump_to_end' not in st.session_state:
 	st.session_state.jump_to_end = False
