@@ -194,7 +194,7 @@ if st.session_state.name != "":
 				colA, colB, colC = st.columns([.25, 3.5, .25])
 				with colB:
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
-				colM, colN, colO = st.columns([1.50, 2, 1.25])
+				colM, colN, colO = st.columns(3)
 				with colN:
 					button_press = st.button("Oops!")
 					if button_press:
