@@ -58,7 +58,7 @@ def retrieve_data(items):
 
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
-			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
+			st.write("...This doesn't seem to be returning any results from Wikipedia.  It's very possibly not a thing.")
 			
 @st.experimental_memo
 def reset_counter(a_name):
@@ -80,8 +80,7 @@ if 'word_pool' not in st.session_state:
 if 'res' not in st.session_state:
     st.session_state.res = list()
 
-if 'count' not in st.session_state:
-	st.session_state.count = 0
+
 
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
@@ -232,7 +231,6 @@ if st.session_state.name != "":
 				st.subheader(f"  ")
 				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 				st.session_state.info_render += 1
-		
 		
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
