@@ -162,8 +162,12 @@ if st.session_state.name != "":
 				st.session_state.counter1 -= Co(st.session_state.res[-1])
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
-
-
+	
+		if st.button("Start over"):
+			st.subheader("Starting fresh!")
+			st.session_state.clear()
+			reset_counter.clear()
+			st.experimental_rerun()		
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -186,7 +190,7 @@ if st.session_state.name != "":
 				colX, colY = st.columns([1.5,2.5])
 				with colY:
 					st.subheader(f"...as far as we can tell")
-				st.session_state.showfail = False
+				#st.session_state.showfail = False
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
@@ -195,10 +199,13 @@ if st.session_state.name != "":
 				colA, colB, colC = st.columns([.25, 3.5, .25])
 				with colB:
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+				colM, colN, colO = st.columns(3)
+				with colN:
 					button_press = st.button("Oops!")
 					if button_press:
 						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
 						st.session_state.oops = True
+						st.session_state.showfail = False
 			st.subheader(f"  ")
 		
 			# If user wants to enter an anagram:
@@ -220,6 +227,8 @@ if st.session_state.name != "":
 
 		st.session_state.reset = True
 		
+	
+	
 	if st.session_state.reset:
 		# Display dropdown
 		if st.session_state.success or st.session_state.jump_to_end: 
@@ -230,9 +239,6 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 
-		colD, colE, colF = st.columns([.95, 2.5, .55])
-		with colE:
-			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
 			st.subheader("Click the reset button to try another!")
