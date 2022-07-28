@@ -123,6 +123,9 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
+if 'disable_manual_entry_fail_warning' not in st.session_state:
+	st.session_state.disable_manual_entry_fail_warning = False
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -146,14 +149,24 @@ if st.session_state.name != "":
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
 		
-		with st.form(key="wordform", clear_on_submit=False):
+		with st.form(key="wordform", clear_on_submit=True):
 			selection = st.selectbox(
 			'Choose the next word!',
 			options = st.session_state.word_pool,
 			)
-
+			##
+			###
+			###
+			## you'll have to do all the input handling here to...make it its own func...
+			manual_entry = st.text_input("Or enter a word here!")
+			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
+				if letter_check(st.session_state.counter1, manual_entry):
+					selection = manual_entry
+				if not letter_check(st.session_state.counter1, manual_entry):
+					st.warning("Remember you can only use the remaining letters!")
+					selection = "Select a word!"
 			form_submit = st.form_submit_button("Select")
-			if form_submit:
+			if form_submit:	
 				st.session_state.choice = selection
 				if st.session_state.choice == "Select a word!":
 					st.session_state.res.append(None)
@@ -184,7 +197,7 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		else:#elif not st.session_state.oops:
+		else: #elif not st.session_state.oops:
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 				colX, colY = st.columns([1.5,2.5])
@@ -254,3 +267,5 @@ if st.session_state.name != "":
 
 else:
 	del st.session_state.word_pool
+
+st.session_state
