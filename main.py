@@ -256,7 +256,7 @@ if st.session_state.name != "":
 			if big_reset:
 				st.session_state.clear()
 				reset_counter.clear()
-				st.experimental_rereun()
+				st.experimental_rerun()
 				
 				
 
