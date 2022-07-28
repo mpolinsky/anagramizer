@@ -191,7 +191,7 @@ if st.session_state.name != "":
 				colX, colY = st.columns([1.5,2.5])
 				with colY:
 					st.subheader(f"...as far as we can tell")
-				st.session_state.showfail = False
+				#st.session_state.showfail = False
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
@@ -204,6 +204,7 @@ if st.session_state.name != "":
 					if button_press:
 						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
 						st.session_state.oops = True
+						st.session_state.showfail = False
 			st.subheader(f"  ")
 		
 			# If user wants to enter an anagram:
@@ -225,6 +226,11 @@ if st.session_state.name != "":
 
 		st.session_state.reset = True
 		
+	if st.button("Start over"):
+		st.subheader("Starting fresh!")
+		st.session_state.clear()
+		reset_counter.clear()
+		st.experimental_rerun()
 	if st.session_state.reset:
 		# Display dropdown
 		if st.session_state.success or st.session_state.jump_to_end: 
