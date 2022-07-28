@@ -108,8 +108,8 @@ if 'oops' not in st.session_state:
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
 	
-if 'showfail' not in st.session_state:
-	st.session_state.showfail = True
+if 'jump_to_end' not in st.session_state:
+	st.session_state.jump_to_end = False
 
 if 'failend' not in st.session_state:
 	st.session_state.failend = False
@@ -208,6 +208,8 @@ if st.session_state.name != "":
 				st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
 				st.session_state.oops = True
 			st.subheader(f"  ")
+			if st.button("Start over"):
+				st.session_state.jump_to_end = True
 		elif st.session_state.oops:
 			# Display what the user was left with.
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
@@ -230,17 +232,14 @@ if st.session_state.name != "":
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					st.write("Try again or click end")
 				if st.button("End"):
-					st.session_state.failend = True
+					st.session_state.jump_to_end = True
 
 		st.session_state.reset = True
 		
-	
-		#st.session_state.count += 1  # Used when counter resets.
-		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	if st.session_state.reset:
 		# Display dropdown
-		if st.session_state.success or st.session_state.failend: 
-			if st.session_state.info_render < 1:
+		if st.session_state.success or st.session_state.jump_to_end: 
+			if st.session_state.info_render < 1 and not st.session_state.jump_to_end:
 				with st.expander("What do these words mean??"):
 					st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
 					st.subheader(f"  ")
@@ -256,7 +255,7 @@ if st.session_state.name != "":
 					st.subheader("Click twice on the reset button to try another!")
 				col1, col2, col3 = st.columns(3)
 				with col2:
-					big_reset = st.button("Reset")
+					big_reset = st.button("Start over")
 				if big_reset:
 					st.session_state.clear()
 					reset_counter.clear()
