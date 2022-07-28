@@ -191,7 +191,7 @@ if st.session_state.name != "":
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
 			if st.session_state.showfail:
-				colA, colB, colC = st.columns([.25, 3.5, .25])
+				colA, colB, colC = st.columns([1, 3, 1])
 				with colB:
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
 					button_press = st.button("Oops!")
@@ -232,9 +232,6 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 
-		colD, colE, colF = st.columns([.95, 2.5, .55])
-		with colE:
-			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
 			st.subheader("Click the reset button to try another!")
