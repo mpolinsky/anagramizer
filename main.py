@@ -151,6 +151,10 @@ if st.session_state.name != "":
 			'Choose the next word!',
 			options = st.session_state.word_pool,
 			)
+			##
+			###
+			###
+			## you'll have to do all the input handling here to...make it its own func...
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!":
 				st.write("Manual entry")
