@@ -206,6 +206,10 @@ if st.session_state.name != "":
 				st.session_state.oops = True
 			st.subheader(f"  ")
 		elif st.session_state.oops:
+			# Display what the user was left with.
+			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
+			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
+			st.subheader(f"  ")
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
