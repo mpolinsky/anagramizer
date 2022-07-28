@@ -146,7 +146,7 @@ if st.session_state.name != "":
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
 		
-		with st.form(key="wordform", clear_on_submit=False):
+		with st.form(key="wordform", clear_on_submit=True):
 			selection = st.selectbox(
 			'Choose the next word!',
 			options = st.session_state.word_pool,
