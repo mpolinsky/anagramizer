@@ -235,7 +235,7 @@ if st.session_state.name != "":
 			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
-			st.subheader("Click twice on the reset button to try another!")
+			st.subheader("Click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
 		with col2:
 			big_reset = st.button("Reset")
