@@ -6,6 +6,7 @@ from collections import Counter as Co
 from random import choice, randint as rand
 import requests
 import json
+import string
 
 
 st.set_page_config(page_title="Anagramizer", page_icon=':random:', layout="centered", initial_sidebar_state="auto", menu_items=None)
@@ -57,7 +58,7 @@ def retrieve_data(items):
 
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
-			st.write("...This doesn't seem to be returning any results from Wikipedia either.  It's very possibly not a thing.")
+			st.write("...This doesn't seem to be returning any results from Wikipedia.  It's very possibly not a thing.")
 			
 @st.experimental_memo
 def reset_counter(a_name):
@@ -80,16 +81,17 @@ if 'word_pool' not in st.session_state:
 if 'res' not in st.session_state:
     st.session_state.res = list()
 
-if 'count' not in st.session_state:
-	st.session_state.count = 0
 
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
 
 if 'name' not in st.session_state or st.session_state.name == "":
     st.session_state.og_name = st.text_input("Enter name")
-    st.session_state.name = st.session_state.og_name.lower().replace(' ','')
-	
+    # If there are numbers or symbols don't save them in the og_name. Assume its a mistake.  Can change this if the corpus allows.
+    if [i for i in st.session_state.og_name if i in string.punctuation + string.digits ] != []:
+        st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.digits ])
+    st.session_state.name = ''.join([i for i in st.session_state.og_name.lower() if i not in string.whitespace])
+
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
 	st.session_state.anagram = None
@@ -101,17 +103,26 @@ if 'part1' not in st.session_state:
 if 'success' not in st.session_state:
 	st.session_state.success = False
 	
+if 'oops' not in st.session_state:
+	st.session_state.oops = False
+	
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
+
+if 'showfail' not in st.session_state:
+	st.session_state.showfail = True
+	
+if 'jump_to_end' not in st.session_state:
+	st.session_state.jump_to_end = False
+
+if 'failend' not in st.session_state:
+	st.session_state.failend = False
 
 if 'balloons' not in st.session_state:
 	st.session_state.balloons = 0
 	
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
-	
-if 'next' not in st.session_state:
-	st.session_state.next = False
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -135,32 +146,25 @@ if st.session_state.name != "":
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
-		if not st.session_state.next:
-			with st.form(key="wordform", clear_on_submit=False):
-				selection = st.selectbox(
-				'Select:',
-				options = st.session_state.word_pool,
-				)
+		
+		with st.form(key="wordform", clear_on_submit=False):
+			selection = st.selectbox(
+			'Choose the next word!',
+			options = st.session_state.word_pool,
+			)
 
-				form_submit = st.form_submit_button("Submit")
-				if form_submit:
-					st.subheader("submitted")
-					st.session_state.choice = selection
-					if st.session_state.choice == "Select a word!":
-						st.session_state.res.append(None)
-					else:
-						st.session_state.res.append(st.session_state.choice)
+			form_submit = st.form_submit_button("Select")
+			if form_submit:
+				st.session_state.choice = selection
+				if st.session_state.choice == "Select a word!":
+					st.session_state.res.append(None)
+				else:
+					st.session_state.res.append(st.session_state.choice)
+				st.session_state.counter1 -= Co(st.session_state.res[-1])
+				st.subheader(f"""Choice: {st.session_state.choice}""")
+				st.experimental_rerun()
 
-					st.subheader(st.session_state.res)
-					st.subheader(st.session_state.count)
-					st.session_state.counter1 -= Co(st.session_state.res[-1])
 
-					
-					st.session_state.next = True
-		if st.session_state.next:
-			st.button("Next word")
-			st.session_state.next = False
-			
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -177,24 +181,27 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		else:
-			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
-			colX, colY = st.columns([1.5,2.5])
-			with colY:
-				st.subheader(f"...as far as we can tell")
+		else:#elif not st.session_state.oops:
+			if st.session_state.showfail:
+				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
+				colX, colY = st.columns([1.5,2.5])
+				with colY:
+					st.subheader(f"...as far as we can tell")
+				st.session_state.showfail = False
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
-			colA, colB, colC = st.columns([.25, 3.5, .25])
-			with colB:
-				st.subheader(f"Click here if you see an anagram we missed!")
-			col1, col2, col3 = st.columns(3)
-			with col2:
-				button_press = st.button("Oops!")
-			if button_press:
-				st.session_state.user_anagram = True
+			if st.session_state.showfail:
+				colA, colB, colC = st.columns([.25, 3.5, .25])
+				with colB:
+					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+					button_press = st.button("Oops!")
+					if button_press:
+						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
+						st.session_state.oops = True
 			st.subheader(f"  ")
+		
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
@@ -210,22 +217,20 @@ if st.session_state.name != "":
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
-					
+					st.write("Try again or click end")		
+
 		st.session_state.reset = True
 		
-	if not st.session_state.reset:
-		st.session_state.count += 1  # Used when counter resets.
-		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
-	else:	
+	if st.session_state.reset:
 		# Display dropdown
-		if st.session_state.success and st.session_state.info_render < 1:
-			with st.expander("What do these words mean??"):
-				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
-				st.subheader(f"  ")
-				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-				st.session_state.info_render += 1
-		
-		
+		if st.session_state.success or st.session_state.jump_to_end: 
+			if st.session_state.info_render < 1 and not st.session_state.jump_to_end:
+				with st.expander("What do these words mean??"):
+					st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+					st.subheader(f"  ")
+					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
+					st.session_state.info_render += 1
+
 		colD, colE, colF = st.columns([.95, 2.5, .55])
 		with colE:
 			st.subheader("Thanks for playing")
@@ -238,6 +243,9 @@ if st.session_state.name != "":
 		if big_reset:
 			st.session_state.clear()
 			reset_counter.clear()
+			st.experimental_rerun()
+
+				
 
 else:
 	del st.session_state.word_pool
