@@ -163,7 +163,7 @@ if st.session_state.name != "":
 				st.write("Manual entry")
 				if letter_check(st.session_state.counter1, manual_entry):
 					selection = manual_entry
-				elif not st.session_state.disable_manual_entry_fail_warning:
+				if not letter_check(st.session_state.counter1, manual_entry):
 					st.subheader("Oops, that word isn't contained in the remaining letters.")
 					selection = "Select a word!"
 					#st.session_state.disable_manual_entry_fail_warning = True
