@@ -211,8 +211,7 @@ if st.session_state.name != "":
 				st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
 				st.session_state.oops = True
 			st.subheader(f"  ")
-			if st.button("Start over"):
-				st.session_state.jump_to_end = True
+			
 		elif st.session_state.oops:
 			# Display what the user was left with.
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
@@ -234,8 +233,7 @@ if st.session_state.name != "":
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					st.write("Try again or click end")
-				if st.button("End"):
-					st.session_state.jump_to_end = True
+				
 
 		st.session_state.reset = True
 		
