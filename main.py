@@ -111,7 +111,7 @@ if 'summaries' not in st.session_state:
 if 'showfail' not in st.session_state:
 	st.session_state.showfail = True
 
-if 'failend' not in st.session_state.failend:
+if 'failend' not in st.session_state:
 	st.session_state.failend = False
 
 if 'balloons' not in st.session_state:
