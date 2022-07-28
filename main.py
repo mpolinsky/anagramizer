@@ -154,7 +154,7 @@ if st.session_state.name != "":
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry:
 				st.write("Manual entry")
-				selection = manual entry
+				selection = manual_entry
 			form_submit = st.form_submit_button("Select")
 			if form_submit:
 				st.session_state.choice = selection
