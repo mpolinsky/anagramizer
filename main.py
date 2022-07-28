@@ -258,7 +258,7 @@ if st.session_state.name != "":
 					st.subheader("Click twice on the reset button to try another!")
 				col1, col2, col3 = st.columns(3)
 				with col2:
-					big_reset = st.button("Start over")
+					big_reset = st.button("Reset")
 				if big_reset:
 					st.session_state.clear()
 					reset_counter.clear()
