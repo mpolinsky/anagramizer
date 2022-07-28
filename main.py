@@ -226,11 +226,8 @@ if st.session_state.name != "":
 
 		st.session_state.reset = True
 		
-	if st.button("Start over"):
-		st.subheader("Starting fresh!")
-		st.session_state.clear()
-		reset_counter.clear()
-		st.experimental_rerun()
+	
+	
 	if st.session_state.reset:
 		# Display dropdown
 		if st.session_state.success or st.session_state.jump_to_end: 
