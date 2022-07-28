@@ -195,9 +195,10 @@ if st.session_state.name != "":
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
-			colA, colB, colC = st.columns([.25, 3.5, .25])
-			with colB:
-				st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+			if st.session_state.showfail:
+				colA, colB, colC = st.columns([.25, 3.5, .25])
+				with colB:
+					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
 			col1, col2, col3 = st.columns(3)
 			with col2:
 				button_press = st.button("Oops!")
@@ -226,8 +227,7 @@ if st.session_state.name != "":
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
-					st.write("Try again or click end")
-				
+					st.write("Try again or click end")		
 
 		st.session_state.reset = True
 		
