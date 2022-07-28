@@ -163,6 +163,7 @@ if st.session_state.name != "":
 					else:
 						st.session_state.res.append(st.session_state.choice)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
+					st.subheader(f"""Choice: {st.session_state.choice}""")
 					st.session_state.next = True
 		if st.session_state.next:
 			st.button("Submit")
@@ -201,7 +202,7 @@ if st.session_state.name != "":
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
 					button_press = st.button("Oops!")
 					if button_press:
-						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
+						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
 						st.session_state.oops = True
 			st.subheader(f"  ")
 			
