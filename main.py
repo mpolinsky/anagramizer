@@ -123,6 +123,9 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
+if 'disable_manual_entry_fail_warning' not in st.session_state:
+	st.session_state.disable_manual_entry_fail_warning = False
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -160,9 +163,12 @@ if st.session_state.name != "":
 				st.write("Manual entry")
 				if letter_check(st.session_state.counter1, manual_entry):
 					selection = manual_entry
-				else:
+				elif not st.session_state.disable_manual_entry_fail_warning:
 					st.subheader("Oops, that word isn't contained in the remaining letters.")
 					selection = "Select a word!"
+					st.session_state.disable_manual_entry_fail_warning = True
+					st.experimental_rerun()
+				st.session_state.disable_manual_entry_fail_warning = False
 			form_submit = st.form_submit_button("Select")
 			if form_submit:	
 				st.session_state.choice = selection
