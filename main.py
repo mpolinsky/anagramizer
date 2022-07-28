@@ -166,7 +166,7 @@ if st.session_state.name != "":
 				elif not st.session_state.disable_manual_entry_fail_warning:
 					st.subheader("Oops, that word isn't contained in the remaining letters.")
 					selection = "Select a word!"
-					st.session_state.disable_manual_entry_fail_warning = True
+					#st.session_state.disable_manual_entry_fail_warning = True
 					st.experimental_rerun()
 				#st.session_state.disable_manual_entry_fail_warning = False
 			form_submit = st.form_submit_button("Select")
