@@ -154,12 +154,13 @@ if st.session_state.name != "":
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!":
 				st.write("Manual entry")
-				selection = manual_entry
+				if letter_check(st.session_state.counter1, manual_entry):
+					selection = manual_entry
+				else:
+					st.subheader("Oops, that word isn't contained in the remaining letters.")
+					selection = "Select a word!"
 			form_submit = st.form_submit_button("Select")
-			if form_submit:
-				if manual_entry:
-					# Check validity here
-					
+			if form_submit:	
 				st.session_state.choice = selection
 				if st.session_state.choice == "Select a word!":
 					st.session_state.res.append(None)
