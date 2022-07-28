@@ -123,8 +123,7 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
-if 'next' not in st.session_state:
-	st.session_state.next = False
+
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -151,25 +150,24 @@ if st.session_state.name != "":
 		if not st.session_state.next:
 			with st.form(key="wordform", clear_on_submit=False):
 				selection = st.selectbox(
-				'Select:',
+				'Choose the next word!',
 				options = st.session_state.word_pool,
 				)
 
-				form_submit = st.form_submit_button("Submit")
+				form_submit = st.form_submit_button("Select")
 				if form_submit:
-					st.subheader("submitted")
 					st.session_state.choice = selection
 					if st.session_state.choice == "Select a word!":
 						st.session_state.res.append(None)
 					else:
 						st.session_state.res.append(st.session_state.choice)
-						
-					st.subheader(st.session_state.res)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
-					st.session_state.next = True
-		if st.session_state.next:
-			st.button("Next word")
-			st.session_state.next = False
+					st.subheader(f"""Choice: {st.session_state.choice}""")
+					st.experimental_rerun()
+					#st.session_state.next = True
+		#if st.session_state.next:
+			#st.button("Submit")
+			#st.session_state.next = False
 			
 	else:
 		st.session_state.part2 = True
@@ -198,22 +196,16 @@ if st.session_state.name != "":
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
-			colA, colB, colC = st.columns([.25, 3.5, .25])
-			with colB:
-				st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
-			col1, col2, col3 = st.columns(3)
-			with col2:
-				button_press = st.button("Oops!")
-			if button_press:
-				st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
-				st.session_state.oops = True
+			if st.session_state.showfail:
+				colA, colB, colC = st.columns([.25, 3.5, .25])
+				with colB:
+					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+					button_press = st.button("Oops!")
+					if button_press:
+						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
+						st.session_state.oops = True
 			st.subheader(f"  ")
-			
-		#elif st.session_state.oops:
-			# Display what the user was left with.
-			#st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
-			#st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
-			#st.subheader(f"  ")
+		
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
@@ -229,8 +221,7 @@ if st.session_state.name != "":
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
-					st.write("Try again or click end")
-				
+					st.write("Try again or click end")		
 
 		st.session_state.reset = True
 		
