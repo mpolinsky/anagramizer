@@ -246,7 +246,6 @@ if st.session_state.name != "":
 					st.subheader(f"  ")
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
-					st.button("Finished")
 
 			colD, colE, colF = st.columns([.95, 2.5, .55])
 			with colE:
@@ -260,6 +259,7 @@ if st.session_state.name != "":
 			if big_reset:
 				st.session_state.clear()
 				reset_counter.clear()
+				st.experimental_rereun()
 				
 				
 
