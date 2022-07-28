@@ -168,7 +168,7 @@ if st.session_state.name != "":
 					selection = "Select a word!"
 					st.session_state.disable_manual_entry_fail_warning = True
 					st.experimental_rerun()
-				st.session_state.disable_manual_entry_fail_warning = False
+				#st.session_state.disable_manual_entry_fail_warning = False
 			form_submit = st.form_submit_button("Select")
 			if form_submit:	
 				st.session_state.choice = selection
