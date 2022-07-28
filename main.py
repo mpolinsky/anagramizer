@@ -159,15 +159,12 @@ if st.session_state.name != "":
 			###
 			## you'll have to do all the input handling here to...make it its own func...
 			manual_entry = st.text_input("Or enter a word here!")
-			if manual_entry and manual_entry != "Select a word!":
-				st.write("Manual entry")
+			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
 				if letter_check(st.session_state.counter1, manual_entry):
 					selection = manual_entry
 				if not letter_check(st.session_state.counter1, manual_entry):
-					st.subheader("Oops, that word isn't contained in the remaining letters.")
+					st.write("Oops, that word isn't contained in the remaining letters.")
 					selection = "Select a word!"
-					#st.session_state.disable_manual_entry_fail_warning = True
-				#st.session_state.disable_manual_entry_fail_warning = False
 			form_submit = st.form_submit_button("Select")
 			if form_submit:	
 				st.session_state.choice = selection
