@@ -65,7 +65,7 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
-st.title("fix-wonky-selectform")
+st.title("main")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
@@ -123,8 +123,7 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
-if 'next' not in st.session_state:
-	st.session_state.next = False
+
 	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
@@ -206,12 +205,7 @@ if st.session_state.name != "":
 						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
 						st.session_state.oops = True
 			st.subheader(f"  ")
-			
-		#elif st.session_state.oops:
-			# Display what the user was left with.
-			#st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
-			#st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
-			#st.subheader(f"  ")
+		
 			# If user wants to enter an anagram:
 			if st.session_state.user_anagram:
 				# Get user suggestion for anagram
