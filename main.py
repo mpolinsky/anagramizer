@@ -154,6 +154,7 @@ if st.session_state.name != "":
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry:
 				st.write("Manual entry")
+				selection = manual entry
 			form_submit = st.form_submit_button("Select")
 			if form_submit:
 				st.session_state.choice = selection
@@ -186,7 +187,7 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		else:#elif not st.session_state.oops:
+		else: #elif not st.session_state.oops:
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 				colX, colY = st.columns([1.5,2.5])
