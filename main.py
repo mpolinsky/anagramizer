@@ -229,8 +229,8 @@ if st.session_state.name != "":
 				elif st.session_state.anagram != 'None':
 					st.subheader("That actually is not a complete anagram, so sorry.")
 					st.write("Try again or click end")
-					if st.button("End"):
-						st.session_state.failend = True
+				if st.button("End"):
+					st.session_state.failend = True
 
 		st.session_state.reset = True
 		
