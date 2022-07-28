@@ -219,10 +219,10 @@ if st.session_state.name != "":
 
 		st.session_state.reset = True
 		
-	if not st.session_state.reset:
+	
 		#st.session_state.count += 1  # Used when counter resets.
 		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
-	else:	
+	if st.session_state.reset:#else:	
 		# Display dropdown
 		if st.session_state.success and st.session_state.info_render < 1:
 			with st.expander("What do these words mean??"):
