@@ -81,7 +81,6 @@ if 'res' not in st.session_state:
     st.session_state.res = list()
 
 
-
 if 'choice' not in st.session_state:
     st.session_state.choice = 'init'
 
@@ -157,7 +156,7 @@ if st.session_state.name != "":
 						st.session_state.res.append(st.session_state.choice)
 
 					st.subheader(st.session_state.res)
-					st.subheader(st.session_state.count)
+					#st.subheader(st.session_state.count)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
 
 					
@@ -221,7 +220,7 @@ if st.session_state.name != "":
 		st.session_state.reset = True
 		
 	if not st.session_state.reset:
-		st.session_state.count += 1  # Used when counter resets.
+		#st.session_state.count += 1  # Used when counter resets.
 		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
 	else:	
 		# Display dropdown
