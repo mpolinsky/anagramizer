@@ -163,11 +163,11 @@ if st.session_state.name != "":
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
 	
-	if st.button("Start over"):
-		st.subheader("Starting fresh!")
-		st.session_state.clear()
-		reset_counter.clear()
-		st.experimental_rerun()		
+		if st.button("Start over"):
+			st.subheader("Starting fresh!")
+			st.session_state.clear()
+			reset_counter.clear()
+			st.experimental_rerun()		
 	else:
 		st.session_state.part2 = True
 	## Part 2
