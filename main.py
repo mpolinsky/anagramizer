@@ -123,8 +123,6 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
-
-	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -147,28 +145,25 @@ if st.session_state.name != "":
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
-		if not st.session_state.next:
-			with st.form(key="wordform", clear_on_submit=False):
-				selection = st.selectbox(
-				'Choose the next word!',
-				options = st.session_state.word_pool,
-				)
+		
+		with st.form(key="wordform", clear_on_submit=False):
+			selection = st.selectbox(
+			'Choose the next word!',
+			options = st.session_state.word_pool,
+			)
 
-				form_submit = st.form_submit_button("Select")
-				if form_submit:
-					st.session_state.choice = selection
-					if st.session_state.choice == "Select a word!":
-						st.session_state.res.append(None)
-					else:
-						st.session_state.res.append(st.session_state.choice)
-					st.session_state.counter1 -= Co(st.session_state.res[-1])
-					st.subheader(f"""Choice: {st.session_state.choice}""")
-					st.experimental_rerun()
-					#st.session_state.next = True
-		#if st.session_state.next:
-			#st.button("Submit")
-			#st.session_state.next = False
-			
+			form_submit = st.form_submit_button("Select")
+			if form_submit:
+				st.session_state.choice = selection
+				if st.session_state.choice == "Select a word!":
+					st.session_state.res.append(None)
+				else:
+					st.session_state.res.append(st.session_state.choice)
+				st.session_state.counter1 -= Co(st.session_state.res[-1])
+				st.subheader(f"""Choice: {st.session_state.choice}""")
+				st.experimental_rerun()
+
+
 	else:
 		st.session_state.part2 = True
 	## Part 2
