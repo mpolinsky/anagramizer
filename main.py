@@ -191,9 +191,11 @@ if st.session_state.name != "":
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
 			st.subheader(f"  ")
 			if st.session_state.showfail:
-				colA, colB, colC = st.columns([1, 3, 1])
+				colA, colB, colC = st.columns([.25, 3.5, .25])
 				with colB:
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+				colM, colN, colO = st.columns([1.25, 2.5, 1.25])
+				with colN:
 					button_press = st.button("Oops!")
 					if button_press:
 						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
