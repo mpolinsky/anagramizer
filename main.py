@@ -187,10 +187,10 @@ if st.session_state.name != "":
 		elif not st.session_state.oops:
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
+				colX, colY = st.columns([1.5,2.5])
+				with colY:
+					st.subheader(f"...as far as we can tell")
 				st.session_state.showfail = False
-			colX, colY = st.columns([1.5,2.5])
-			with colY:
-				st.subheader(f"...as far as we can tell")
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
