@@ -253,6 +253,8 @@ if st.session_state.name != "":
 				if big_reset:
 					st.session_state.clear()
 					reset_counter.clear()
+				
+				st.button("Finished")
 
 else:
 	del st.session_state.word_pool
