@@ -163,12 +163,9 @@ if st.session_state.name != "":
 						st.session_state.res.append(None)
 					else:
 						st.session_state.res.append(st.session_state.choice)
-
+						
 					st.subheader(st.session_state.res)
-					#st.subheader(st.session_state.count)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
-
-					
 					st.session_state.next = True
 		if st.session_state.next:
 			st.button("Next word")
@@ -190,7 +187,7 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		elif not st.session_state.oops:
+		else:#elif not st.session_state.oops:
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 				colX, colY = st.columns([1.5,2.5])
@@ -212,7 +209,7 @@ if st.session_state.name != "":
 				st.session_state.oops = True
 			st.subheader(f"  ")
 			
-		elif st.session_state.oops:
+		#elif st.session_state.oops:
 			# Display what the user was left with.
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
