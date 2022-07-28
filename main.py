@@ -202,9 +202,9 @@ if st.session_state.name != "":
 			col1, col2, col3 = st.columns(3)
 			with col2:
 				button_press = st.button("Oops!")
-			if button_press:
-				st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
-				st.session_state.oops = True
+				if button_press:
+					st.session_state.user_anagram = True   ####### This is where the oops is pressed.  Change above else to elif and get control to separate these parts.
+					st.session_state.oops = True
 			st.subheader(f"  ")
 			
 		#elif st.session_state.oops:
