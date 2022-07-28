@@ -107,6 +107,9 @@ if 'oops' not in st.session_state:
 	
 if 'summaries' not in st.session_state:
 	st.session_state.summaries = list()
+	
+if 'showfail' not in st.session_state:
+	st.session_state.showfail = True
 
 if 'balloons' not in st.session_state:
 	st.session_state.balloons = 0
@@ -182,7 +185,9 @@ if st.session_state.name != "":
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
 		elif not st.session_state.oops:
-			st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
+			if st.session_state.showfail:
+				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
+				st.session_state.showfail = False
 			colX, colY = st.columns([1.5,2.5])
 			with colY:
 				st.subheader(f"...as far as we can tell")
@@ -222,27 +227,28 @@ if st.session_state.name != "":
 	
 		#st.session_state.count += 1  # Used when counter resets.
 		#st.button("Next word!")             # THIS IS THE PHANTOM BUTTON ITS HERE ITS HERE!!!!
-	if st.session_state.reset:#else:	
+	if st.session_state.reset:
 		# Display dropdown
-		if st.session_state.success and st.session_state.info_render < 1:
-			with st.expander("What do these words mean??"):
-				st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
-				st.subheader(f"  ")
-				st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-				st.session_state.info_render += 1
-		
-		colD, colE, colF = st.columns([.95, 2.5, .55])
-		with colE:
-			st.subheader("Thanks for playing")
-		colA, colB, colC = st.columns([.25, 3.5, .25])
-		with colB:
-			st.subheader("Click twice on the reset button to try another!")
-		col1, col2, col3 = st.columns(3)
-		with col2:
-			big_reset = st.button("Reset")
-		if big_reset:
-			st.session_state.clear()
-			reset_counter.clear()
+		if st.session_state.success: 
+			if st.session_state.info_render < 1:
+				with st.expander("What do these words mean??"):
+					st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+					st.subheader(f"  ")
+					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
+					st.session_state.info_render += 1
+			else:
+				colD, colE, colF = st.columns([.95, 2.5, .55])
+				with colE:
+					st.subheader("Thanks for playing")
+				colA, colB, colC = st.columns([.25, 3.5, .25])
+				with colB:
+					st.subheader("Click twice on the reset button to try another!")
+				col1, col2, col3 = st.columns(3)
+				with col2:
+					big_reset = st.button("Reset")
+				if big_reset:
+					st.session_state.clear()
+					reset_counter.clear()
 
 else:
 	del st.session_state.word_pool
