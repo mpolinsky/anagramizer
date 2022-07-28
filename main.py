@@ -164,6 +164,7 @@ if st.session_state.name != "":
 						st.session_state.res.append(st.session_state.choice)
 					st.session_state.counter1 -= Co(st.session_state.res[-1])
 					st.subheader(f"""Choice: {st.session_state.choice}""")
+					st.experimental_rerun()
 					#st.session_state.next = True
 		#if st.session_state.next:
 			#st.button("Submit")
