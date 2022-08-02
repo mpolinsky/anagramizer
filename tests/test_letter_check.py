@@ -18,4 +18,4 @@ def test_shrink_pool_creates_smaller_pools():
   'latter',
   'madder'
   ]
-  assert len(shrink_pool(Co('hats'))) < len(pool)
+  assert len(shrink_pool(Co('hats'), pool)) < len(pool)
