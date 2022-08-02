@@ -141,9 +141,9 @@ if st.session_state.name != "":
 	if st.session_state.part1:
 		st.header(f"  ")
 		st.header(f"  ")
-		st.info(f"Below you'll see the anagra, you're building and the letters you have left.")
-		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
-		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
+		st.header(f"  ")
+		st.subheader(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
+		st.subheader(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
 		
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
