@@ -35,8 +35,9 @@ def test_letter_check_accepts_matches():
   assert letter_check(Co('hat'), 'hat') == True
 
 def test_string_passed_to_letter_check_raises_error():
-   assert letter_check('hat', 'hat') raises AttributeError
-   
+   with pytest.raises(AttributeError):
+      letter_check('hat', 'hat')
+      
 # shrink_pool tests   
 
 def test_shrink_pool_creates_smaller_pools(pool):
