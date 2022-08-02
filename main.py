@@ -175,7 +175,7 @@ if st.session_state.name != "":
 				st.session_state.counter1 -= Co(st.session_state.res[-1])
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
-	
+		# Resets from any stage of building
 		if st.button("Start over"):
 			st.subheader("Starting fresh!")
 			st.session_state.clear()
@@ -235,8 +235,7 @@ if st.session_state.name != "":
 						st.balloons()
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
-					st.subheader("That actually is not a complete anagram, so sorry.")
-					st.write("Try again or click end")		
+					st.subheader("That actually is not a complete anagram, so sorry.")		
 
 		st.session_state.reset = True
 		
