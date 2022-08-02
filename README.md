@@ -7,6 +7,6 @@
 
 ### Built with Python and StreamLit, running on the StreamLit cloud.  The anagramizer relies on a corpus of english words, currently a subset of the words in Webster's Second International Dictionary, accessed through the Python english-words library.
 
-### For an example, try the name **Alec Guinness**.  Choose, **genuine**, and then **class**.
+### For an example, try the name *Alec Guinness*.  Choose, **genuine**, and then **class**.
 
 ## Have fun!
