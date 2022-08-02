@@ -4,26 +4,26 @@ from tg_proj.letter_check import letter_check, shrink_pool
 @pytest.fixture()
 def pool():
    pool = [
-    'hat',
-    'at',
-    'a',
-    'sat',
-    'flat',
-    'mat',
-    'latter',
-    'madder',
-    'get',
-    'but',
-    'mop',
-    'morph',
-    'prom',
-    'log',
-    'slog',
-    'good',
-    'top',
-    'last'
-  ]
-    return pool
+      'hat',
+      'at',
+      'a',
+      'sat',
+      'flat',
+      'mat',
+      'latter',
+      'madder',
+      'get',
+      'but',
+      'mop',
+      'morph',
+      'prom',
+      'log',
+      'slog',
+      'good',
+      'top',
+      'last',
+   ]
+   return pool
 
 def test_letter_check_rejects_nonmatches():
   assert letter_check(Co('hat'), 'can') == False
