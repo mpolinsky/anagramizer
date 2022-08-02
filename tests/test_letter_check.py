@@ -1,5 +1,6 @@
 from collections import Counter as Co
 from tg_proj.letter_check import letter_check, shrink_pool
+import pytest
 
 @pytest.fixture()
 def pool():
