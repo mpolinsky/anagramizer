@@ -124,6 +124,9 @@ if 'balloons' not in st.session_state:
 if 'info_render' not in st.session_state:
 	st.session_state.info_render = 0
 	
+if 'disable_manual_entry_fail_warning' not in st.session_state:
+	st.session_state.disable_manual_entry_fail_warning = False
+	
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
@@ -147,14 +150,24 @@ if st.session_state.name != "":
 		
 		st.subheader("Select a word and click the select button to move on to the next word!")
 		
-		with st.form(key="wordform", clear_on_submit=False):
+		with st.form(key="wordform", clear_on_submit=True):
 			selection = st.selectbox(
 			'Choose the next word!',
 			options = st.session_state.word_pool,
 			)
-
+			##
+			###
+			###
+			## you'll have to do all the input handling here to...make it its own func...
+			manual_entry = st.text_input("Or enter a word here!")
+			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
+				if letter_check(st.session_state.counter1, manual_entry):
+					selection = manual_entry
+				if not letter_check(st.session_state.counter1, manual_entry):
+					st.warning("Remember you can only use the remaining letters!")
+					selection = "Select a word!"
 			form_submit = st.form_submit_button("Select")
-			if form_submit:
+			if form_submit:	
 				st.session_state.choice = selection
 				if st.session_state.choice == "Select a word!":
 					st.session_state.res.append(None)
@@ -163,8 +176,12 @@ if st.session_state.name != "":
 				st.session_state.counter1 -= Co(st.session_state.res[-1])
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
-
-
+	
+		if st.button("Start over"):
+			st.subheader("Starting fresh!")
+			st.session_state.clear()
+			reset_counter.clear()
+			st.experimental_rerun()		
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -181,13 +198,13 @@ if st.session_state.name != "":
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
 			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.session_state.success = True
-		else:#elif not st.session_state.oops:
+		else: #elif not st.session_state.oops:
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 				colX, colY = st.columns([1.5,2.5])
 				with colY:
 					st.subheader(f"...as far as we can tell")
-				st.session_state.showfail = False
+				#st.session_state.showfail = False
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
@@ -196,10 +213,13 @@ if st.session_state.name != "":
 				colA, colB, colC = st.columns([.25, 3.5, .25])
 				with colB:
 					st.subheader(f"Click 'Oops!' if you see an anagram we missed!")
+				colM, colN, colO = st.columns(3)
+				with colN:
 					button_press = st.button("Oops!")
 					if button_press:
 						st.session_state.user_anagram = True   ####### This is where the oops is pressed.  
 						st.session_state.oops = True
+						st.session_state.showfail = False
 			st.subheader(f"  ")
 		
 			# If user wants to enter an anagram:
@@ -221,6 +241,8 @@ if st.session_state.name != "":
 
 		st.session_state.reset = True
 		
+	
+	
 	if st.session_state.reset:
 		# Display dropdown
 		if st.session_state.success or st.session_state.jump_to_end: 
@@ -231,12 +253,9 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 
-		colD, colE, colF = st.columns([.95, 2.5, .55])
-		with colE:
-			st.subheader("Thanks for playing")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
-			st.subheader("Click twice on the reset button to try another!")
+			st.subheader("Click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
 		with col2:
 			big_reset = st.button("Reset")
