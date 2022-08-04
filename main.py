@@ -151,7 +151,7 @@ if st.session_state.name != "":
 			st.experimental_rerun()
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
-		st.subheader("Select a word and click the select button to move on to the next word!")
+		st.write("Select a word and click the select button to move on to the next word.  The menu will automatically change.")
 		
 		with st.form(key="wordform", clear_on_submit=True):
 			selection = st.selectbox(
@@ -159,8 +159,6 @@ if st.session_state.name != "":
 			options = st.session_state.word_pool,
 			)
 			##
-			###
-			###
 			## you'll have to do all the input handling here to...make it its own func...
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
