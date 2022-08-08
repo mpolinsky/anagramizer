@@ -41,11 +41,11 @@ def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"{items[index]}")
 		try:
-			st.write(get_definition(item)+" [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
+			st.write(f"""{get_definition(item)} [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/+{item}+)""")
 		except TypeError:
-			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
+			st.write(f"""This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary""")
 		try:
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+"... [(Wikipedia)](https://www.wikipedia.org/wiki/"+item+")")
 		except wk.exceptions.DisambiguationError:
 			st.write(f" ")
 			try:
@@ -54,7 +54,7 @@ def retrieve_data(items):
 			except wk.exceptions.DisambiguationError as de:
 				sum_text = choice(de.options)
 			finally:
-				st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+				st.write(f"""{sum_text}... [(Wikipedia)](https://www.wikipedia.org/wiki/"+item+")""")
 
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
@@ -78,7 +78,7 @@ if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.s
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on', 'in', 'at', 'to', 'too', 'he', 'she']
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on', 'in', 'at', 'to', 'too', 'he', 'she', 'as', 'ad']
 
 if 'res' not in st.session_state:
     st.session_state.res = list()
@@ -177,7 +177,7 @@ if st.session_state.name != "":
 				st.session_state.counter1 -= Co(st.session_state.res[-1])
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
-	
+		# Resets from any stage of building
 		if st.button("Start over"):
 			st.subheader("Starting fresh!")
 			st.session_state.clear()
@@ -237,8 +237,7 @@ if st.session_state.name != "":
 						st.balloons()
 						st.session_state.balloons += 1
 				elif st.session_state.anagram != 'None':
-					st.subheader("That actually is not a complete anagram, so sorry.")
-					st.write("Try again or click end")		
+					st.subheader("That actually is not a complete anagram, so sorry.")		
 
 		st.session_state.reset = True
 		
