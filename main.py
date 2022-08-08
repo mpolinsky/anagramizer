@@ -41,11 +41,11 @@ def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"{items[index]}")
 		try:
-			st.write(f"""{get_definition(item)}[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")""")
+			st.write(f"""{get_definition(item)}[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/+{item}+)""")
 		except TypeError:
 			st.write(f"""This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary""")
 		try:
-			st.write(f"""{wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]} [(Wikipedia)](https://www.wikipedia.org/wiki/"+item+")""")
+			st.write(f"""{wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]}[(Wikipedia)](https://www.wikipedia.org/wiki/+{item}+)""")
 		except wk.exceptions.DisambiguationError:
 			st.write(f" ")
 			try:
