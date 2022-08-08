@@ -54,7 +54,7 @@ def retrieve_data(items):
 			except wk.exceptions.DisambiguationError as de:
 				sum_text = choice(de.options)
 			finally:
-				st.write(f"""{sum_text}...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')""")
+				st.write(f"""{sum_text}... [(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')""")
 
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
