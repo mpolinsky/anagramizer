@@ -65,7 +65,10 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
-st.title("main")
+st.title("What's in a Name??!")
+st.subheader("The Anagram Finding Game")
+
+st.info("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
@@ -139,15 +142,16 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"  ")
-		st.header(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
-		st.header(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
+		st.subheader(f"""Current anagram:  \n \t{' '.join([i for i in st.session_state.res if i is not None])}""")
+		st.subheader(f"""Letters remaining:  \n  \t{''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ')}""")
+		
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
 			st.session_state.part1 = False
 			st.experimental_rerun()
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
-		st.subheader("Select a word and click the select button to move on to the next word!")
+		st.write("Select a word and click the select button to move on to the next word.  The menu will automatically change.")
 		
 		with st.form(key="wordform", clear_on_submit=True):
 			selection = st.selectbox(
@@ -155,8 +159,6 @@ if st.session_state.name != "":
 			options = st.session_state.word_pool,
 			)
 			##
-			###
-			###
 			## you'll have to do all the input handling here to...make it its own func...
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
