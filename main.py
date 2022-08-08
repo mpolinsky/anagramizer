@@ -43,9 +43,9 @@ def retrieve_data(items):
 		try:
 			st.write(f"""Definition: {get_definition(item)}[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")""")
 		except TypeError:
-			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
+			st.write(f"""This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary""")
 		try:
-			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+			st.write(f"""{wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]}...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')""")
 		except wk.exceptions.DisambiguationError:
 			st.write(f" ")
 			try:
@@ -54,7 +54,7 @@ def retrieve_data(items):
 			except wk.exceptions.DisambiguationError as de:
 				sum_text = choice(de.options)
 			finally:
-				st.write(sum_text+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
+				st.write(f"""{sum_text}...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')""")
 
 			#st.write(   wk.summary(wk.search(items[index]), auto_suggest=False)  .split('\n')[0][:360]+'...[(Wikipedia)](http://www.wikipedia.org/wiki/'+item+')')
 		except wk.exceptions.PageError:
@@ -75,7 +75,7 @@ if 'word_pool' in st.session_state and st.session_state.word_pool == [] and st.s
 
 # Streamlit runs from top to bottom on every iteraction so we check the state
 if 'word_pool' not in st.session_state:
-    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on', 'in', 'at', 'to', 'too', 'he', 'she']
+    st.session_state.word_pool = [i for i in ew.english_words_lower_alpha_set if len(i) > 2] + ['a', 'on', 'in', 'at', 'to', 'too', 'he', 'she', 'as', 'ad']
 
 if 'res' not in st.session_state:
     st.session_state.res = list()
