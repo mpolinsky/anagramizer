@@ -41,7 +41,7 @@ def retrieve_data(items):
 	for index, item in enumerate(items):
 		st.subheader(f"{items[index]}")
 		try:
-			st.write(get_definition(item)+" [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")")
+			st.write(f"""Definition: {get_definition(item)}{[(Merriam-Webster)](https://www.merriam-webster.com/dictionary/"+item+")}""")
 		except TypeError:
 			st.write(f"This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary")
 		try:
