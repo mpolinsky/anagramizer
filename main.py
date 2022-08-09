@@ -254,7 +254,8 @@ if st.session_state.name != "":
 					st.subheader(f"  ")
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
-			components.html("""<a href="https://twitter.com/intent/tweet" class="twitter-share-button"
+			components.html("""<a class="twitter-share-button"
+				href="https://twitter.com/intent/tweet" 
 				data-text=st.session_state.anagram
 				data-url="https://streamlit.io"
 				data-show-count="false">
