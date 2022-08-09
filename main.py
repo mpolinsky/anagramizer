@@ -256,7 +256,7 @@ if st.session_state.name != "":
 					st.session_state.info_render += 1
 				components.html(
 						    """
-							<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" 
+							<a href="https://twitter.com/intent/tweet" class="twitter-share-button" 
 							data-text=st.session_state.anagram
 							data-url="https://streamlit.io"
 							data-show-count="false">
