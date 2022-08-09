@@ -65,7 +65,7 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
-st.title("What's in a Name??!")
+st.title("What's in a Name?")
 st.subheader("The Anagram Finding Game")
 
 st.info("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
