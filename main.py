@@ -262,7 +262,7 @@ if st.session_state.name != "":
 				dnt = true
 				data-hashtags="streamlit,python"
 				</a>
-				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 				""")
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
