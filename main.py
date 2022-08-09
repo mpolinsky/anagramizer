@@ -253,7 +253,7 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 			#tweet_data = st.session_state.anagram if st.session_state.user_anagram else ' '.join([i for i in st.session_state.res if i != "Select a word!"])
-			components.html(f"""<title>{st.session_state.anagram}</title><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="hello w" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>""")
+			components.html("""<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="hello w" data-show-count="false">Tweet</a>""")
 
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
