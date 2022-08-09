@@ -261,6 +261,7 @@ if st.session_state.name != "":
 							data-url="https://streamlit.io"
 							data-show-count="false">
 							data-size="Large" 
+							dnt = true
 							data-hashtags="streamlit,python"
 							Tweet
 							</a>
