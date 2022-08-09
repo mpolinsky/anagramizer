@@ -254,7 +254,7 @@ if st.session_state.name != "":
 					st.session_state.info_render += 1
 			tweet_data = st.session_state.anagram if st.session_state.user_anagram else ' '.join([i for i in st.session_state.res if i != "Select a word!"])
 			share_link = 'https://twitter.com/share?text='+tweet_data+'
-			components.html("""<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><a href=share_link class="twitter-share-button" data-show-count="false">Tweet</a>""")
+			components.html("""<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><a href="""+share_link+""" class="twitter-share-button" data-show-count="false">Tweet</a>""")
 		
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
