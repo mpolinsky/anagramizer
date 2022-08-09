@@ -252,7 +252,7 @@ if st.session_state.name != "":
 					st.subheader(f"  ")
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
-			tweet_data = f"""Just found out an anagram for {st.session_state.name} is {st.session_state.anagram if st.session_state.user_anagram else ' '.join([i for i in st.session_state.res if i != "Select a word!"])}!"""
+			tweet_data = f"""Just found out an anagram for {st.session_state.og_name} is {st.session_state.anagram if st.session_state.user_anagram else ' '.join([i for i in st.session_state.res if i != "Select a word!"])}!"""
 			share_link = f"""https://twitter.com/share?text={tweet_data}"""
 			components.html("""<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><a href="""+share_link+""" class="twitter-share-button" data-show-count="false">Tweet</a>""")
 		
