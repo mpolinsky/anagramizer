@@ -270,3 +270,4 @@ else:
 	del st.session_state.word_pool
 	
 
+st.session_state
