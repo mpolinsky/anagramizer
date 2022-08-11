@@ -255,7 +255,7 @@ if st.session_state.name != "":
 			phrase = "is an anagram for"
 			tweet_data = f"""{st.session_state.anagram if st.session_state.user_anagram else '%20'.join([i for i in st.session_state.res])}%20{'%20'.join(phrase.split(" "))}%20{st.session_state.og_name}!!!"""
 			share_link = f"""https://twitter.com/share?text={tweet_data}"""
-			components.html("""<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><a href="""+share_link+""" class="twitter-share-button" data-show-count="false">Tweet</a>""")
+			components.html("""<a href="""+share_link+""" class="twitter-share-button" data-show-count="false">Tweet</a><script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>""")
 		
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
