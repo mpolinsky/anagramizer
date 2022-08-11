@@ -92,6 +92,8 @@ if 'name' not in st.session_state or st.session_state.name == "":
     if [i for i in st.session_state.og_name if i in string.punctuation + string.digits ] != []:
         st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.digits ])
     st.session_state.name = ''.join([i for i in st.session_state.og_name.lower() if i not in string.whitespace])
+    # adding this to avoid the hard reset problem.
+    reset_counter.clear()
 
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
@@ -131,7 +133,7 @@ if 'disable_manual_entry_fail_warning' not in st.session_state:
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
-reset_counter.clear()		
+		
 reset_counter(st.session_state.name)
 
 
