@@ -259,7 +259,7 @@ if st.session_state.name != "":
 		with col2:
 			big_reset = st.button("Reset")
 		if big_reset:
-			st.success("Thanks for playing!)
+			st.success("Thanks for playing!")
 			st.session_state.clear()
 			reset_counter.clear()
 			st.experimental_rerun()
