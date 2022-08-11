@@ -166,7 +166,7 @@ if st.session_state.name != "":
 			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
 				if letter_check(st.session_state.counter1, manual_entry):
 					selection = manual_entry
-				elif not letter_check(st.session_state.counter1, manual_entry):
+				else:
 					st.warning("Remember you can only use the remaining letters!")
 					selection = "Select a word!"
 			form_submit = st.form_submit_button("Select")
