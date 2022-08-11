@@ -162,13 +162,11 @@ if st.session_state.name != "":
 			'Choose the next word!',
 			options = st.session_state.word_pool,
 			)
-			##
-			## you'll have to do all the input handling here to...make it its own func...
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
 				if letter_check(st.session_state.counter1, manual_entry):
 					selection = manual_entry
-				if not letter_check(st.session_state.counter1, manual_entry):
+				elif not letter_check(st.session_state.counter1, manual_entry):
 					st.warning("Remember you can only use the remaining letters!")
 					selection = "Select a word!"
 			form_submit = st.form_submit_button("Select")
