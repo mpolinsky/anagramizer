@@ -131,7 +131,7 @@ if 'disable_manual_entry_fail_warning' not in st.session_state:
 if 'reset' not in st.session_state:
 	st.session_state.reset = False
 
-		
+reset_counter.clear()		
 reset_counter(st.session_state.name)
 
 
