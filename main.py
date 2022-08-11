@@ -65,8 +65,10 @@ def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
 
+
 st.title("What's in a Name?")
 st.subheader("The Anagram Finding Game")
+
 
 st.info("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
 
@@ -93,6 +95,8 @@ if 'name' not in st.session_state or st.session_state.name == "":
     if [i for i in st.session_state.og_name if i in string.punctuation + string.digits ] != []:
         st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.digits ])
     st.session_state.name = ''.join([i for i in st.session_state.og_name.lower() if i not in string.whitespace])
+    # adding this to avoid the hard reset problem.
+    reset_counter.clear()
 
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
@@ -260,6 +264,7 @@ if st.session_state.name != "":
 		with col2:
 			big_reset = st.button("Reset")
 		if big_reset:
+			st.success("Thanks for playing!")
 			st.session_state.clear()
 			reset_counter.clear()
 			st.experimental_rerun()
@@ -268,3 +273,6 @@ if st.session_state.name != "":
 
 else:
 	del st.session_state.word_pool
+	
+
+st.session_state
