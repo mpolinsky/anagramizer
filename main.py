@@ -70,7 +70,7 @@ st.title("What's in a Name?")
 st.subheader("The Anagram Finding Game")
 
 
-st.success("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
+st.info("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
 
 # This prevents an error when the user refreshes instead of resetting via the reset button.  
 ##  Still leaves them at a false success screen with blank data.   					****** Bug to fix here
