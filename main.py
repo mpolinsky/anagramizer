@@ -43,7 +43,7 @@ def retrieve_data(items):
 		try:
 			st.write(f"""{get_definition(item)} [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/+{item}+)""")
 		except TypeError:
-			st.write(f"""This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary""")
+			st.write(f"""This may not be a word, because it's not found in Merriam-Webster's Collegiate Dictionary""")
 		try:
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+"... [(Wikipedia)](https://www.wikipedia.org/wiki/"+item+")")
 		except wk.exceptions.DisambiguationError:
