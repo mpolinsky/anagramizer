@@ -1,5 +1,5 @@
 # What's In a Name?
-### In A Name is an informative anagramizer that lets you find the words hidden in names and phrases!
+### In A Name is an informative anagramizer!
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mpolinsky-anagramizer-main-deploy-7symnm.streamlitapp.com)
 
