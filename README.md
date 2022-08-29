@@ -9,6 +9,8 @@
 
 #### Pulls Wikipedia article summaries and definitions from Merriam-Webster's Collegiate Dictionary to provide informative context for generated phrases.
 
-### For an example, try the name **'Alec Guinness'**.  Choose, **'genuine'**, and then **'class'**.
+### Examples: 
+ - #### try the name **'Alec Guinness'**.  Choose, **'genuine'**, and then **'class'**.
+ - #### try the name **'Jeremy Irons'**.  Choose, **'jerry'**, and then **'monies'**.
 
 ## Have fun!
