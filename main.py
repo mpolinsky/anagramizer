@@ -181,7 +181,7 @@ if st.session_state.name != "":
 		# Resets from any stage of building
 		st.subheader("")
 		st.subheader("")
-		j,k,l = st.columns([.25, 3.5, .25])
+		j,k,l = st.columns([.25, 2.75, .75])
 		with l:
 			if st.button("Start over"):
 				st.subheader("Starting fresh!")
@@ -258,7 +258,7 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 
-		colA, colB, colC = st.columns([.25, 3, .5])
+		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
 			st.subheader("Click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
