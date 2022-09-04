@@ -258,7 +258,7 @@ if st.session_state.name != "":
 					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
 					st.session_state.info_render += 1
 
-		colA, colB, colC = st.columns([.25, 3.5, .25])
+		colA, colB, colC = st.columns([.25, 3, .5])
 		with colB:
 			st.subheader("Click the reset button to try another!")
 		col1, col2, col3 = st.columns(3)
