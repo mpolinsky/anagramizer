@@ -181,7 +181,7 @@ if st.session_state.name != "":
 		# Resets from any stage of building
 		st.subheader("")
 		st.subheader("")
-		j,k,l = st.columns(3)
+		j,k,l = st.columns([.25, 3.5, .25])
 		with l:
 			if st.button("Start over"):
 				st.subheader("Starting fresh!")
