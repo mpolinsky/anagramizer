@@ -9,7 +9,7 @@ import json
 import string
 
 
-st.set_page_config(page_title="Anagramizer", page_icon=':random:', layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="What's in a Name??", page_icon=':random:', layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
 # check for presence and number of letters to eliminate invalid words
@@ -43,7 +43,7 @@ def retrieve_data(items):
 		try:
 			st.write(f"""{get_definition(item)} [(Merriam-Webster)](https://www.merriam-webster.com/dictionary/+{item}+)""")
 		except TypeError:
-			st.write(f"""This may not be a word, becuase it's not found in Merriam-Webster's Collegiate Dictionary""")
+			st.write(f"""This may not be a word, because it's not found in Merriam-Webster's Collegiate Dictionary""")
 		try:
 			st.write(wk.summary(items[index], auto_suggest=False).split('\n')[0][:360]+"... [(Wikipedia)](https://www.wikipedia.org/wiki/"+item+")")
 		except wk.exceptions.DisambiguationError:
@@ -67,7 +67,6 @@ def reset_counter(a_name):
 
 
 st.title("What's in a Name?")
-st.subheader("The Anagram Finding Game")
 
 
 st.info("Enter a name and hit enter to start building an anagram word-by-word... But not all combinations lead to complete anagrams!")
@@ -180,6 +179,7 @@ if st.session_state.name != "":
 				st.subheader(f"""Choice: {st.session_state.choice}""")
 				st.experimental_rerun()
 		# Resets from any stage of building
+		st.subheader("")
 		if st.button("Start over"):
 			st.subheader("Starting fresh!")
 			st.session_state.clear()
