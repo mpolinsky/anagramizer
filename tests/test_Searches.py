@@ -13,7 +13,7 @@ def test_search_returns_problem():
     search = Search(res)
     assert isinstance(search.getProblem(), TaylorProblem)
 
-# check that openList is a deque with a generator on it 
+# check that openList is a deque with a generator on it
 def test_dfs_setup_returns_deque_with_generator():
     search = Search(TaylorProblem(Co('alecguinness'), corpus))
     setup_result = search._DFS_setup()
@@ -29,7 +29,7 @@ def test_dfs_get_current_state_good_generator():
     openList = search._DFS_setup()
     assert search._get_current_state(openList, closedList, results) == search.getProblem().get_startState()
 
-# check that get_current_state will successfully eject an empty generator 
+# check that get_current_state will successfully eject an empty generator
 #      and collect the state from the next one on openList
 def test_dfs_get_current_state_empty_generator_with_another_one_in_list():
     results =  ['temp_results','for_development']
@@ -39,7 +39,7 @@ def test_dfs_get_current_state_empty_generator_with_another_one_in_list():
     openList.append( ( i for i in [search.problem.get_startState()] ) )
     assert search._get_current_state(openList, [], results) == search.getProblem().get_startState()
 
-# chekcs that get_current_state returns the results when 
+# chekcs that get_current_state returns the results when
 #   there is only an empty generator left on openList.
 def test_dfs_get_current_state_empty_generator_last_on_list():
     results =  ['temp_results','for_development']
