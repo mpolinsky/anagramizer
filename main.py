@@ -180,11 +180,14 @@ if st.session_state.name != "":
 				st.experimental_rerun()
 		# Resets from any stage of building
 		st.subheader("")
-		if st.button("Start over"):
-			st.subheader("Starting fresh!")
-			st.session_state.clear()
-			reset_counter.clear()
-			st.experimental_rerun()		
+		st.subheader("")
+		j,k,l = st.columns([.25, 3.5, .25])
+		with k:
+			if st.button("Start over"):
+				st.subheader("Starting fresh!")
+				st.session_state.clear()
+				reset_counter.clear()
+				st.experimental_rerun()		
 	else:
 		st.session_state.part2 = True
 	## Part 2
