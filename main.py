@@ -253,10 +253,14 @@ if st.session_state.name != "":
 		if st.session_state.success or st.session_state.jump_to_end: 
 			if st.session_state.info_render < 1 and not st.session_state.jump_to_end:
 				with st.expander("What do these words mean??"):
-					st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
-					st.subheader(f"  ")
-					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-					st.session_state.info_render += 1
+					try:
+						st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+						st.subheader(f"  ")
+						st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
+						st.session_state.info_render += 1
+					except JSONEncodeError:
+						st.subheader("oops....lets try again..")
+						st.button("try again")
 
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
