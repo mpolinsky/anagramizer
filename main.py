@@ -234,9 +234,9 @@ if st.session_state.name != "":
 				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
 				# Celebrate and display success message
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
-					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
+					st.subheader(f"You were right! {st.session_state.anagram} is an anagram of {st.session_state.og_name}")
 					st.subheader(f"  ")
-					st.code(f"{st.session_state.anagram}")
+					st.code(f"{st.session_state.anagram} is an anagram for {st.og_name)}!")
 					st.session_state.success = True
 					if st.session_state.balloons == 0:
 						st.balloons()
