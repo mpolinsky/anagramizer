@@ -198,11 +198,12 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congratulations you found a true anagram for {st.session_state.og_name}!")
+			st.code(f"{st.session_state.anagram} is an anagram of {st.session_state.og_name}!")
 			colM, colN, colO = st.columns([1.5,3,.1])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
-			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
+		
 			st.session_state.success = True
 		else: #elif not st.session_state.oops:
 			if st.session_state.showfail:
