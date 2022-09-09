@@ -198,11 +198,12 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congratulations you found a true anagram for {st.session_state.og_name}!")
+			st.code(f"{st.session_state.anagram} is an anagram of {st.session_state.og_name}!")
 			colM, colN, colO = st.columns([1.5,3,.1])
 			with colN:
 				st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
 			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
-			st.code(f"""{' '.join([i for i in st.session_state.res if i is not None])}""")
+		
 			st.session_state.success = True
 		else: #elif not st.session_state.oops:
 			if st.session_state.showfail:
@@ -234,9 +235,9 @@ if st.session_state.name != "":
 				st.session_state.anagram = st.text_input("If you see an anagram we've missed type it here!", value=None)
 				# Celebrate and display success message
 				if Co(st.session_state.anagram.lower().replace(' ','')) == Co(st.session_state.name):
-					st.subheader(f"You were right! {st.session_state.anagram} is an anagram for {st.session_state.og_name}")
+					st.subheader(f"You were right! {st.session_state.anagram} is an anagram of {st.session_state.og_name}")
 					st.subheader(f"  ")
-					st.code(f"{st.session_state.anagram}")
+					st.code(f"{st.session_state.anagram} is an anagram of {st.session_state.og_name}!")
 					st.session_state.success = True
 					if st.session_state.balloons == 0:
 						st.balloons()
@@ -253,10 +254,14 @@ if st.session_state.name != "":
 		if st.session_state.success or st.session_state.jump_to_end: 
 			if st.session_state.info_render < 1 and not st.session_state.jump_to_end:
 				with st.expander("What do these words mean??"):
-					st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
-					st.subheader(f"  ")
-					st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
-					st.session_state.info_render += 1
+					try:
+						st.session_state.summaries = retrieve_data(st.session_state.anagram.split(' ')) if st.session_state.user_anagram else retrieve_data([i for i in st.session_state.res if i is not None])
+						st.subheader(f"  ")
+						st.write("Note: If a Wikipedia search returns many results, the summary dislpayed here could be any of them.  Use the link to see the list!")	
+						st.session_state.info_render += 1
+					except JSONEncodeError:
+						st.subheader("oops....lets try again..")
+						st.button("try again")
 
 		colA, colB, colC = st.columns([.25, 3.5, .25])
 		with colB:
