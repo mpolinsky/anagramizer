@@ -164,7 +164,7 @@ if st.session_state.name != "":
 			manual_entry = st.text_input("Or enter a word here!")
 			if manual_entry and manual_entry != "Select a word!" and manual_entry is not None:
 				if letter_check(st.session_state.counter1, manual_entry):
-					selection = manual_entry
+					selection = manual_entry.lower()
 				else:
 					st.warning("Remember you can only use the remaining letters!")
 					selection = "Select a word!"
@@ -196,22 +196,17 @@ if st.session_state.name != "":
 		st.header(f"  ")
 		st.header(f"  ")
 		st.header(f"  ")
+		# Success message
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congratulations you found a true anagram for {st.session_state.og_name}!")
 			st.code(f"{' '.join([i for i in st.session_state.res if i is not None]).capwords()} is an anagram of {st.session_state.og_name}!")
-			#colM, colN, colO = st.columns([1.5,3,.1])
-			#with colN:
-		#		st.header(' '.join([i for i in st.session_state.res if i is not None]).capitalize())
-			#st.subheader(f"""Copyable:  \t{' '.join([i for i in st.session_state.res if i != "Select a word!"])}""")
-		
 			st.session_state.success = True
-		else: #elif not st.session_state.oops:
+		else: 
 			if st.session_state.showfail:
 				st.subheader(f"Oh, it turns out that doesn't make a complete anagram...")
 				colX, colY = st.columns([1.5,2.5])
 				with colY:
 					st.subheader(f"...as far as we can tell")
-				#st.session_state.showfail = False
 			st.header(f"  ")
 			st.subheader(f"""Here is your partial anagram:  \n  \t{' '.join([i for i in st.session_state.res if i is not None])}""")
 			st.subheader(f"""And your leftover letters are:  \n  \t{ ''.join([ str(i)*st.session_state.counter1[i] for i in st.session_state.counter1 ]).replace('',' ') }""")
