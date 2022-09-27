@@ -199,7 +199,7 @@ if st.session_state.name != "":
 		# Success message
 		if st.session_state.counter1 == {}:
 			st.subheader(f"Congratulations you found a true anagram for {st.session_state.og_name}!")
-			st.code(f"{' '.join([i for i in st.session_state.res if i is not None]).capwords()} is an anagram of {st.session_state.og_name}!")
+			st.code(f"{' '.join([i for i in st.session_state.res if i is not None])} is an anagram of {st.session_state.og_name}!")
 			st.session_state.success = True
 		else: 
 			if st.session_state.showfail:
