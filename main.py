@@ -60,7 +60,7 @@ def retrieve_data(items):
 		except wk.exceptions.PageError:
 			st.write("...This doesn't seem to be returning any results from Wikipedia.  It's very possibly not a thing.")
 			
-@st.experimental_memo
+@st.cache_data
 def reset_counter(a_name):
     st.session_state.counter1 = Co(st.session_state.name)
     st.session_state.part1 = True
