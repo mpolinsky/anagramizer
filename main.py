@@ -95,7 +95,7 @@ if 'name' not in st.session_state or st.session_state.name == "":
         st.session_state.og_name = ''.join([i for i in st.session_state.og_name if i not in string.punctuation + string.digits ])
     st.session_state.name = ''.join([i for i in st.session_state.og_name.lower() if i not in string.whitespace])
     # adding this to avoid the hard reset problem.
-    st.cache_data.clear(self)
+    st.cache_data.clear()
 
 if 'user_anagram' not in st.session_state:
 	st.session_state.user_anagram = False
