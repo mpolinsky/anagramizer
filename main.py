@@ -267,7 +267,7 @@ if st.session_state.name != "":
 		if big_reset:
 			st.success("Thanks for playing!")
 			st.session_state.clear()
-			reset_counter.clear()
+			st.cache_data.clear()
 			st.experimental_rerun()
 
 				
