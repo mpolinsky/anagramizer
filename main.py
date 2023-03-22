@@ -186,7 +186,7 @@ if st.session_state.name != "":
 			if st.button("Start over"):
 				st.subheader("Starting fresh!")
 				st.session_state.clear()
-				reset_counter.clear()
+				st.cache_data.clear()
 				st.experimental_rerun()		
 	else:
 		st.session_state.part2 = True
