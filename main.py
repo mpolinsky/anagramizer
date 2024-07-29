@@ -151,7 +151,7 @@ if st.session_state.name != "":
 		st.session_state.word_pool = shrink_pool(st.session_state.counter1, st.session_state.word_pool)
 		if [i for i in st.session_state.word_pool if i != "Select a word!"] == []:
 			st.session_state.part1 = False
-			st.experimental_rerun()
+			st.rerun()
 		st.session_state.word_pool.insert(0, "Select a word!")
 		
 		st.write("Select a word and click the select button to move on to the next word.  The menu will automatically change.")
@@ -177,7 +177,7 @@ if st.session_state.name != "":
 					st.session_state.res.append(st.session_state.choice)
 				st.session_state.counter1 -= Co(st.session_state.res[-1])
 				st.subheader(f"""Choice: {st.session_state.choice}""")
-				st.experimental_rerun()
+				st.rerun()
 		# Resets from any stage of building
 		st.subheader("")
 		st.subheader("")
@@ -187,7 +187,7 @@ if st.session_state.name != "":
 				st.subheader("Starting fresh!")
 				st.session_state.clear()
 				st.cache_data.clear()
-				st.experimental_rerun()		
+				st.rerun()		
 	else:
 		st.session_state.part2 = True
 	## Part 2
@@ -268,7 +268,7 @@ if st.session_state.name != "":
 			st.success("Thanks for playing!")
 			st.session_state.clear()
 			st.cache_data.clear()
-			st.experimental_rerun()
+			st.rerun()
 
 				
 
